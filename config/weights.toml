@@ -1,0 +1,40 @@
+# Default scoring settings. These weights are hypotheses, not validated predictors.
+# The dashboard lets you change them live; edit this file to change the defaults.
+
+[categories]
+financial_pressure = 35
+commercial_opportunity = 45
+growth_catalysts = 20
+
+[financial_pressure]
+reported_result = 40              # reported surplus/deficit, as a % of expenses
+conference_relative_generated = 35
+self_sufficiency = 25
+
+[commercial_opportunity]
+commercial_revenue = 60
+fan_reach = 40
+
+[fan_reach]
+football = 60
+mens_basketball = 25
+womens_basketball = 15
+
+[catalysts]
+# points per distinct event, before recency/confidence/relevance adjustments; total capped at 100
+significance_high = 45
+significance_medium = 25
+significance_low = 10
+recency_full_credit_months = 12   # events this recent count in full
+recency_half_credit_months = 24   # then half credit up to here, quarter credit after
+confidence_confirmed = 1.0
+confidence_reported = 0.6
+relevance_direct = 1.0            # directly about commercial/sponsorship revenue
+relevance_indirect = 0.5
+
+[rules]
+scoring_fiscal_year = 2025
+audience_season = "2024-25"
+min_component_coverage = 0.60     # share of a category's weight that must have data
+min_overall_coverage = 0.55       # share of total category weight needed for an overall score
+min_peer_coverage = 0.50          # share of conference peers needed for a conference benchmark

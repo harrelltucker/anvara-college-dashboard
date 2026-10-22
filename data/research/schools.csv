@@ -1,0 +1,16 @@
+school_id,name,state,subdivision,control,in_universe
+RUTGERS,Rutgers University,NJ,FBS,public,yes
+IOWA,University of Iowa,IA,FBS,public,yes
+CLEMSON,Clemson University,SC,FBS,public,yes
+UTAH,University of Utah,UT,FBS,public,yes
+MARYLAND,University of Maryland,MD,FBS,public,yes
+UCLA,UCLA,CA,FBS,public,yes
+MINNESOTA,University of Minnesota,MN,FBS,public,yes
+PURDUE,Purdue University,IN,FBS,public,yes
+ILLINOIS,University of Illinois Urbana-Champaign,IL,FBS,public,yes
+MICHSTATE,Michigan State University,MI,FBS,public,yes
+WISCONSIN,University of Wisconsin-Madison,WI,FBS,public,yes
+ARIZONA,University of Arizona,AZ,FBS,public,yes
+ARIZSTATE,Arizona State University,AZ,FBS,public,yes
+TEXAS,University of Texas at Austin,TX,FBS,public,yes
+OHIOSTATE,Ohio State University,OH,FBS,public,yes

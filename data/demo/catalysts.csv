@@ -1,0 +1,7 @@
+catalyst_id,school_id,event_id,event_date,category,title,description,significance,commercial_relevance,confidence,source_id,verified_by,verified_date
+DEMO-C01,DEMO01,DEMO-E01,2026-06-01,private_capital,Private capital partner for commercial entity (DEMO),Fictional demonstration event,high,direct,confirmed,DEMO,DEMO,2026-10-22
+DEMO-C02,DEMO03,DEMO-E03,2025-11-15,in_house_rights_org,Launches in-house commercial rights unit (DEMO),Fictional demonstration event,high,direct,confirmed,DEMO,DEMO,2026-10-22
+DEMO-C03,DEMO03,DEMO-E03,2025-11-20,in_house_rights_org,"Same event, second announcement (DEMO)",Fictional demonstration event,high,direct,confirmed,DEMO,DEMO,2026-10-22
+DEMO-C04,DEMO04,DEMO-E04,2026-02-01,commercial_leadership,Hires chief revenue officer (DEMO),Fictional demonstration event,medium,direct,confirmed,DEMO,DEMO,2026-10-22
+DEMO-C05,DEMO06,DEMO-E05,2024-08-01,major_partnership,New stadium naming partner (DEMO),Fictional demonstration event,medium,indirect,confirmed,DEMO,DEMO,2026-10-22
+DEMO-C06,DEMO09,DEMO-E06,2026-09-10,sponsorship_initiative,Announces new sponsorship categories (DEMO),Fictional demonstration event,low,direct,confirmed,DEMO,DEMO,2026-10-22

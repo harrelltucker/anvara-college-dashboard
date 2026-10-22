@@ -1,0 +1,16 @@
+school_id,name,state,subdivision,control,in_universe
+DEMO01,Alder State University (DEMO),XX,FBS,public,yes
+DEMO02,Birch State University (DEMO),XX,FBS,public,yes
+DEMO03,Cedar State University (DEMO),XX,FBS,public,yes
+DEMO04,Dogwood State University (DEMO),XX,FBS,public,yes
+DEMO05,Elm State University (DEMO),XX,FBS,public,yes
+DEMO06,Fir State University (DEMO),XX,FBS,public,yes
+DEMO07,Ginkgo State University (DEMO),XX,FBS,public,yes
+DEMO08,Hazel State University (DEMO),XX,FBS,public,yes
+DEMO09,Ironwood State University (DEMO),XX,FBS,public,yes
+DEMO10,Juniper State University (DEMO),XX,FBS,public,yes
+DEMO11,Kapok State University (DEMO),XX,FBS,public,yes
+DEMO12,Larch State University (DEMO),XX,FBS,public,yes
+DEMO13,Maple State University (DEMO),XX,FBS,public,no
+DEMO14,Nutmeg State University (DEMO),XX,FBS,public,no
+DEMO15,Oak State University (DEMO),XX,FBS,public,no

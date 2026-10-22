@@ -1,0 +1,4 @@
+conference_id,name,fiscal_year,member_count,source_id
+DEMO-N,Demo Conference North,2025,5,DEMO
+DEMO-S,Demo Conference South,2025,5,DEMO
+DEMO-W,Demo Conference West,2025,5,DEMO
