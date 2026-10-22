@@ -1,1 +1,13 @@
 relationship_id,school_id,organization_id,management_model,rights_scope,agreement_details,start_date,expiration_date,expiration_verified,source_id,verified_by,verified_date
+ILLINOIS-LEARFIELD,ILLINOIS,LEARFIELD,unknown,'Illinois Fighting Illini' listed on Learfield's partner page; scope of services not stated there,,,,no,S-0008,Tucker Harrell,2026-10-22
+IOWA-LEARFIELD,IOWA,LEARFIELD,unknown,'Iowa Hawkeyes' listed on Learfield's partner page; scope of services not stated there,,,,no,S-0008,Tucker Harrell,2026-10-22
+MINNESOTA-LEARFIELD,MINNESOTA,LEARFIELD,unknown,'Minnesota Golden Gophers' listed on Learfield's partner page; scope of services not stated there,,,,no,S-0008,Tucker Harrell,2026-10-22
+OHIOSTATE-LEARFIELD,OHIOSTATE,LEARFIELD,unknown,'Ohio State Buckeyes' listed on Learfield's partner page; scope of services not stated there,,,,no,S-0008,Tucker Harrell,2026-10-22
+PURDUE-LEARFIELD,PURDUE,LEARFIELD,unknown,'Purdue Boilermakers' listed on Learfield's partner page; scope of services not stated there,,,,no,S-0008,Tucker Harrell,2026-10-22
+TEXAS-LEARFIELD,TEXAS,LEARFIELD,unknown,'Texas Longhorns' listed on Learfield's partner page; scope of services not stated there,,,,no,S-0008,Tucker Harrell,2026-10-22
+WISCONSIN-LEARFIELD,WISCONSIN,LEARFIELD,unknown,'Wisconsin Badgers' listed on Learfield's partner page; scope of services not stated there,,,,no,S-0008,Tucker Harrell,2026-10-22
+UTAH-UBE,UTAH,UTAH-UBE,joint_venture,"Commercial operations: branding, licensing, sponsorships, ticketing, media, events","Otro Capital committed at least $100M (Sportico, not read directly)",2026-06-12,,no,S-0009,Tucker Harrell,2026-10-22
+RUTGERS-SKE,RUTGERS,RUTGERS-SKE,in_house,"Multimedia rights, corporate partnerships, ticketing strategy, NIL","In-house since SAMCO (2024); Learfield retained for data/technology, national sales support and radio (2024 release)",2024-03-12,,no,S-0004,Tucker Harrell,2026-10-22
+ARIZONA-ASE,ARIZONA,ARIZONA-ASE,in_house,Multimedia rights agreements and operations,Learfield engaged as exclusive third-party national sales firm,2024-06-20,,no,S-0005,Tucker Harrell,2026-10-22
+CLEMSON-VENTURES,CLEMSON,CLEMSON-VENTURES,in_house,"In-house media rights, sales, marketing, NIL agency, business operations",,2024-08-21,,no,S-0006,Tucker Harrell,2026-10-22
+MSU-SPARTAN-VENTURES,MICHSTATE,MSU-SPARTAN-VENTURES,in_house,"Commercial operations of MSU Athletics (corporate partnerships, media, NIL)","Multimedia rights holder reported as Playfly (Detroit News, May 2026); not modeled separately here",2026-07-01,,no,S-0007,Tucker Harrell,2026-10-22

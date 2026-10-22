@@ -1,1 +1,7 @@
 organization_id,name,org_type,ownership_note,website,source_id
+LEARFIELD,Learfield,multimedia_rights_company,"PE-owned (Clearlake, Charlesbank, Fortress since Sept 2023); TPG agreed to acquire Apr 2026, closing not confirmed as of 2026-10-22",https://www.learfield.com,S-0002
+UTAH-UBE,Utah Brands & Entertainment LLC (also reported as Crimson Brand Partners),joint_venture,University foundation majority; Otro Capital minority with two board seats,,S-0003
+RUTGERS-SKE,"Scarlet Knight Enterprises, Inc. (formerly SAMCO LLC)",in_house_entity,University-owned,,S-0004
+ARIZONA-ASE,Arizona Sports Enterprises,in_house_entity,Athletics-department affiliate,,S-0005
+CLEMSON-VENTURES,Clemson Ventures,in_house_entity,Affiliated organization of Clemson Athletics,,S-0006
+MSU-SPARTAN-VENTURES,Spartan Ventures,in_house_entity,Non-profit affiliate; for-profit Spartan Media Ventures built to take capital investment,,S-0007
