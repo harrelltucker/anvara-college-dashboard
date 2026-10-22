@@ -1,5 +1,5 @@
-conference_id,name,fiscal_year,member_count,source_id
-B1G,Big Ten Conference,2025,,
-BIG12,Big 12 Conference,2025,,
-SEC,Southeastern Conference,2025,,
-ACC,Atlantic Coast Conference,2025,,
+conference_id,name,fiscal_year,member_count,public_member_count,source_id,notes
+B1G,Big Ten Conference,2025,18,16,KN-FY2025,"18 members in 2024-25; private: Northwestern, USC. Public members per Knight-Newhouse FY2025 list."
+BIG12,Big 12 Conference,2025,16,13,KN-FY2025,"16 members in 2024-25; private: Baylor, BYU, TCU. Public members per Knight-Newhouse FY2025 list."
+SEC,Southeastern Conference,2025,16,15,KN-FY2025,"16 members in 2024-25; private: Vanderbilt. Public members per Knight-Newhouse FY2025 list."
+ACC,Atlantic Coast Conference,2025,18,10,KN-FY2025,"18 members in 2024-25 incl. Notre Dame (non-football); private: Boston College, Duke, Miami, Notre Dame, SMU, Stanford, Syracuse, Wake Forest. Public: 9 in Knight-Newhouse + Pittsburgh (state-related; does not publish its report)."

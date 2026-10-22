@@ -73,6 +73,9 @@ def _conference_benchmarks(m, conferences, fy, rules):
     """
     conf = conferences[conferences["fiscal_year"] == fy].set_index("conference_id")
     member_count = _num(conf["member_count"]) if len(conf) else pd.Series(dtype=float)
+    if rules.get("peer_coverage_basis") == "public_members" and len(conf):
+        # private members never publish NCAA reports, so measure coverage against public members
+        member_count = _num(conf["public_member_count"]).fillna(member_count)
 
     m["peer_count"] = 0
     m["peer_coverage"] = np.nan

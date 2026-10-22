@@ -27,9 +27,10 @@ TABLES = {
     },
     "conferences": {
         "key": "conference_id",
-        "columns": ["conference_id", "name", "fiscal_year", "member_count", "source_id"],
+        "columns": ["conference_id", "name", "fiscal_year", "member_count", "public_member_count",
+                    "source_id", "notes"],
         "required": ["conference_id", "name", "fiscal_year"],
-        "numbers": ["member_count"],
+        "numbers": ["member_count", "public_member_count"],
         "refs": {"source_id": "sources"},
     },
     "schools": {
