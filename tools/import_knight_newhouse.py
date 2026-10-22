@@ -8,9 +8,18 @@ Schools that already have figures from their own published NCAA report are skipp
 (the original report is the source of record). Conference peers are added as
 benchmark-only schools (in_universe = no) so conference comparisons have coverage.
 
+Uses two custom-report downloads joined on IPEDS ID:
+  file 1: Total Revenues, Total Expenses, Corporate Sponsorship..., Institutional/Government Support
+  file 2: revenue components incl. Conference/NCAA Distributions..., Donor Contributions, and
+          Total Institutional/Government Support and Student Fees
+Knight-Newhouse's subsidy total is BEFORE transfers back to the institution, while Total Revenues
+is AFTER. The components of file 2 sum to Total Revenues except for those transfers, so
+  allocated (net) = support and fees + (Total Revenues - sum of components), when that gap is negative.
+Verified to the dollar against the original reports of Ohio State, Illinois and Wisconsin.
+
 Usage:
-  python tools/import_knight_newhouse.py data/incoming/file.xlsx            (preview)
-  python tools/import_knight_newhouse.py data/incoming/file.xlsx --submit   (queue findings)
+  python tools/import_knight_newhouse.py FILE1.xlsx FILE2.xlsx            (preview)
+  python tools/import_knight_newhouse.py FILE1.xlsx FILE2.xlsx --submit   (queue findings)
 """
 
 import json
@@ -44,81 +53,62 @@ UNIVERSE = {  # Knight-Newhouse name -> our school_id
     "Arizona State University": "ARIZSTATE", "University of Texas at Austin": "TEXAS",
     "The Ohio State University": "OHIOSTATE",
 }
-# Knight-Newhouse metric (lowercased, matched by keywords) -> our field
-METRICS = [
-    (("total revenues",), "total_operating_revenue"),
-    (("total expenses",), "total_operating_expenses"),
-    (("corporate sponsorship",), "commercial_revenue"),
-    (("student fees",), "student_fees"),
-    (("direct state", "government support"), "direct_government_support"),
-    (("direct institutional support",), "direct_institutional_support"),
-    (("transfers to the institution",), "transfers_to_institution"),
-    (("indirect institutional support",), "indirect_institutional_support"),
-]
-
-
-def _match(column):
-    c = column.lower()
-    if "institutional/government" in c:
-        return "combined_support"      # can't be split into our lines; noted only
-    for keys, field in METRICS:
-        if all(k in c for k in keys):
-            return field
-    return None
+COMPONENTS = ["Other Revenue", "Corporate Sponsorship, Advertising, Licensing", "Donor Contributions",
+              "Competition Guarantees - Revenues",
+              "Conference/NCAA Distributions, Media Rights, and Post-Season Football", "Ticket Sales",
+              "Total Institutional/Government Support and Student Fees"]
 
 
 def _peer_id(name):
     return "PEER-" + re.sub(r"[^A-Z0-9]", "", name.upper().replace("UNIVERSITY", "U"))[:16]
 
 
-def build(path):
-    df = pd.read_excel(path, sheet_name="Data").rename(columns={"Data": "school"})
-    fields = {col: _match(col) for col in df.columns}
-    df = df[(df["Year"] == 2025) & df["FBS Conference"].isin(CONFERENCES)]
-    rows = []
-    for _, r in df.iterrows():
-        rec = {}
-        for col, field in fields.items():
-            if field and pd.notna(r[col]):
-                rec.setdefault(field, 0)
-                rec[field] += int(r[col])
-        rows.append({"name": r["school"], "conference": CONFERENCES[r["FBS Conference"]],
-                     "school_id": UNIVERSE.get(r["school"], _peer_id(r["school"])),
-                     "in_universe": r["school"] in UNIVERSE, **rec})
-    return pd.DataFrame(rows), fields
+def build(path1, path2):
+    a = pd.read_excel(path1, sheet_name="Data").rename(columns={"Data": "school"})
+    b = pd.read_excel(path2, sheet_name="Data")
+    df = a.merge(b[["IPEDS ID", "Year", *[c for c in COMPONENTS if c not in a.columns]]],
+                 on=["IPEDS ID", "Year"], how="left")
+    df = df[(df["Year"] == 2025) & df["FBS Conference"].isin(CONFERENCES)].copy()
+    df["gap"] = df["Total Revenues"] - df[COMPONENTS].sum(axis=1)
+    support = df["Total Institutional/Government Support and Student Fees"]
+    df["allocated_net"] = (support + df["gap"].clip(upper=0)).clip(lower=0)
+    df["school_id"] = [UNIVERSE.get(s, _peer_id(s)) for s in df["school"]]
+    df["in_universe"] = df["school"].isin(UNIVERSE)
+    df["conference"] = df["FBS Conference"].map(CONFERENCES)
+    return df
 
 
-def to_record(row, fields_present):
-    have_lines = {"student_fees", "direct_government_support", "direct_institutional_support",
-                  "indirect_institutional_support"} <= set(fields_present)
-    rec = {"school_id": row["school_id"], "fiscal_year": "2025",
-           "total_operating_revenue": str(row["total_operating_revenue"]),
-           "total_operating_expenses": str(row["total_operating_expenses"]),
-           "commercial_revenue": str(row["commercial_revenue"]),
-           "commercial_revenue_label": "Knight-Newhouse: Corporate Sponsorship, Advertising, Licensing (NCAA MFRS line 15)"}
-    note = "Knight-Newhouse College Athletics Database (credited; not for export). "
-    if have_lines:
-        direct = row.get("direct_institutional_support", 0) + row.get("transfers_to_institution", 0)
-        rec.update({"student_fees": str(row["student_fees"]),
-                    "direct_government_support": str(row["direct_government_support"]),
-                    "direct_institutional_support": str(direct),
-                    "indirect_institutional_support": str(row["indirect_institutional_support"])})
-        note += "Direct institutional support is net of transfers to institution where provided."
-    else:
-        note += (f"Allocated revenue lines not in this download (combined institutional/government "
-                 f"support, before transfers: {row.get('combined_support', 'n/a'):,}); generated revenue "
-                 "not computed.")
-    rec["notes"] = note
-    return rec
+def to_record(r):
+    as_int = lambda v: str(int(round(v)))
+    note = ("Knight-Newhouse College Athletics Database (credited; not for export). Allocated revenue = "
+            f"institutional/government support and student fees ({support_str(r)}) net of transfers to the "
+            f"institution ({min(r['gap'], 0):,.0f}).")
+    if r["gap"] > 0:
+        note += (f" Components fall short of total revenue by {r['gap']:,.0f} (unexplained; not treated "
+                 "as a transfer).")
+    return {"school_id": r["school_id"], "fiscal_year": "2025",
+            "total_operating_revenue": as_int(r["Total Revenues"]),
+            "total_operating_expenses": as_int(r["Total Expenses"]),
+            "allocated_revenue_total": as_int(r["allocated_net"]),
+            "commercial_revenue": as_int(r["Corporate Sponsorship, Advertising, Licensing"]),
+            "commercial_revenue_label": "Knight-Newhouse: Corporate Sponsorship, Advertising, Licensing (NCAA MFRS line 15)",
+            "conference_ncaa_media_revenue": as_int(r["Conference/NCAA Distributions, Media Rights, and Post-Season Football"]),
+            "donor_contributions": as_int(r["Donor Contributions"]),
+            "notes": note}
+
+
+def support_str(r):
+    return f"{r['Total Institutional/Government Support and Student Fees']:,.0f}"
 
 
 def main():
-    path = sys.argv[1]
-    peers, fields = build(path)
-    present = {f for f in fields.values() if f}
-    print("Columns mapped:", {c: f for c, f in fields.items() if f})
-    print(f"\n{len(peers)} schools in Big Ten/Big 12/SEC/ACC ({peers['in_universe'].sum()} in our universe):")
+    peers = build(sys.argv[1], sys.argv[2])
+    print(f"{len(peers)} schools in Big Ten/Big 12/SEC/ACC ({peers['in_universe'].sum()} in our universe):")
     print(peers.groupby("conference").size().to_string())
+    odd = peers[peers["gap"] > 0]
+    if len(odd):
+        print("\nComponents short of total revenue (noted, not treated as transfers):")
+        print(odd[["school", "gap"]].to_string(index=False))
 
     tables = load_tables()
     queued = load_findings()
@@ -139,7 +129,7 @@ def main():
         append_record("sources", SOURCE)
     new_schools = peers[~peers["school_id"].isin(tables["schools"]["school_id"])]
     for _, p in new_schools.iterrows():
-        append_record("schools", {"school_id": p["school_id"], "name": p["name"], "state": "",
+        append_record("schools", {"school_id": p["school_id"], "name": p["school"], "state": "",
                                   "subdivision": "FBS", "control": "public", "in_universe": "no"})
         append_record("memberships", {"school_id": p["school_id"], "conference_id": p["conference"],
                                       "fiscal_year": "2025", "source_id": "KN-FY2025"})
@@ -149,7 +139,7 @@ def main():
 
     n = 0
     for _, p in peers[~peers["school_id"].isin(has_primary)].iterrows():
-        submit_finding("financials", to_record(p, present), SOURCE["title"], SOURCE["url"], "other",
+        submit_finding("financials", to_record(p), SOURCE["title"], SOURCE["url"], "other",
                        "AI research assistant (Claude) via tools/import_knight_newhouse.py")
         n += 1
     print(f"\nAdded {len(new_schools)} benchmark-only peer schools; queued {n} financial findings.")

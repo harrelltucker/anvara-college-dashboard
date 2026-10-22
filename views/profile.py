@@ -2,6 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+from engine.metrics import school_metrics
 from engine.research import checklist, opportunity_brief
 from engine.scoring import CATEGORY_LABELS, COMPONENT_LABELS, missing_inputs
 from ui.fmt import money, pct, score
@@ -72,25 +73,33 @@ with tabs[2]:
         ("Reported surplus / (deficit)", money(row["reported_result"]), "Revenue minus expenses, after subsidies"),
         ("Reported result, % of expenses", pct(row["reported_margin"], 1), "Used in the score so schools of different sizes compare fairly"),
         ("Allocated revenue", money(row["allocated_revenue"]), "Institutional support (direct + indirect) + student fees + direct government support"),
-        ("Athletics-generated revenue", money(row["generated_revenue"]), "Total revenue minus allocated revenue"),
+        ("Athletics-generated revenue (NCAA definition)", money(row["generated_revenue"]),
+         "Total revenue minus allocated revenue. Includes conference payouts and donations"),
         ("Self-sufficiency", pct(row["self_sufficiency"]), "Generated revenue ÷ expenses"),
-        ("Generated revenue vs. conference peer median", "—" if pd.isna(row["conf_relative_generated"])
-         else f"{row['conf_relative_generated']:.2f}×", f"{int(row['peer_count'])} peers with data; "
-         f"peer coverage {pct(row['peer_coverage'])}"),
+        ("Conference/NCAA distributions, media rights, bowl revenue", money(row["conference_ncaa_media_revenue"]),
+         "Largely negotiated and shared by the conference"),
+        ("Donor contributions (incl. in-kind)", money(row["donor_contributions"]), "Shown for context"),
+        ("Own-operations revenue", money(row["own_operations_revenue"]),
+         "Generated revenue minus conference/NCAA distributions, media rights and bowl revenue"),
+        ("Own-operations revenue vs. conference public-peer median", "—" if pd.isna(row["conf_relative_generated"])
+         else f"{row['conf_relative_generated']:.2f}×", f"{int(row['peer_count'])} public peers with data; "
+         f"coverage {pct(row['peer_coverage'])}"),
     ], columns=["Metric", "FY2025", "Definition"])
     st.dataframe(fin, hide_index=True, width="stretch")
     st.caption(f"Source: {source_link(row['financial_source_id'])}")
     if pd.notna(row["peer_coverage"]) and row["peer_coverage"] < weights["rules"]["min_peer_coverage"]:
         st.warning("Too few conference members have FY2025 data for a fair benchmark, so this "
                    "component is left out of the score rather than using a partial sample.")
-    peers = scored[scored["conference_id"] == row["conference_id"]].dropna(subset=["generated_revenue"])
+    everyone = school_metrics(tables, weights["rules"])      # includes benchmark-only peers
+    peers = everyone[everyone["conference_id"] == row["conference_id"]].dropna(subset=["own_operations_revenue"])
     if len(peers) > 1:
-        fig = px.bar(peers.sort_values("generated_revenue"), x="generated_revenue", y="name", orientation="h",
-                     template="simple_white", labels={"generated_revenue": "FY2025 generated revenue ($)", "name": ""},
-                     color=peers.sort_values("generated_revenue").index == school_id,
-                     color_discrete_map={True: "#c8102e", False: "#9aa5b8"}, height=60 + 28 * len(peers))
+        peers = peers.sort_values("own_operations_revenue")
+        fig = px.bar(peers, x=peers["own_operations_revenue"] / 1e6, y="name", orientation="h",
+                     template="simple_white", labels={"x": "FY2025 own-operations revenue ($M)", "name": ""},
+                     color=peers.index == school_id,
+                     color_discrete_map={True: "#c8102e", False: "#9aa5b8"}, height=60 + 24 * len(peers))
         fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=30, b=0),
-                          title="Generated revenue vs. conference schools in this dataset")
+                          title=f"Own-operations revenue vs. {row['conference_id']} public schools")
         st.plotly_chart(fig, width="stretch")
 
 with tabs[3]:

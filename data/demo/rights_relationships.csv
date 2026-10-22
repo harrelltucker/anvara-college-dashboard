@@ -1,13 +1,13 @@
 relationship_id,school_id,organization_id,management_model,rights_scope,agreement_details,start_date,expiration_date,expiration_verified,source_id,verified_by,verified_date
 DEMO-R01,DEMO01,DEMO-RH1,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
 DEMO-R02,DEMO02,DEMO-INHOUSE,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
-DEMO-R03,DEMO03,DEMO-RH2,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
-DEMO-R04,DEMO04,DEMO-RH2,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
+DEMO-R03,DEMO03,DEMO-INHOUSE,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
+DEMO-R04,DEMO04,DEMO-INHOUSE,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
 DEMO-R05,DEMO05,DEMO-INHOUSE,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
-DEMO-R06,DEMO06,DEMO-RH1,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
-DEMO-R07,DEMO07,DEMO-RH2,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
-DEMO-R08,DEMO08,DEMO-RH2,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
-DEMO-R09,DEMO09,DEMO-INHOUSE,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
+DEMO-R06,DEMO06,DEMO-RH2,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
+DEMO-R07,DEMO07,DEMO-INHOUSE,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
+DEMO-R08,DEMO08,DEMO-RH1,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
+DEMO-R09,DEMO09,DEMO-RH2,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
 DEMO-R10,DEMO10,DEMO-RH2,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
-DEMO-R11,DEMO11,DEMO-INHOUSE,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
-DEMO-R12,DEMO12,DEMO-INHOUSE,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
+DEMO-R11,DEMO11,DEMO-RH1,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22
+DEMO-R12,DEMO12,DEMO-RH2,outsourced,Multimedia rights (DEMO),DEMO,,,no,DEMO,DEMO,2026-10-22

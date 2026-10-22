@@ -42,6 +42,8 @@ for i, name in enumerate(NAMES):
                 "direct_institutional_support": round(alloc[0]), "indirect_institutional_support": round(alloc[1]),
                 "student_fees": round(alloc[2]), "direct_government_support": round(alloc[3]),
                 "commercial_revenue": round(rev * random.uniform(0.04, 0.14)),
+                "conference_ncaa_media_revenue": round(rev * random.uniform(0.25, 0.45)),
+                "donor_contributions": round(rev * random.uniform(0.10, 0.25)),
                 "commercial_revenue_label": "Corporate Sponsorship, Advertising, and Licensing",
                 "source_id": "DEMO", **V, "notes": "DEMO"})
     if in_universe == "yes":

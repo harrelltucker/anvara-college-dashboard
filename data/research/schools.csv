@@ -14,3 +14,41 @@ ARIZONA,University of Arizona,AZ,FBS,public,yes
 ARIZSTATE,Arizona State University,AZ,FBS,public,yes
 TEXAS,University of Texas at Austin,TX,FBS,public,yes
 OHIOSTATE,Ohio State University,OH,FBS,public,yes
+PEER-UOFALABAMA,University of Alabama,,FBS,public,no
+PEER-AUBURNU,Auburn University,,FBS,public,no
+PEER-UOFARKANSAS,University of Arkansas,,FBS,public,no
+PEER-UOFCALIFORNIABER,"University of California, Berkeley",,FBS,public,no
+PEER-UOFCOLORADOBOULD,University of Colorado Boulder,,FBS,public,no
+PEER-UOFCENTRALFLORID,University of Central Florida,,FBS,public,no
+PEER-FLORIDASTATEU,Florida State University,,FBS,public,no
+PEER-UOFFLORIDA,University of Florida,,FBS,public,no
+PEER-GEORGIAINSTITUTE,Georgia Institute of Technology,,FBS,public,no
+PEER-UOFGEORGIA,University of Georgia,,FBS,public,no
+PEER-INDIANAUBLOOMING,"Indiana University, Bloomington",,FBS,public,no
+PEER-IOWASTATEU,Iowa State University,,FBS,public,no
+PEER-UOFKANSAS,University of Kansas,,FBS,public,no
+PEER-KANSASSTATEU,Kansas State University,,FBS,public,no
+PEER-UOFKENTUCKY,University of Kentucky,,FBS,public,no
+PEER-UOFLOUISVILLE,University of Louisville,,FBS,public,no
+PEER-LOUISIANASTATEU,Louisiana State University,,FBS,public,no
+PEER-UOFMICHIGAN,University of Michigan,,FBS,public,no
+PEER-UOFMISSISSIPPI,University of Mississippi,,FBS,public,no
+PEER-MISSISSIPPISTATE,Mississippi State University,,FBS,public,no
+PEER-UOFMISSOURICOLUM,"University of Missouri, Columbia",,FBS,public,no
+PEER-UOFNEBRASKALINCO,University of Nebraska-Lincoln,,FBS,public,no
+PEER-UOFNORTHCAROLINA,"University of North Carolina, Chapel Hill",,FBS,public,no
+PEER-NORTHCAROLINASTA,North Carolina State University,,FBS,public,no
+PEER-UOFCINCINNATI,University of Cincinnati,,FBS,public,no
+PEER-OKLAHOMASTATEU,Oklahoma State University,,FBS,public,no
+PEER-UOFOKLAHOMA,University of Oklahoma,,FBS,public,no
+PEER-UOFOREGON,University of Oregon,,FBS,public,no
+PEER-UOFSOUTHCAROLINA,University of South Carolina,,FBS,public,no
+PEER-THEUOFTENNESSEE,The University of Tennessee,,FBS,public,no
+PEER-UOFHOUSTON,University of Houston,,FBS,public,no
+PEER-TEXASAMU,Texas A & M University,,FBS,public,no
+PEER-TEXASTECHU,Texas Tech University,,FBS,public,no
+PEER-VIRGINIAPOLYTECH,Virginia Polytechnic Institute and State University,,FBS,public,no
+PEER-UOFVIRGINIA,University of Virginia,,FBS,public,no
+PEER-UOFWASHINGTON,University of Washington,,FBS,public,no
+PEER-WESTVIRGINIAU,West Virginia University,,FBS,public,no
+PEER-PENNSYLVANIASTAT,Pennsylvania State University,,FBS,public,no

@@ -3,12 +3,16 @@
 Used by data loading, validation, and the findings intake form.
 """
 
+# NCAA "allocated" revenue: subsidies and student fees (net of transfers back to the institution)
+ALLOCATED_FIELDS = ["direct_institutional_support", "indirect_institutional_support",
+                    "student_fees", "direct_government_support"]
 MONEY_FIELDS = [
-    "total_operating_revenue", "total_operating_expenses",
-    "direct_institutional_support", "indirect_institutional_support",
-    "student_fees", "direct_government_support", "commercial_revenue",
+    "total_operating_revenue", "total_operating_expenses", *ALLOCATED_FIELDS,
+    "allocated_revenue_total",          # used only when the separate lines aren't available
+    "commercial_revenue",
+    "conference_ncaa_media_revenue",    # media rights + NCAA & conference distributions + bowl revenue
+    "donor_contributions",              # contributions + in-kind
 ]
-ALLOCATED_FIELDS = MONEY_FIELDS[2:6]   # NCAA "allocated" revenue: subsidies and student fees
 
 VERIFIED = ["verified_by", "verified_date"]
 

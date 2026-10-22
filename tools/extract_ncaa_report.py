@@ -16,6 +16,10 @@ Mapping to NCAA categories (FY2025 form):
                                     + 6A Indirect Institutional Support - Athletic Facilities Debt Service,
                                        Lease and Rental Fees
   commercial_revenue             = 15 Royalties, Licensing, Advertisement and Sponsorships
+  conference_ncaa_media_revenue  = 11 Media Rights + 12 Total NCAA Distributions + 13 Conference
+                                   Distributions + 13A Conference Distributions of Post-Season Revenue
+                                   + 19 Post-Season Football (matches Knight-Newhouse's grouping)
+  donor_contributions            = 8 Contributions + 9 In-Kind (matches Knight-Newhouse's grouping)
 """
 
 import re
@@ -28,7 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from engine.research import submit_finding  # noqa: E402
 
 AMOUNT = re.compile(r"(-?)\$\s?(\(?)([\d,]+)\)?")
-ITEM_START = re.compile(r"^(\d{1,2}[A-Z]?) (.+)")
+ITEM_START = re.compile(r"^(\d{1,2})([A-Z]?) ([A-Z].+)")   # e.g. "13A Conference ..."; label starts uppercase
 
 
 def _amount(match):
@@ -43,15 +47,17 @@ def summary_items(text):
     if start < 0 or end < 0:
         raise ValueError("Couldn't find the Revenue/Expense Summary section")
     lines = [l.strip() for l in text[start:end + 40].splitlines()]
-    items, current, label = {}, None, []
+    items, current, label, last = {}, None, [], (0, "")
     for line in lines:
         if line.startswith(("Reporting Institution", "NCAA Membership Financial")):
             continue
         m = ITEM_START.match(line)
-        if m and current is None:
-            current, label = m.group(1), [m.group(2)]
-            line = m.group(2)
-            label = []
+        # Category IDs only ever increase (12, 12A, 12B, 13 ...). This stops numbers inside
+        # definition text (e.g. "...Categories 23 and 25 combined.") being read as categories.
+        if m and current is None and (int(m.group(1)), m.group(2)) > last:
+            last = (int(m.group(1)), m.group(2))
+            current, label = m.group(1) + m.group(2), []
+            line = m.group(3)
         if current is not None or line.startswith("Total Operating"):
             if current is None:
                 current, label = "TOTAL_" + str(len([k for k in items if k.startswith("TOTAL")])), []
@@ -84,6 +90,8 @@ def extract(pdf_path):
             "direct_institutional_support": str(get("4") + get("5")),
             "indirect_institutional_support": str(get("6") + get("6A")),
             "commercial_revenue": str(get("15")),
+            "conference_ncaa_media_revenue": str(get("11") + get("12") + get("13") + get("13A") + get("19")),
+            "donor_contributions": str(get("8") + get("9")),
             "commercial_revenue_label": f"NCAA category 15: {items.get('15', ('?',))[0]}",
             "notes": (f"From the MFRS Revenue/Expense Summary. Direct institutional support is net of "
                       f"category 5 transfers to institution ({get('4'):,} + {get('5'):,}); indirect "
@@ -96,7 +104,7 @@ def main():
     result = extract(sys.argv[1])
     print(f"Institution: {result['institution']} | FY{result['fiscal_year']}")
     for k, (label, amt) in result["items"].items():
-        if k in {"2", "3", "4", "5", "6", "6A", "15", "TOTAL_0", "TOTAL_1"}:
+        if k in {"2", "3", "4", "5", "6", "6A", "8", "9", "11", "12", "13", "13A", "15", "19", "TOTAL_0", "TOTAL_1"}:
             print(f"  {k:>8}  {label[:70]:<70} {amt:>15,}")
     if "--submit" in sys.argv:
         i = sys.argv.index("--submit")

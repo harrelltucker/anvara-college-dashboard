@@ -24,7 +24,7 @@ CATEGORY_LABELS = {
 }
 COMPONENT_LABELS = {
     "reported_result": "Reported surplus/deficit (% of expenses)",
-    "conference_relative_generated": "Generated revenue vs. conference peers",
+    "conference_relative_generated": "Own-operations revenue vs. conference public peers",
     "self_sufficiency": "Financial self-sufficiency",
     "commercial_revenue": "Sponsorship, advertising & licensing revenue (NCAA category)",
     "fan_reach": "Fan reach (attendance)",

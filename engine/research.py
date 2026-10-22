@@ -122,8 +122,13 @@ def opportunity_brief(school_id, scored, tables, missing_items):
                      f"expenses {_money(row['total_operating_expenses'])}; reported result "
                      f"{_money(row['reported_result'])}.{cite(row['financial_source_id'])}")
     if pd.notna(row["generated_revenue"]):
-        facts.append(f"Athletics-generated revenue (excluding institutional support and student fees) "
-                     f"{_money(row['generated_revenue'])}, covering {_pct(row['self_sufficiency'])} of expenses.")
+        facts.append(f"Athletics-generated revenue (NCAA definition: excludes institutional support and "
+                     f"student fees) {_money(row['generated_revenue'])}, covering "
+                     f"{_pct(row['self_sufficiency'])} of expenses.")
+    if pd.notna(row["own_operations_revenue"]):
+        facts.append(f"Own-operations revenue (also excluding {_money(row['conference_ncaa_media_revenue'])} "
+                     f"of conference/NCAA distributions, media rights and bowl revenue) "
+                     f"{_money(row['own_operations_revenue'])}.")
     if pd.notna(row["commercial_revenue"]):
         facts.append(f"Sponsorship, advertising & licensing revenue (NCAA category, not pure sponsorship) "
                      f"{_money(row['commercial_revenue'])}, {_pct(row['commercial_share'])} of total revenue.")

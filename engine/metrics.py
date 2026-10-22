@@ -7,6 +7,10 @@ Definitions (NCAA Membership Financial Reporting System categories):
   reported result    = total operating revenue - total operating expenses (as reported,
                        i.e. after subsidies and student fees)
   self-sufficiency   = generated revenue / total operating expenses
+  own-operations revenue = generated revenue - (media rights + NCAA & conference distributions
+                       + post-season football). Conference payouts are similar for every member and
+                       negotiated by the conference, so this isolates what the department's own
+                       operations (tickets, sponsorship, fundraising, etc.) bring in.
   commercial revenue = the NCAA category combining sponsorship, advertising, licensing and
                        related items. It is NOT pure sponsorship revenue.
 """
@@ -45,10 +49,11 @@ def school_metrics(tables, rules):
         m[col] = _num(fin[col]).reindex(m.index) if col in fin else np.nan
     m["financial_source_id"] = fin["source_id"].reindex(m.index).fillna("") if len(fin) else ""
 
-    # allocated revenue needs every line present (0 is fine); otherwise it's unknown
+    # allocated revenue: every separate line present (0 is fine), else a reported total, else unknown
     alloc = m[ALLOCATED_FIELDS]
-    m["allocated_revenue"] = alloc.sum(axis=1).where(alloc.notna().all(axis=1))
+    m["allocated_revenue"] = alloc.sum(axis=1).where(alloc.notna().all(axis=1)).fillna(m["allocated_revenue_total"])
     m["generated_revenue"] = m["total_operating_revenue"] - m["allocated_revenue"]
+    m["own_operations_revenue"] = m["generated_revenue"] - m["conference_ncaa_media_revenue"]
     m["reported_result"] = m["total_operating_revenue"] - m["total_operating_expenses"]
     m["reported_margin"] = m["reported_result"] / m["total_operating_expenses"]
     m["self_sufficiency"] = m["generated_revenue"] / m["total_operating_expenses"]
@@ -65,7 +70,10 @@ def school_metrics(tables, rules):
 
 
 def _conference_benchmarks(m, conferences, fy, rules):
-    """Each school's generated revenue vs. the median of its conference peers.
+    """Each school's revenue vs. the median of its conference peers.
+
+    Which revenue is set by rules["conference_comparison_basis"]: "own_operations" (default)
+    or "generated" (NCAA definition).
 
     Peers = other members of the same FY conference with known generated revenue.
     If too few of the conference's members have data, the benchmark is left blank
@@ -77,6 +85,8 @@ def _conference_benchmarks(m, conferences, fy, rules):
         # private members never publish NCAA reports, so measure coverage against public members
         member_count = _num(conf["public_member_count"]).fillna(member_count)
 
+    basis = "own_operations_revenue" if rules.get("conference_comparison_basis", "own_operations") == "own_operations" \
+        else "generated_revenue"
     m["peer_count"] = 0
     m["peer_coverage"] = np.nan
     m["conf_peer_median_generated"] = np.nan
@@ -87,7 +97,7 @@ def _conference_benchmarks(m, conferences, fy, rules):
         if not cid:
             continue
         peers = m[(m["conference_id"] == cid) & (m.index != school_id)]
-        known = peers["generated_revenue"].dropna()
+        known = peers[basis].dropna()
         total = member_count.get(cid, np.nan)
         coverage = len(known) / (total - 1) if total and total > 1 else np.nan
         m.loc[school_id, "peer_count"] = len(known)
@@ -96,4 +106,4 @@ def _conference_benchmarks(m, conferences, fy, rules):
         if len(known) and coverage >= rules["min_peer_coverage"]:
             median = known.median()
             m.loc[school_id, "conf_peer_median_generated"] = median
-            m.loc[school_id, "conf_relative_generated"] = row["generated_revenue"] / median
+            m.loc[school_id, "conf_relative_generated"] = row[basis] / median
