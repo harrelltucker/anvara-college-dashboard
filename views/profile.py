@@ -104,11 +104,11 @@ with tabs[2]:
 
 with tabs[3]:
     c = st.columns(3)
-    c[0].metric("Sponsorship, advertising & licensing (NCAA category)", money(row["commercial_revenue"]))
+    c[0].metric("Sponsorship, advertising & licensing (as reported to the NCAA, category 15)", money(row["commercial_revenue"]))
     c[1].metric("Share of total athletics revenue", pct(row["commercial_share"], 1))
     c[2].metric("Conference peer median share", pct(row["conf_peer_median_commercial_share"], 1),
                 help="Shown for context; the share itself is not scored")
-    st.caption("The NCAA category combines sponsorships, advertising, licensing and related items. "
+    st.caption("This category of the NCAA financial report (category 15) combines sponsorships, advertising, licensing and related items. "
                "It is never labeled as pure sponsorship revenue.")
     aud = tables["audience"][tables["audience"]["school_id"] == school_id]
     if aud.empty:

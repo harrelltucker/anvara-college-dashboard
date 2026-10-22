@@ -55,7 +55,7 @@ with left:
     else:
         fig = px.bar(rev, x=rev["commercial_revenue"] / 1e6, y="name", orientation="h", color="conference_id",
                      color_discrete_map=CONFERENCE_COLORS,
-                     labels={"x": "FY2025 sponsorship, advertising & licensing ($M, NCAA category)", "name": ""})
+                     labels={"x": "FY2025 sponsorship, advertising & licensing ($M, NCAA report category 15)", "name": ""})
         st.plotly_chart(tidy(fig, 60 + 26 * len(rev)), width="stretch")
 
 # 3. Conference comparison

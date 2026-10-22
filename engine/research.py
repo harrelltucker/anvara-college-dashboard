@@ -130,7 +130,7 @@ def opportunity_brief(school_id, scored, tables, missing_items):
                      f"of conference/NCAA distributions, media rights and bowl revenue) "
                      f"{_money(row['own_operations_revenue'])}.")
     if pd.notna(row["commercial_revenue"]):
-        facts.append(f"Sponsorship, advertising & licensing revenue (NCAA category, not pure sponsorship) "
+        facts.append(f"Sponsorship, advertising & licensing revenue (as reported to the NCAA, category 15; not pure sponsorship) "
                      f"{_money(row['commercial_revenue'])}, {_pct(row['commercial_share'])} of total revenue.")
     for key, label in (("football", "Football"), ("mens_basketball", "Men's basketball"),
                        ("womens_basketball", "Women's basketball")):

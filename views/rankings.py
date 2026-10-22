@@ -58,7 +58,7 @@ event = st.dataframe(
         "FY25 reported result": MONEY_COL("FY25 reported result"),
         "FY25 commercial revenue": st.column_config.NumberColumn(
             "FY25 commercial revenue", format="$%.1fM",
-            help="NCAA category combining sponsorship, advertising, licensing and related items. "
+            help="Category 15 of the NCAA financial report, combining sponsorship, advertising, licensing and related items. "
                  "Not pure sponsorship revenue."),
         "Commercial % of revenue": PCT_COL("Commercial % of revenue"),
         "Data completeness": PCT_COL("Data completeness"),

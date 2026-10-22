@@ -46,3 +46,6 @@ Rating guide used for consistency: *high* = new commercial company, in-house rig
 - Wisconsin gets $14.6M/yr in state debt-service support (2026 law). That's financial support, not a commercial catalyst.
 
 **Verification order:** rights holders (F-0001, F-0002, F-0133/135/137/139) before their relationships; then the rest in any order.
+
+## Open question: low sponsorship lines (2026-10-22)
+Rutgers ($2.7M) and Arizona ($5.6M) report the lowest category-15 revenue of the 15, and both took multimedia rights in-house in 2024. Untested idea: in-house sales revenue may be recorded in other categories or in a separate entity. **Not assumed:** reported figures are used as-is and nothing in the dashboard suggests they're wrong (decision: Tucker, 2026-10-22). Test it with the detailed MFRS reports once public records requests return. Clemson (also in-house, $17.9M) is a counterexample.

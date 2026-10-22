@@ -26,7 +26,7 @@ COMPONENT_LABELS = {
     "reported_result": "Reported surplus/deficit (% of expenses)",
     "conference_relative_generated": "Own-operations revenue vs. conference public peers",
     "self_sufficiency": "Financial self-sufficiency",
-    "commercial_revenue": "Sponsorship, advertising & licensing revenue (NCAA category)",
+    "commercial_revenue": "Sponsorship, advertising & licensing revenue (as reported to the NCAA, category 15)",
     "fan_reach": "Fan reach (attendance)",
 }
 
@@ -160,7 +160,7 @@ def missing_inputs(row, tables):
     if pd.isna(row["allocated_revenue"]):
         items.append("FY2025 allocated revenue lines (institutional support, student fees, government support)")
     if pd.isna(row["commercial_revenue"]):
-        items.append("FY2025 sponsorship, advertising & licensing revenue (NCAA category)")
+        items.append("FY2025 sponsorship, advertising & licensing revenue (as reported to the NCAA, category 15)")
     if pd.isna(row["conf_relative_generated"]):
         items.append(f"Conference benchmark (have {int(row['peer_count'])} peers with data; "
                      "need more conference members' FY2025 financials)")
