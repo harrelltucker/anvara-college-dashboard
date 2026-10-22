@@ -60,6 +60,12 @@ def test_unresearched_catalysts_are_missing_but_researched_none_is_zero(demo, we
     assert s.loc["DEMO02", "growth_catalysts"] == 0             # researched, nothing found
 
 
+def test_missing_sport_in_fan_reach_lowers_confidence(demo, weights):
+    s = score_schools(demo, weights, as_of=AS_OF)
+    assert s.loc["DEMO06", "fan_reach_coverage"] < 1             # no women's basketball figure
+    assert s.loc["DEMO06", "confidence"] != "High"
+
+
 def test_benchmark_only_peers_are_not_ranked(demo, weights):
     s = score_schools(demo, weights, as_of=AS_OF)
     assert not {"DEMO13", "DEMO14", "DEMO15"} & set(s.index)

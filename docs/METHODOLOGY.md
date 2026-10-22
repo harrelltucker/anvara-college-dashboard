@@ -49,7 +49,7 @@ Missing data is **never scored as 0**.
 - A category is scored from the components that have data, re-weighted, if they cover at least 60% of the category's weight; otherwise it shows as incomplete.
 - The overall score needs categories covering at least 55% of total weight.
 - For catalysts, "researched, none found" is a real 0; "not yet researched" is missing.
-- **Confidence:** High = all components present; Medium = all three categories, some components missing; Low = a category missing.
+- **Confidence:** High = all components present (including all three sports in fan reach); Medium = all three categories, some components missing; Low = a category missing.
 - **Data completeness** = share of ten key research inputs present.
 
 ### Data principles

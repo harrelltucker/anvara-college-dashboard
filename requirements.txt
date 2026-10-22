@@ -3,3 +3,4 @@ streamlit==1.66.1
 plotly==7.1.0
 pytest==9.1.1
 pypdf==6.21.2
+openpyxl==3.1.5

@@ -1,76 +1,76 @@
 school_id,area,status,last_reviewed,notes
 RUTGERS,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-RUTGERS,audience,not_started,,
-RUTGERS,catalysts,not_started,,
+RUTGERS,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+RUTGERS,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 RUTGERS,rights,not_started,,
 RUTGERS,contacts,not_started,,
 IOWA,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-IOWA,audience,not_started,,
-IOWA,catalysts,not_started,,
+IOWA,audience,in_progress,2026-10-22,Football done. 2024-25 basketball (men and women) not found in an official source; Clemson and Iowa stats sites do not expose it
+IOWA,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 IOWA,rights,not_started,,
 IOWA,contacts,not_started,,
 CLEMSON,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-CLEMSON,audience,not_started,,
-CLEMSON,catalysts,not_started,,
+CLEMSON,audience,in_progress,2026-10-22,Football done. 2024-25 basketball (men and women) not found in an official source; Clemson and Iowa stats sites do not expose it
+CLEMSON,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 CLEMSON,rights,not_started,,
 CLEMSON,contacts,not_started,,
 UTAH,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-UTAH,audience,not_started,,
-UTAH,catalysts,not_started,,
+UTAH,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+UTAH,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 UTAH,rights,not_started,,
 UTAH,contacts,not_started,,
 MARYLAND,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-MARYLAND,audience,not_started,,
-MARYLAND,catalysts,not_started,,
+MARYLAND,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+MARYLAND,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 MARYLAND,rights,not_started,,
 MARYLAND,contacts,not_started,,
 UCLA,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-UCLA,audience,not_started,,
-UCLA,catalysts,not_started,,
+UCLA,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+UCLA,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 UCLA,rights,not_started,,
 UCLA,contacts,not_started,,
 MINNESOTA,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-MINNESOTA,audience,not_started,,
-MINNESOTA,catalysts,not_started,,
+MINNESOTA,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+MINNESOTA,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 MINNESOTA,rights,not_started,,
 MINNESOTA,contacts,not_started,,
 PURDUE,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-PURDUE,audience,not_started,,
-PURDUE,catalysts,not_started,,
+PURDUE,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+PURDUE,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 PURDUE,rights,not_started,,
 PURDUE,contacts,not_started,,
 ILLINOIS,financials,in_progress,2026-10-22,FY2025 MFRS report found publicly; extracted figures awaiting verification in review queue
-ILLINOIS,audience,not_started,,
-ILLINOIS,catalysts,not_started,,
+ILLINOIS,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+ILLINOIS,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 ILLINOIS,rights,not_started,,
 ILLINOIS,contacts,not_started,,
 MICHSTATE,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-MICHSTATE,audience,not_started,,
-MICHSTATE,catalysts,not_started,,
+MICHSTATE,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+MICHSTATE,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 MICHSTATE,rights,not_started,,
 MICHSTATE,contacts,not_started,,
 WISCONSIN,financials,in_progress,2026-10-22,FY2025 MFRS report found publicly; extracted figures awaiting verification in review queue
-WISCONSIN,audience,not_started,,
-WISCONSIN,catalysts,not_started,,
+WISCONSIN,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+WISCONSIN,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 WISCONSIN,rights,not_started,,
 WISCONSIN,contacts,not_started,,
 ARIZONA,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-ARIZONA,audience,not_started,,
-ARIZONA,catalysts,not_started,,
+ARIZONA,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+ARIZONA,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 ARIZONA,rights,not_started,,
 ARIZONA,contacts,not_started,,
 ARIZSTATE,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-ARIZSTATE,audience,not_started,,
-ARIZSTATE,catalysts,not_started,,
+ARIZSTATE,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+ARIZSTATE,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 ARIZSTATE,rights,not_started,,
 ARIZSTATE,contacts,not_started,,
 TEXAS,financials,in_progress,2026-10-22,"FY2025 MFRS report not found publicly (searched athletics site, news coverage, regents/system sites); public records request needed"
-TEXAS,audience,not_started,,
-TEXAS,catalysts,not_started,,
+TEXAS,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+TEXAS,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 TEXAS,rights,not_started,,
 TEXAS,contacts,not_started,,
 OHIOSTATE,financials,in_progress,2026-10-22,FY2025 MFRS report found publicly; extracted figures awaiting verification in review queue
-OHIOSTATE,audience,not_started,,
-OHIOSTATE,catalysts,not_started,,
+OHIOSTATE,audience,complete,2026-10-22,Football: NCAA 2024 attendance; basketball: official 2024-25 cumulative stats
+OHIOSTATE,catalysts,complete,2026-10-22,"Scan of official releases and news, Oct 2024 to Oct 2026; events queued for verification"
 OHIOSTATE,rights,not_started,,
 OHIOSTATE,contacts,not_started,,

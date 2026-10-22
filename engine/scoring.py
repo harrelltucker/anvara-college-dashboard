@@ -125,7 +125,8 @@ def _catalyst_scores(school_ids, tables, settings, as_of):
 
 def _confidence(u):
     cats = list(CATEGORY_LABELS)
-    full = (u[[f"{c}_coverage" for c in cats]] >= 0.999).all(axis=1)
+    full = ((u[[f"{c}_coverage" for c in cats]] >= 0.999).all(axis=1)
+            & (u["fan_reach_coverage"] >= 0.999))      # a missing sport inside fan reach counts too
     n_cats = u[cats].notna().sum(axis=1)
     return np.select([u["overall"].isna(), full, n_cats == 3], ["Insufficient data", "High", "Medium"], "Low")
 
