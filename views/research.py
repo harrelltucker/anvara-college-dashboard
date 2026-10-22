@@ -4,6 +4,7 @@ import pandas as pd
 import streamlit as st
 
 from engine.data import load_findings
+from engine.data import load_tables as load_tables_fresh
 from engine.research import (WHERE_TO_LOOK, checklist, preview_finding, reject_finding,
                              submit_finding, verify_finding)
 from engine.schema import TABLES
@@ -53,6 +54,23 @@ with tabs[1]:
         st.success("No findings awaiting review.")
     else:
         verifier = st.text_input("Your name (recorded as the verifier)", key="verifier")
+        # One click for several findings backed by the same source (e.g., one partner page)
+        for url, group in pending.groupby("source_url"):
+            if len(group) < 2:
+                continue
+            blocked = [fid for fid, (_, f) in zip(group["finding_id"], group.iterrows())
+                       if any(p.severity == ERROR for p in preview_finding(f, tables, verifier or "x")[2])]
+            box = st.container(border=True)
+            box.markdown(f"**{len(group)} findings from one source:** [{group['source_title'].iloc[0]}]({url})")
+            if blocked:
+                box.caption(f"{', '.join(blocked)} can't be verified yet (see errors below; often a "
+                            "related record must be verified first).")
+            if box.button(f"✅ I checked this source: verify all {len(group)}", key=f"bulk{url}",
+                          disabled=not verifier or bool(blocked)):
+                for fid in group["finding_id"]:
+                    verify_finding(fid, load_tables_fresh(), verifier)
+                clear_cache()
+                st.rerun()
         for _, f in pending.iterrows():
             record, new_source, problems = preview_finding(f, tables, verifier or "(enter your name)")
             with st.expander(f"{f['finding_id']} · {f['target_table']} · {record.get('school_id', '')} · "
