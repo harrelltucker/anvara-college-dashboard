@@ -91,3 +91,13 @@ def test_low_commercial_revenue_is_not_rewarded(demo, weights):
     s = score_schools(demo, weights, as_of=AS_OF)
     lowest = s["commercial_revenue"].idxmin()
     assert s.loc[lowest, "commercial_opportunity.commercial_revenue"] == 0
+
+
+def test_scores_are_ranked_within_segments(demo, weights):
+    w = copy.deepcopy(weights)
+    w["rules"]["power4_conferences"] = ["DEMO-N"]               # split the demo schools into two segments
+    s = score_schools(demo, w, as_of=AS_OF)
+    assert set(s["segment"]) == {"Power 4", "Group of 5 & other FBS"}
+    for _, g in s.groupby("segment"):
+        top = g["commercial_opportunity.commercial_revenue"].dropna()
+        assert top.max() == 100 and top.min() == 0              # each segment has its own 0-100 scale

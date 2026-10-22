@@ -2,6 +2,13 @@
 
 Which U.S. college athletic departments could be the largest and most motivated sponsorship-marketplace partners for Anvara. It ranks **opportunity**: the size of potential sponsorship dollars and reasons to pursue growth. It does **not** claim any school has unsold sponsorship inventory, and it is not a financial-distress tracker.
 
+### Which schools
+
+All **113 public FBS schools** with FY2025 NCAA financial data (Knight–Newhouse; schools' own reports where published). Private schools are excluded: they don't publish NCAA financial reports, so they can't be scored on the same basis.
+
+- **Segments.** Schools are compared within **Power 4** (Big Ten, SEC, Big 12, ACC: 53 schools) or **Group of 5 & other FBS** (60). A Sun Belt program and Ohio State don't compete for the same sponsors, so each segment has its own 0–100 scale. A combined view is also available.
+- **Featured schools** (15) have deep research: every catalyst checked school by school, rights holders, contacts and an opportunity brief. The other 98 have a **broad catalyst scan** (jersey-patch and on-field logo trackers covering every FBS school, plus searches for new commercial companies, in-house rights moves, private capital, naming rights and revenue-leadership hires). Smaller events at those schools may be missed.
+
 ### Categories
 
 | Category | Default weight | Question it answers |
@@ -28,7 +35,7 @@ Subsidies and student fees are subtracted once (in generated revenue) and never 
 
 ### Normalization
 
-Each component is a **percentile rank among the schools analyzed**, rescaled so the lowest school scores 0 and the highest 100. Ranks can't be distorted by one outlier: a single program with far higher revenue moves only one position, not the whole scale. The trade-off is that ranks hide the size of gaps, so raw values are always shown next to scores. For Financial Pressure, *weaker* finances rank higher.
+Each component is a **percentile rank among the schools in the same segment**, rescaled so the lowest school scores 0 and the highest 100. Ranks can't be distorted by one outlier: a single program with far higher revenue moves only one position, not the whole scale. The trade-off is that ranks hide the size of gaps, so raw values are always shown next to scores. For Financial Pressure, *weaker* finances rank higher.
 
 ### Growth Catalyst rubric
 
@@ -41,7 +48,7 @@ Catalysts are rare events, so they use fixed points rather than ranks:
 | Confidence | confirmed ×1.0 · reported ×0.6 |
 | Recency | ≤12 months ×1.0 · ≤24 months ×0.5 · older ×0.25 |
 
-Several announcements about one underlying event share an event ID and count **once**. Totals are capped at 100. Institutional capital investment is a **positive** growth signal, not distress. NCAA-wide rule changes are market context, not points for every school; a school's specific response to them can score. Proposed legislation (e.g., the Protect College Sports Act) is a scenario, never treated as enacted law.
+Several announcements about one underlying event share an event ID and count **once**. Conference-wide deals (e.g., the Big 12's league-wide jersey patch) are not counted for individual schools. Totals are capped at 100. Institutional capital investment is a **positive** growth signal, not distress. NCAA-wide rule changes are market context, not points for every school; a school's specific response to them can score. Proposed legislation (e.g., the Protect College Sports Act) is a scenario, never treated as enacted law.
 
 ### Missing data
 
@@ -64,5 +71,6 @@ Missing data is **never scored as 0**.
 
 - One fiscal year only (FY2025); multiyear trends are deliberately not scored.
 - Rank-based scores show relative position within this set of schools, not absolute attractiveness.
+- Conference benchmarks need at least 3 peers with data: the 2024–25 Pac-12 (2 members) and FBS independents have none.
 - NCAA reporting categories are self-reported and vary in practice between schools.
 - Weights reflect judgment and have not been validated against actual sponsorship outcomes.
