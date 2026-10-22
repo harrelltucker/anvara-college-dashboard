@@ -10,14 +10,15 @@ from engine.research import (WHERE_TO_LOOK, checklist, preview_finding, reject_f
 from engine.schema import TABLES
 from engine.scoring import missing_inputs
 from engine.validation import ERROR, issues_frame, run_checks
+from ui import style
 from ui.state import clear_cache, context
 
 ctx = context()
 scored, tables, weights = ctx["scored"], ctx["tables"], ctx["weights"]
 
-st.title("Research & data quality")
-st.caption("Only verified, sourced records affect scores. New findings, whether from a person or an "
-           "AI research assistant, wait in a review queue until someone confirms the source.")
+style.hero("Research & data quality", "Every number is sourced and verified",
+           "Only verified, sourced records affect scores. New findings, whether from a person or an AI research "
+           "assistant, wait in a review queue until someone confirms the source.")
 
 issues = issues_frame(run_checks(tables, weights["rules"]))
 findings = load_findings()
@@ -71,7 +72,13 @@ with tabs[1]:
                     verify_finding(fid, load_tables_fresh(), verifier)
                 clear_cache()
                 st.rerun()
-        for _, f in pending.iterrows():
+        kinds = sorted(pending["target_table"].unique())
+        kind = st.selectbox("Review individual findings", kinds,
+                            format_func=lambda k: f"{k.replace('_', ' ')} ({(pending['target_table'] == k).sum()})")
+        shown = pending[pending["target_table"] == kind]
+        if len(shown) > 40:
+            st.caption(f"Showing the first 40 of {len(shown)}. Verify by source above to clear them faster.")
+        for _, f in shown.head(40).iterrows():
             record, new_source, problems = preview_finding(f, tables, verifier or "(enter your name)")
             with st.expander(f"{f['finding_id']} · {f['target_table']} · {record.get('school_id', '')} · "
                              f"submitted by {f['submitted_by']} on {f['submitted_date']}"):
@@ -157,8 +164,9 @@ with tabs[5]:
         st.dataframe(src, hide_index=True, width="stretch", column_config={"url": st.column_config.LinkColumn()})
     st.markdown("""
 **Licensing.** Primary public documents (university NCAA financial reports, state transparency
-portals, official releases, NCAA statistics) are the preferred sources. The Knight–Newhouse
-College Athletics Database is used only as a reference for category definitions and
-cross-checks; its data is not copied or redistributed. Sources marked *export_allowed = no*
-are blanked in CSV exports.
+portals, official releases, NCAA statistics) are preferred. Where a school's own report isn't
+public, FY2025 figures come from the Knight–Newhouse College Athletics Database, which is free for
+non-commercial use with credit. It is credited on every page, raw downloads are not redistributed,
+and its figures are blanked in CSV exports (*export_allowed = no*). Commercial use needs Knight–Newhouse's
+permission.
 """)

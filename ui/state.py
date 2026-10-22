@@ -39,10 +39,13 @@ def reset_weights():
 def sidebar():
     """Draw the shared sidebar. Returns (is_demo, weights)."""
     with st.sidebar:
-        st.markdown("### Data")
-        is_demo = st.toggle("Show demonstration data", key="demo",
-                            help="Fictional schools and numbers for exploring the dashboard. "
-                                 "Never mixed with research data.")
+        st.markdown("**College Sponsorship Opportunity**")
+        st.caption("113 public FBS athletic departments · FY2025")
+        st.markdown("### Compare schools")
+        within = st.segmented_control(
+            "Score each school against", ["Its segment", "All FBS"], default="Its segment", key="rank_within",
+            help="Its segment: Power 4 schools are scored against Power 4, Group of 5 & other FBS against "
+                 "each other. All FBS: one scale for all 113 (big programs dominate the top).")
         st.markdown("### Scoring weights")
         st.caption("Provisional hypotheses, not validated predictors. Weights in each group are "
                    "rescaled to 100%.")
@@ -60,6 +63,11 @@ def sidebar():
                     st.caption(" · ".join(f"{items[k].split(' (')[0]} {v / total:.0%}"
                                           for k, v in weights[group].items()))
         st.button("Reset to default weights", on_click=reset_weights, width="stretch")
+        weights["rules"]["rank_within"] = "all" if within == "All FBS" else "segment"
+        st.markdown("### Data")
+        is_demo = st.toggle("Show demonstration data", key="demo",
+                            help="Fictional schools and numbers for exploring the dashboard. "
+                                 "Never mixed with research data.")
     return is_demo, weights
 
 

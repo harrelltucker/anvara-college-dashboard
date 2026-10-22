@@ -3,7 +3,12 @@
 import pandas as pd
 import streamlit as st
 
-CONFERENCE_COLORS = {"B1G": "#1f3b73", "BIG12": "#c8102e", "SEC": "#f2a900", "ACC": "#00857c"}
+CONFERENCE_COLORS = {"B1G": "#2346F9", "SEC": "#14161C", "BIG12": "#0099FF", "ACC": "#7C5CFF",
+                     "AAC": "#1D9E75", "MWC": "#F2A900", "SBC": "#E5484D", "MAC": "#5B6475",
+                     "CUSA": "#A1C5FF", "PAC12": "#1D322D", "IND": "#B4B4BA"}
+CONFERENCE_NAMES = {"B1G": "Big Ten", "SEC": "SEC", "BIG12": "Big 12", "ACC": "ACC", "AAC": "American",
+                    "MWC": "Mountain West", "SBC": "Sun Belt", "MAC": "MAC", "CUSA": "Conference USA",
+                    "PAC12": "Pac-12", "IND": "Independent"}
 
 
 def money(v):

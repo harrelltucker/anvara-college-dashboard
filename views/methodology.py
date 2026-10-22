@@ -2,12 +2,15 @@ import streamlit as st
 
 from engine.data import ROOT
 from engine.scoring import CATEGORY_LABELS, COMPONENT_LABELS
+from ui import style
 from ui.state import context
 
 ctx = context()
 weights, tables = ctx["weights"], ctx["tables"]
 
-st.title("Methodology")
+style.hero("Methodology", "How the scores work",
+           "Definitions, weights, normalization, missing-data rules and limitations. Every score can be "
+           "traced back to a verified, sourced figure.")
 
 st.subheader("Weights in effect")
 cols = st.columns(3)

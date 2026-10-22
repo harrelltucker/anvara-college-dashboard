@@ -5,17 +5,19 @@ import streamlit as st
 from engine.metrics import school_metrics
 from engine.research import checklist, opportunity_brief
 from engine.scoring import CATEGORY_LABELS, COMPONENT_LABELS, missing_inputs
-from ui.fmt import money, pct, score
+from ui import style
+from ui.fmt import CONFERENCE_NAMES, money, pct, score
 from ui.state import context
 
 ctx = context()
 scored, tables, weights = ctx["scored"], ctx["tables"], ctx["weights"]
 sources = tables["sources"].set_index("source_id")
 
-ids = list(scored.index)
+ids = list(scored.sort_values("name").index)
 default = st.session_state.get("selected_school")
 school_id = st.selectbox("School", ids, index=ids.index(default) if default in ids else 0,
-                         format_func=lambda s: scored.loc[s, "name"])
+                         format_func=lambda s: f"{scored.loc[s, 'name']}{'  ★' if scored.loc[s, 'featured'] else ''}",
+                         label_visibility="collapsed")
 st.session_state["selected_school"] = school_id
 row = scored.loc[school_id]
 missing = missing_inputs(row, tables)
@@ -28,16 +30,21 @@ def source_link(source_id):
     return "No source recorded"
 
 
-st.title(row["name"])
-st.caption(f"{row['conference_id'] or 'Conference unknown'} · FY2025 · confidence: **{row['confidence']}** · "
-           f"data completeness: **{row['completeness']:.0%}**")
+conf_name = CONFERENCE_NAMES.get(row["conference_id"], row["conference_id"] or "Conference unknown")
+style.hero(f"{conf_name} · {row['segment']} · {row['state']}", row["name"], row["full_name"])
+st.html(style.badges(*([("Featured: deep research", "accent")] if row["featured"] else ["Broad research"]),
+                     f"Confidence: {row['confidence']}", f"Data completeness {row['completeness']:.0%}"))
 
-m = st.columns(4)
-m[0].metric("Overall opportunity", score(row["overall"]),
-            help=f"Rank {int(row['rank'])} of {scored['overall'].notna().sum()}" if pd.notna(row["rank"]) else None)
-for col, cat in zip(m[1:], CATEGORY_LABELS):
-    col.metric(CATEGORY_LABELS[cat], score(row[cat]),
-               help=f"{row[f'{cat}_coverage']:.0%} of this category's weight has data")
+seg_size = int(scored[scored["segment"] == row["segment"]]["overall"].notna().sum())
+style.cards([
+    ("Opportunity score", score(row["overall"]),
+     f"#{int(row['segment_rank'])} of {seg_size} in {row['segment']}" if pd.notna(row["segment_rank"]) else ""),
+    *[(CATEGORY_LABELS[cat], score(row[cat]), f"{row[f'{cat}_coverage']:.0%} of inputs available")
+      for cat in CATEGORY_LABELS],
+])
+if not row["featured"]:
+    st.caption("Broad research: scored on verified financials, attendance and a catalyst scan. Rights holders, "
+               "contacts and a school-by-school catalyst review are done for Featured schools.")
 
 tabs = st.tabs(["Brief", "Score breakdown", "Financials", "Commercial & audience",
                 "Growth catalysts", "Rights holders & contacts", "Gaps & research checklist"])
@@ -57,7 +64,7 @@ with tabs[1]:
     breakdown = pd.DataFrame(rows)
     fig = px.bar(breakdown.dropna(subset=["Score"]), x="Score", y="Component", color="Category",
                  orientation="h", range_x=[0, 100], template="simple_white", height=340,
-                 color_discrete_sequence=["#1f3b73", "#00857c", "#c8102e"])
+                 color_discrete_map=style.CATEGORY_COLORS)
     fig.update_layout(margin=dict(l=0, r=0, t=10, b=0), legend_title_text="", yaxis_title="")
     st.plotly_chart(fig, width="stretch")
     st.dataframe(breakdown.assign(**{"Weight in category": breakdown["Weight in category"].map(pct),
@@ -97,7 +104,7 @@ with tabs[2]:
         fig = px.bar(peers, x=peers["own_operations_revenue"] / 1e6, y="name", orientation="h",
                      template="simple_white", labels={"x": "FY2025 own-operations revenue ($M)", "name": ""},
                      color=peers.index == school_id,
-                     color_discrete_map={True: "#c8102e", False: "#9aa5b8"}, height=60 + 24 * len(peers))
+                     color_discrete_map={True: style.ACCENT, False: "#C9CDD6"}, height=60 + 24 * len(peers))
         fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=30, b=0),
                           title=f"Own-operations revenue vs. {row['conference_id']} public schools")
         st.plotly_chart(fig, width="stretch")

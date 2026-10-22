@@ -1,10 +1,29 @@
+# Visual theme: white space, near-black text, soft grays, one electric-blue accent.
 [theme]
 base = "light"
-primaryColor = "#1f3b73"
-backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#f4f6fa"
-textColor = "#1c2333"
-font = "sans serif"
+primaryColor = "#2346F9"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F7FA"
+textColor = "#14161C"
+linkColor = "#2346F9"
+linkUnderline = false
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+headingFont = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+headingFontWeights = [700, 600, 600, 600, 600, 600]
+baseFontSize = 15
+baseRadius = "0.6rem"
+buttonRadius = "0.6rem"
+borderColor = "#E6E8EE"
+dataframeBorderColor = "#E6E8EE"
+dataframeHeaderBackgroundColor = "#F5F7FA"
+showWidgetBorder = true
+showSidebarBorder = true
+metricValueFontWeight = 600
+chartCategoricalColors = ["#2346F9", "#14161C", "#0099FF", "#8A93A6", "#7C5CFF", "#1D9E75", "#F2A900", "#E5484D", "#5B6475", "#A1C5FF", "#1D322D"]
+
+[theme.sidebar]
+backgroundColor = "#F5F7FA"
+secondaryBackgroundColor = "#FFFFFF"
 
 [browser]
 gatherUsageStats = false
