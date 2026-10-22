@@ -39,10 +39,12 @@ TABLES = {
     },
     "schools": {
         "key": "school_id",
-        "columns": ["school_id", "name", "state", "subdivision", "control", "in_universe"],
+        "columns": ["school_id", "name", "short_name", "ncaa_name", "state", "subdivision", "control",
+                    "in_universe", "featured"],
         "required": ["school_id", "name", "subdivision", "control", "in_universe"],
         "enums": {"subdivision": ["FBS", "FCS"], "control": ["public", "private"],
-                  "in_universe": ["yes", "no"]},   # "no" = conference peer used only for benchmarks
+                  "in_universe": ["yes", "no"],    # "no" = conference peer used only for benchmarks
+                  "featured": ["yes", "no"]},      # "yes" = deep-research school (catalysts, contacts, brief)
     },
     "memberships": {
         "key": None,

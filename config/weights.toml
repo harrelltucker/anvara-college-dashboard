@@ -40,3 +40,7 @@ min_overall_coverage = 0.55       # share of total category weight needed for an
 min_peer_coverage = 0.50          # share of conference peers needed for a conference benchmark
 peer_coverage_basis = "public_members"   # or "all_members": private schools don't publish NCAA reports
 conference_comparison_basis = "own_operations"   # or "generated" (NCAA definition, includes conference payouts)
+min_peer_count = 3                # fewer peers with data than this => no conference benchmark
+no_benchmark_conferences = ["IND"]  # FBS independents aren't a conference
+power4_conferences = ["B1G", "SEC", "BIG12", "ACC"]
+rank_within = "segment"           # "segment" (Power 4 vs. Group of 5 & other FBS) or "all"

@@ -1,5 +1,12 @@
 conference_id,name,fiscal_year,member_count,public_member_count,source_id,notes
-B1G,Big Ten Conference,2025,18,16,KN-FY2025,"18 members in 2024-25; private: Northwestern, USC. Public members per Knight-Newhouse FY2025 list."
-BIG12,Big 12 Conference,2025,16,13,KN-FY2025,"16 members in 2024-25; private: Baylor, BYU, TCU. Public members per Knight-Newhouse FY2025 list."
-SEC,Southeastern Conference,2025,16,15,KN-FY2025,"16 members in 2024-25; private: Vanderbilt. Public members per Knight-Newhouse FY2025 list."
-ACC,Atlantic Coast Conference,2025,18,10,KN-FY2025,"18 members in 2024-25 incl. Notre Dame (non-football); private: Boston College, Duke, Miami, Notre Dame, SMU, Stanford, Syracuse, Wake Forest. Public: 9 in Knight-Newhouse + Pittsburgh (state-related; does not publish its report)."
+B1G,Big Ten,2025,18,16,KN-FY2025,"18 football members in 2024-25. Private: Northwestern, USC. Public members per Knight-Newhouse FY2025 list."
+SEC,SEC,2025,16,15,KN-FY2025,16 football members in 2024-25. Private: Vanderbilt. Public members per Knight-Newhouse FY2025 list.
+BIG12,Big 12,2025,16,13,KN-FY2025,"16 football members in 2024-25. Private: Baylor, BYU, TCU. Public members per Knight-Newhouse FY2025 list."
+ACC,ACC,2025,18,10,KN-FY2025,"18 football members in 2024-25. Incl. Notre Dame (non-football). Private: Boston College, Duke, Miami, Notre Dame, SMU, Stanford, Syracuse, Wake Forest. Pitt is state-related and does not publish its report. Public members per Knight-Newhouse FY2025 list."
+AAC,American,2025,14,11,KN-FY2025,"14 football members in 2024-25. Football members. Private: Rice, Tulane, Tulsa. Temple is state-related and does not publish its report. Public members per Knight-Newhouse FY2025 list."
+MWC,Mountain West,2025,12,12,KN-FY2025,12 football members in 2024-25. All public (Hawaii football-only). Public members per Knight-Newhouse FY2025 list.
+SBC,Sun Belt,2025,14,14,KN-FY2025,14 football members in 2024-25. All public. Public members per Knight-Newhouse FY2025 list.
+MAC,MAC,2025,12,12,KN-FY2025,12 football members in 2024-25. All public. Public members per Knight-Newhouse FY2025 list.
+CUSA,Conference USA,2025,10,9,KN-FY2025,10 football members in 2024-25. Private: Liberty. Kennesaw State (FBS transition year) not in Knight-Newhouse FBS list. Public members per Knight-Newhouse FY2025 list.
+PAC12,Pac-12,2025,2,2,KN-FY2025,2 football members in 2024-25. Oregon State and Washington State only in 2024-25. Public members per Knight-Newhouse FY2025 list.
+IND,FBS Independents,2025,3,2,KN-FY2025,"3 football members in 2024-25. Notre Dame (private), UConn, UMass. Not a conference: no conference benchmark. Public members per Knight-Newhouse FY2025 list."

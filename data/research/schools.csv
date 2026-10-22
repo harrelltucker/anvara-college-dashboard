@@ -1,54 +1,114 @@
-school_id,name,state,subdivision,control,in_universe
-RUTGERS,Rutgers University,NJ,FBS,public,yes
-IOWA,University of Iowa,IA,FBS,public,yes
-CLEMSON,Clemson University,SC,FBS,public,yes
-UTAH,University of Utah,UT,FBS,public,yes
-MARYLAND,University of Maryland,MD,FBS,public,yes
-UCLA,UCLA,CA,FBS,public,yes
-MINNESOTA,University of Minnesota,MN,FBS,public,yes
-PURDUE,Purdue University,IN,FBS,public,yes
-ILLINOIS,University of Illinois Urbana-Champaign,IL,FBS,public,yes
-MICHSTATE,Michigan State University,MI,FBS,public,yes
-WISCONSIN,University of Wisconsin-Madison,WI,FBS,public,yes
-ARIZONA,University of Arizona,AZ,FBS,public,yes
-ARIZSTATE,Arizona State University,AZ,FBS,public,yes
-TEXAS,University of Texas at Austin,TX,FBS,public,yes
-OHIOSTATE,Ohio State University,OH,FBS,public,yes
-PEER-UOFALABAMA,University of Alabama,,FBS,public,no
-PEER-AUBURNU,Auburn University,,FBS,public,no
-PEER-UOFARKANSAS,University of Arkansas,,FBS,public,no
-PEER-UOFCALIFORNIABER,"University of California, Berkeley",,FBS,public,no
-PEER-UOFCOLORADOBOULD,University of Colorado Boulder,,FBS,public,no
-PEER-UOFCENTRALFLORID,University of Central Florida,,FBS,public,no
-PEER-FLORIDASTATEU,Florida State University,,FBS,public,no
-PEER-UOFFLORIDA,University of Florida,,FBS,public,no
-PEER-GEORGIAINSTITUTE,Georgia Institute of Technology,,FBS,public,no
-PEER-UOFGEORGIA,University of Georgia,,FBS,public,no
-PEER-INDIANAUBLOOMING,"Indiana University, Bloomington",,FBS,public,no
-PEER-IOWASTATEU,Iowa State University,,FBS,public,no
-PEER-UOFKANSAS,University of Kansas,,FBS,public,no
-PEER-KANSASSTATEU,Kansas State University,,FBS,public,no
-PEER-UOFKENTUCKY,University of Kentucky,,FBS,public,no
-PEER-UOFLOUISVILLE,University of Louisville,,FBS,public,no
-PEER-LOUISIANASTATEU,Louisiana State University,,FBS,public,no
-PEER-UOFMICHIGAN,University of Michigan,,FBS,public,no
-PEER-UOFMISSISSIPPI,University of Mississippi,,FBS,public,no
-PEER-MISSISSIPPISTATE,Mississippi State University,,FBS,public,no
-PEER-UOFMISSOURICOLUM,"University of Missouri, Columbia",,FBS,public,no
-PEER-UOFNEBRASKALINCO,University of Nebraska-Lincoln,,FBS,public,no
-PEER-UOFNORTHCAROLINA,"University of North Carolina, Chapel Hill",,FBS,public,no
-PEER-NORTHCAROLINASTA,North Carolina State University,,FBS,public,no
-PEER-UOFCINCINNATI,University of Cincinnati,,FBS,public,no
-PEER-OKLAHOMASTATEU,Oklahoma State University,,FBS,public,no
-PEER-UOFOKLAHOMA,University of Oklahoma,,FBS,public,no
-PEER-UOFOREGON,University of Oregon,,FBS,public,no
-PEER-UOFSOUTHCAROLINA,University of South Carolina,,FBS,public,no
-PEER-THEUOFTENNESSEE,The University of Tennessee,,FBS,public,no
-PEER-UOFHOUSTON,University of Houston,,FBS,public,no
-PEER-TEXASAMU,Texas A & M University,,FBS,public,no
-PEER-TEXASTECHU,Texas Tech University,,FBS,public,no
-PEER-VIRGINIAPOLYTECH,Virginia Polytechnic Institute and State University,,FBS,public,no
-PEER-UOFVIRGINIA,University of Virginia,,FBS,public,no
-PEER-UOFWASHINGTON,University of Washington,,FBS,public,no
-PEER-WESTVIRGINIAU,West Virginia University,,FBS,public,no
-PEER-PENNSYLVANIASTAT,Pennsylvania State University,,FBS,public,no
+school_id,name,short_name,ncaa_name,state,subdivision,control,in_universe,featured
+RUTGERS,Rutgers University,Rutgers,Rutgers,NJ,FBS,public,yes,yes
+IOWA,University of Iowa,Iowa,Iowa,IA,FBS,public,yes,yes
+CLEMSON,Clemson University,Clemson,Clemson,SC,FBS,public,yes,yes
+UTAH,University of Utah,Utah,Utah,UT,FBS,public,yes,yes
+MARYLAND,University of Maryland,Maryland,Maryland,MD,FBS,public,yes,yes
+UCLA,UCLA,UCLA,UCLA,CA,FBS,public,yes,yes
+MINNESOTA,University of Minnesota,Minnesota,Minnesota,MN,FBS,public,yes,yes
+PURDUE,Purdue University,Purdue,Purdue,IN,FBS,public,yes,yes
+ILLINOIS,University of Illinois Urbana-Champaign,Illinois,Illinois,IL,FBS,public,yes,yes
+MICHSTATE,Michigan State University,Michigan State,Michigan St.,MI,FBS,public,yes,yes
+WISCONSIN,University of Wisconsin-Madison,Wisconsin,Wisconsin,WI,FBS,public,yes,yes
+ARIZONA,University of Arizona,Arizona,Arizona,AZ,FBS,public,yes,yes
+ARIZSTATE,Arizona State University,Arizona State,Arizona St.,AZ,FBS,public,yes,yes
+TEXAS,University of Texas at Austin,Texas,Texas,TX,FBS,public,yes,yes
+OHIOSTATE,Ohio State University,Ohio State,Ohio St.,OH,FBS,public,yes,yes
+ALABAMA,University of Alabama,Alabama,Alabama,AL,FBS,public,yes,no
+AUBURN,Auburn University,Auburn,Auburn,AL,FBS,public,yes,no
+ARKANSAS,University of Arkansas,Arkansas,Arkansas,AR,FBS,public,yes,no
+CAL,"University of California, Berkeley",California,California,CA,FBS,public,yes,no
+COLORADO,University of Colorado Boulder,Colorado,Colorado,CO,FBS,public,yes,no
+UCF,University of Central Florida,UCF,UCF,FL,FBS,public,yes,no
+FLORIDASTATE,Florida State University,Florida State,Florida St.,FL,FBS,public,yes,no
+FLORIDA,University of Florida,Florida,Florida,FL,FBS,public,yes,no
+GEORGIATECH,Georgia Institute of Technology,Georgia Tech,Georgia Tech,GA,FBS,public,yes,no
+GEORGIA,University of Georgia,Georgia,Georgia,GA,FBS,public,yes,no
+INDIANA,"Indiana University, Bloomington",Indiana,Indiana,IN,FBS,public,yes,no
+IOWASTATE,Iowa State University,Iowa State,Iowa St.,IA,FBS,public,yes,no
+KANSAS,University of Kansas,Kansas,Kansas,KS,FBS,public,yes,no
+KANSASSTATE,Kansas State University,Kansas State,Kansas St.,KS,FBS,public,yes,no
+KENTUCKY,University of Kentucky,Kentucky,Kentucky,KY,FBS,public,yes,no
+LOUISVILLE,University of Louisville,Louisville,Louisville,KY,FBS,public,yes,no
+LSU,Louisiana State University,LSU,LSU,LA,FBS,public,yes,no
+MICHIGAN,University of Michigan,Michigan,Michigan,MI,FBS,public,yes,no
+OLEMISS,University of Mississippi,Ole Miss,Ole Miss,MS,FBS,public,yes,no
+MISSSTATE,Mississippi State University,Mississippi State,Mississippi St.,MS,FBS,public,yes,no
+MISSOURI,"University of Missouri, Columbia",Missouri,Missouri,MO,FBS,public,yes,no
+NEBRASKA,University of Nebraska-Lincoln,Nebraska,Nebraska,NE,FBS,public,yes,no
+UNC,"University of North Carolina, Chapel Hill",North Carolina,North Carolina,NC,FBS,public,yes,no
+NCSTATE,North Carolina State University,NC State,NC State,NC,FBS,public,yes,no
+CINCINNATI,University of Cincinnati,Cincinnati,Cincinnati,OH,FBS,public,yes,no
+OKSTATE,Oklahoma State University,Oklahoma State,Oklahoma St.,OK,FBS,public,yes,no
+OKLAHOMA,University of Oklahoma,Oklahoma,Oklahoma,OK,FBS,public,yes,no
+OREGON,University of Oregon,Oregon,Oregon,OR,FBS,public,yes,no
+SOUTHCAROLINA,University of South Carolina,South Carolina,South Carolina,SC,FBS,public,yes,no
+TENNESSEE,The University of Tennessee,Tennessee,Tennessee,TN,FBS,public,yes,no
+HOUSTON,University of Houston,Houston,Houston,TX,FBS,public,yes,no
+TEXASAM,Texas A & M University,Texas A&M,Texas A&M,TX,FBS,public,yes,no
+TEXASTECH,Texas Tech University,Texas Tech,Texas Tech,TX,FBS,public,yes,no
+VIRGINIATECH,Virginia Polytechnic Institute and State University,Virginia Tech,Virginia Tech,VA,FBS,public,yes,no
+VIRGINIA,University of Virginia,Virginia,Virginia,VA,FBS,public,yes,no
+WASHINGTON,University of Washington,Washington,Washington,WA,FBS,public,yes,no
+WESTVIRGINIA,West Virginia University,West Virginia,West Virginia,WV,FBS,public,yes,no
+PENNSTATE,Pennsylvania State University,Penn State,Penn St.,PA,FBS,public,yes,no
+APPSTATE,Appalachian State University,App State,App State,NC,FBS,public,yes,no
+ARKSTATE,Arkansas State University,Arkansas State,Arkansas St.,AR,FBS,public,yes,no
+BALLSTATE,Ball State University,Ball State,Ball St.,IN,FBS,public,yes,no
+BOISESTATE,Boise State University,Boise State,Boise St.,ID,FBS,public,yes,no
+BOWLINGGREEN,Bowling Green State University,Bowling Green,Bowling Green,OH,FBS,public,yes,no
+FRESNOSTATE,"California State University, Fresno",Fresno State,Fresno St.,CA,FBS,public,yes,no
+CENTRALMICH,Central Michigan University,Central Michigan,Central Mich.,MI,FBS,public,yes,no
+COASTAL,Coastal Carolina University,Coastal Carolina,Coastal Carolina,SC,FBS,public,yes,no
+COLOSTATE,Colorado State University,Colorado State,Colorado St.,CO,FBS,public,yes,no
+ECU,East Carolina University,East Carolina,East Carolina,NC,FBS,public,yes,no
+EASTERNMICH,Eastern Michigan University,Eastern Michigan,Eastern Mich.,MI,FBS,public,yes,no
+FAU,Florida Atlantic University,Florida Atlantic,Fla. Atlantic,FL,FBS,public,yes,no
+FIU,Florida International University,FIU,FIU,FL,FBS,public,yes,no
+GASOUTHERN,Georgia Southern University,Georgia Southern,Ga. Southern,GA,FBS,public,yes,no
+GEORGIASTATE,Georgia State University,Georgia State,Georgia St.,GA,FBS,public,yes,no
+JAXSTATE,Jacksonville State University,Jacksonville State,Jacksonville St.,AL,FBS,public,yes,no
+JMU,James Madison University,James Madison,James Madison,VA,FBS,public,yes,no
+KENTSTATE,Kent State University,Kent State,Kent St.,OH,FBS,public,yes,no
+LATECH,Louisiana Tech University,Louisiana Tech,Louisiana Tech,LA,FBS,public,yes,no
+MARSHALL,Marshall University,Marshall,Marshall,WV,FBS,public,yes,no
+MIAMIOH,Miami University,Miami (OH),Miami (OH),OH,FBS,public,yes,no
+MTSU,Middle Tennessee State University,Middle Tennessee,Middle Tenn.,TN,FBS,public,yes,no
+NMSTATE,New Mexico State University,New Mexico State,New Mexico St.,NM,FBS,public,yes,no
+NIU,Northern Illinois University,Northern Illinois,NIU,IL,FBS,public,yes,no
+OHIO,Ohio University,Ohio,Ohio,OH,FBS,public,yes,no
+ODU,Old Dominion University,Old Dominion,Old Dominion,VA,FBS,public,yes,no
+OREGONSTATE,Oregon State University,Oregon State,Oregon St.,OR,FBS,public,yes,no
+SAMHOUSTON,Sam Houston State University,Sam Houston,Sam Houston,TX,FBS,public,yes,no
+SDSU,San Diego State University,San Diego State,San Diego St.,CA,FBS,public,yes,no
+SJSU,San Jose State University,San Jose State,San Jose St.,CA,FBS,public,yes,no
+TEXASSTATE,Texas State University,Texas State,Texas St.,TX,FBS,public,yes,no
+TROY,Troy University,Troy,Troy,AL,FBS,public,yes,no
+AIRFORCE,U.S. Air Force Academy,Air Force,Air Force,CO,FBS,public,yes,no
+ARMY,U.S. Military Academy,Army,Army West Point,NY,FBS,public,yes,no
+NAVY,U.S. Naval Academy,Navy,Navy,MD,FBS,public,yes,no
+BUFFALO,"University at Buffalo, The State University of New York",Buffalo,Buffalo,NY,FBS,public,yes,no
+AKRON,University of Akron,Akron,Akron,OH,FBS,public,yes,no
+UAB,University of Alabama at Birmingham,UAB,UAB,AL,FBS,public,yes,no
+UCONN,University of Connecticut,UConn,UConn,CT,FBS,public,yes,no
+HAWAII,"University of Hawaii, Manoa",Hawaii,Hawaii,HI,FBS,public,yes,no
+LOUISIANA,University of Louisiana at Lafayette,Louisiana,Louisiana,LA,FBS,public,yes,no
+ULM,University of Louisiana at Monroe,ULM,ULM,LA,FBS,public,yes,no
+UMASS,University of Massachusetts Amherst,UMass,Massachusetts,MA,FBS,public,yes,no
+MEMPHIS,University of Memphis,Memphis,Memphis,TN,FBS,public,yes,no
+UNLV,"University of Nevada, Las Vegas",UNLV,UNLV,NV,FBS,public,yes,no
+NEVADA,"University of Nevada, Reno",Nevada,Nevada,NV,FBS,public,yes,no
+NEWMEXICO,University of New Mexico,New Mexico,New Mexico,NM,FBS,public,yes,no
+CHARLOTTE,University of North Carolina at Charlotte,Charlotte,Charlotte,NC,FBS,public,yes,no
+NORTHTEXAS,University of North Texas,North Texas,North Texas,TX,FBS,public,yes,no
+SOUTHALABAMA,University of South Alabama,South Alabama,South Alabama,AL,FBS,public,yes,no
+USF,University of South Florida,South Florida,South Fla.,FL,FBS,public,yes,no
+SOUTHERNMISS,University of Southern Mississippi,Southern Miss,Southern Miss.,MS,FBS,public,yes,no
+UTEP,University of Texas at El Paso,UTEP,UTEP,TX,FBS,public,yes,no
+UTSA,University of Texas at San Antonio,UTSA,UTSA,TX,FBS,public,yes,no
+TOLEDO,University of Toledo,Toledo,Toledo,OH,FBS,public,yes,no
+WYOMING,University of Wyoming,Wyoming,Wyoming,WY,FBS,public,yes,no
+UTAHSTATE,Utah State University,Utah State,Utah St.,UT,FBS,public,yes,no
+WASHSTATE,Washington State University,Washington State,Washington St.,WA,FBS,public,yes,no
+WKU,Western Kentucky University,Western Kentucky,Western Ky.,KY,FBS,public,yes,no
+WESTERNMICH,Western Michigan University,Western Michigan,Western Mich.,MI,FBS,public,yes,no

@@ -37,11 +37,17 @@ def school_metrics(tables, rules):
     schools = tables["schools"].set_index("school_id")
 
     m = pd.DataFrame(index=schools.index)
-    m["name"] = schools["name"]
+    short = schools["short_name"] if "short_name" in schools else pd.Series("", index=schools.index)
+    m["name"] = short.where(short != "", schools["name"])
+    m["full_name"] = schools["name"]
+    m["state"] = schools["state"]
     m["in_universe"] = schools["in_universe"] == "yes"
+    m["featured"] = (schools["featured"] == "yes") if "featured" in schools else False
     members = tables["memberships"]
     members = members[members["fiscal_year"] == fy].set_index("school_id")
     m["conference_id"] = members["conference_id"].reindex(m.index).fillna("")
+    power4 = set(rules.get("power4_conferences", []))
+    m["segment"] = np.where(m["conference_id"].isin(power4), "Power 4", "Group of 5 & other FBS")
 
     fin = tables["financials"]
     fin = fin[fin["fiscal_year"] == fy].drop_duplicates("school_id", keep="last").set_index("school_id")
@@ -94,7 +100,7 @@ def _conference_benchmarks(m, conferences, fy, rules):
     m["conf_peer_median_commercial_share"] = np.nan
     for school_id, row in m.iterrows():
         cid = row["conference_id"]
-        if not cid:
+        if not cid or cid in rules.get("no_benchmark_conferences", []):
             continue
         peers = m[(m["conference_id"] == cid) & (m.index != school_id)]
         known = peers[basis].dropna()
@@ -103,7 +109,7 @@ def _conference_benchmarks(m, conferences, fy, rules):
         m.loc[school_id, "peer_count"] = len(known)
         m.loc[school_id, "peer_coverage"] = coverage
         m.loc[school_id, "conf_peer_median_commercial_share"] = peers["commercial_share"].median()
-        if len(known) and coverage >= rules["min_peer_coverage"]:
+        if len(known) >= rules.get("min_peer_count", 1) and coverage >= rules["min_peer_coverage"]:
             median = known.median()
             m.loc[school_id, "conf_peer_median_generated"] = median
             m.loc[school_id, "conf_relative_generated"] = row[basis] / median

@@ -1,7 +1,7 @@
 """Turn metrics into 0-100 scores.
 
-Normalization: percentile rank among the schools in the ranking universe, rescaled so the
-lowest school scores 0 and the highest 100. Ranks can't be stretched by one outlier
+Normalization: percentile rank among comparable schools (by default within each segment:
+Power 4 vs. Group of 5 & other FBS), rescaled so the lowest school scores 0 and the highest 100. Ranks can't be stretched by one outlier
 (e.g., Texas's revenue), and they read simply: "ahead of X% of the group".
 Raw values are always shown alongside so the size of gaps isn't hidden.
 
@@ -78,19 +78,24 @@ def score_schools(tables, weights, as_of=None):
     rules = weights["rules"]
     m = school_metrics(tables, rules)
     u = m[m["in_universe"]].copy()
+    group = u["segment"] if rules.get("rank_within", "segment") == "segment" else pd.Series("all", index=u.index)
+
+    def rank(col, higher_is_better=True):
+        """Percentile score within each comparison group."""
+        return u[col].groupby(group).transform(lambda s: percentile_score(s, higher_is_better))
 
     # Financial Pressure: weaker finances => higher score
     fp = {
-        "reported_result": percentile_score(u["reported_margin"], higher_is_better=False),
-        "conference_relative_generated": percentile_score(u["conf_relative_generated"], higher_is_better=False),
-        "self_sufficiency": percentile_score(u["self_sufficiency"], higher_is_better=False),
+        "reported_result": rank("reported_margin", higher_is_better=False),
+        "conference_relative_generated": rank("conf_relative_generated", higher_is_better=False),
+        "self_sufficiency": rank("self_sufficiency", higher_is_better=False),
     }
     # Commercial Opportunity: bigger commercial business and audience => higher score
-    reach_parts = {k: percentile_score(u[k]) for k in weights["fan_reach"]}
+    reach_parts = {k: rank(k) for k in weights["fan_reach"]}
     u["fan_reach_score"], u["fan_reach_coverage"] = weighted_score(
         reach_parts, weights["fan_reach"], rules["min_component_coverage"])
     co = {
-        "commercial_revenue": percentile_score(u["commercial_revenue"]),
+        "commercial_revenue": rank("commercial_revenue"),
         "fan_reach": u["fan_reach_score"],
     }
     for name, comps in (("financial_pressure", fp), ("commercial_opportunity", co)):
@@ -106,6 +111,7 @@ def score_schools(tables, weights, as_of=None):
     u["confidence"] = _confidence(u)
     u["completeness"] = _completeness(u, tables)
     u["rank"] = u["overall"].rank(ascending=False, method="min")
+    u["segment_rank"] = u.groupby("segment")["overall"].rank(ascending=False, method="min")
     return u.sort_values(["overall", "name"], ascending=[False, True], na_position="last")
 
 
