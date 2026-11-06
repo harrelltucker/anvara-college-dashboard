@@ -1,0 +1,194 @@
+team_id,name,league,city,state,cbsa_code,season,source_id,verified_by,verified_date
+FBS-BYU,Brigham Young University,FBS_POWER4,Provo,UT,39340,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-BAYLOR,Baylor University,FBS_POWER4,Waco,TX,47380,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-BC,Boston College,FBS_POWER4,Chestnut Hill,MA,14460,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-DUKE,Duke University,FBS_POWER4,Durham,NC,20500,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-KENNESAW,Kennesaw State University,FBS_OTHER,Kennesaw,GA,12060,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-LIBERTY,Liberty University,FBS_OTHER,Lynchburg,VA,31340,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-MIAMIFL,University of Miami,FBS_POWER4,Coral Gables,FL,33100,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-NORTHWESTERN,Northwestern University,FBS_POWER4,Evanston,IL,16980,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-NOTREDAME,University of Notre Dame,FBS_POWER4,Notre Dame,IN,43780,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-PITT,University of Pittsburgh-Pittsburgh Campus,FBS_POWER4,Pittsburgh,PA,38300,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-RICE,Rice University,FBS_OTHER,Houston,TX,26420,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-SMU,Southern Methodist University,FBS_POWER4,Dallas,TX,19100,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-USC,University of Southern California,FBS_POWER4,Los Angeles,CA,31080,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-STANFORD,Stanford University,FBS_POWER4,Stanford,CA,41940,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-SYRACUSE,Syracuse University,FBS_POWER4,Syracuse,NY,45060,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-TCU,Texas Christian University,FBS_POWER4,Fort Worth,TX,19100,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-TEMPLE,Temple University,FBS_OTHER,Philadelphia,PA,37980,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-TULANE,Tulane University of Louisiana,FBS_OTHER,New Orleans,LA,35380,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-TULSA,University of Tulsa,FBS_OTHER,Tulsa,OK,46140,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-VANDERBILT,Vanderbilt University,FBS_POWER4,Nashville,TN,34980,2024,S-0087,Tucker Harrell,2026-11-06
+FBS-WAKE,Wake Forest University,FBS_POWER4,Winston-Salem,NC,49180,2024,S-0087,Tucker Harrell,2026-11-06
+NFL-BUFFALOBILLS,Buffalo Bills,NFL,"Orchard Park, New York",NY,15380,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-MIAMIDOLPHINS,Miami Dolphins,NFL,"Miami Gardens, Florida",FL,33100,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-NEWENGLANDPATRIOTS,New England Patriots,NFL,"Foxborough, Massachusetts",MA,14460,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-NEWYORKJETS,New York Jets,NFL,"East Rutherford, New Jersey",NJ,35620,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-BALTIMORERAVENS,Baltimore Ravens,NFL,"Baltimore, Maryland",MD,12580,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-CINCINNATIBENGALS,Cincinnati Bengals,NFL,"Cincinnati, Ohio",OH,17140,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-CLEVELANDBROWNS,Cleveland Browns,NFL,"Cleveland, Ohio",OH,17410,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-PITTSBURGHSTEELERS,Pittsburgh Steelers,NFL,"Pittsburgh, Pennsylvania",PA,38300,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-HOUSTONTEXANS,Houston Texans,NFL,"Houston, Texas",TX,26420,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-INDIANAPOLISCOLTS,Indianapolis Colts,NFL,"Indianapolis, Indiana",IN,26900,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-JACKSONVILLEJAGUARS,Jacksonville Jaguars,NFL,"Jacksonville, Florida",FL,27260,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-TENNESSEETITANS,Tennessee Titans,NFL,"Nashville, Tennessee",TN,34980,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-DENVERBRONCOS,Denver Broncos,NFL,"Denver, Colorado",CO,19740,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-KANSASCITYCHIEFS,Kansas City Chiefs,NFL,"Kansas City, Missouri",MO,28140,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-LASVEGASRAIDERS,Las Vegas Raiders,NFL,"Paradise, Nevada",NV,29820,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-LOSANGELESCHARGERS,Los Angeles Chargers,NFL,"Inglewood, California",CA,31080,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-DALLASCOWBOYS,Dallas Cowboys,NFL,"Arlington, Texas",TX,19100,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-NEWYORKGIANTS,New York Giants,NFL,"East Rutherford, New Jersey",NJ,35620,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-PHILADELPHIAEAGLES,Philadelphia Eagles,NFL,"Philadelphia, Pennsylvania",PA,37980,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-WASHINGTONCOMMANDERS,Washington Commanders,NFL,"Landover, Maryland",MD,47900,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-CHICAGOBEARS,Chicago Bears,NFL,"Chicago, Illinois",IL,16980,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-DETROITLIONS,Detroit Lions,NFL,"Detroit, Michigan",MI,19820,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-GREENBAYPACKERS,Green Bay Packers,NFL,"Green Bay, Wisconsin",WI,24580,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-MINNESOTAVIKINGS,Minnesota Vikings,NFL,"Minneapolis, Minnesota",MN,33460,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-ATLANTAFALCONS,Atlanta Falcons,NFL,"Atlanta, Georgia",GA,12060,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-CAROLINAPANTHERS,Carolina Panthers,NFL,"Charlotte, North Carolina",NC,16740,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-NEWORLEANSSAINTS,New Orleans Saints,NFL,"New Orleans, Louisiana",LA,35380,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-TAMPABAYBUCCANEERS,Tampa Bay Buccaneers,NFL,"Tampa, Florida",FL,45300,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-ARIZONACARDINALS,Arizona Cardinals,NFL,"Glendale, Arizona",AZ,38060,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-LOSANGELESRAMS,Los Angeles Rams,NFL,"Inglewood, California",CA,31080,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-SANFRANCISCO49ERS,San Francisco 49ers,NFL,"Santa Clara, California",CA,41940,2026,S-0088,Tucker Harrell,2026-11-06
+NFL-SEATTLESEAHAWKS,Seattle Seahawks,NFL,"Seattle, Washington",WA,42660,2026,S-0088,Tucker Harrell,2026-11-06
+MLB-BALTIMOREORIOLES,Baltimore Orioles,MLB,"Baltimore, Maryland",MD,12580,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-BOSTONREDSOX,Boston Red Sox,MLB,"Boston, Massachusetts",MA,14460,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-NEWYORKYANKEES,New York Yankees,MLB,"New York, New York",NY,35620,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-TAMPABAYRAYS,Tampa Bay Rays,MLB,"St. Petersburg, Florida",FL,45300,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-CHICAGOWHITESOX,Chicago White Sox,MLB,"Chicago, Illinois",IL,16980,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-CLEVELANDGUARDIANS,Cleveland Guardians,MLB,"Cleveland, Ohio",OH,17410,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-DETROITTIGERS,Detroit Tigers,MLB,"Detroit, Michigan",MI,19820,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-KANSASCITYROYALS,Kansas City Royals,MLB,"Kansas City, Missouri",MO,28140,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-MINNESOTATWINS,Minnesota Twins,MLB,"Minneapolis, Minnesota",MN,33460,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-ATHLETICS,Athletics,MLB,"West Sacramento, California",CA,40900,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-HOUSTONASTROS,Houston Astros,MLB,"Houston, Texas",TX,26420,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-LOSANGELESANGELS,Los Angeles Angels,MLB,"Anaheim, California",CA,31080,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-SEATTLEMARINERS,Seattle Mariners,MLB,"Seattle, Washington",WA,42660,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-TEXASRANGERS,Texas Rangers,MLB,"Arlington, Texas",TX,19100,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-ATLANTABRAVES,Atlanta Braves,MLB,"Cumberland, Georgia",GA,12060,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-MIAMIMARLINS,Miami Marlins,MLB,"Miami, Florida",FL,33100,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-NEWYORKMETS,New York Mets,MLB,"New York, New York",NY,35620,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-PHILADELPHIAPHILLIES,Philadelphia Phillies,MLB,"Philadelphia, Pennsylvania",PA,37980,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-WASHINGTONNATIONALS,Washington Nationals,MLB,"Washington, D.C.",DC,47900,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-CHICAGOCUBS,Chicago Cubs,MLB,"Chicago, Illinois",IL,16980,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-CINCINNATIREDS,Cincinnati Reds,MLB,"Cincinnati, Ohio",OH,17140,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-MILWAUKEEBREWERS,Milwaukee Brewers,MLB,"Milwaukee, Wisconsin",WI,33340,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-PITTSBURGHPIRATES,Pittsburgh Pirates,MLB,"Pittsburgh, Pennsylvania",PA,38300,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-STLOUISCARDINALS,St. Louis Cardinals,MLB,"St. Louis, Missouri",MO,41180,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-ARIZONADIAMONDBACKS,Arizona Diamondbacks,MLB,"Phoenix, Arizona",AZ,38060,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-COLORADOROCKIES,Colorado Rockies,MLB,"Denver, Colorado",CO,19740,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-LOSANGELESDODGERS,Los Angeles Dodgers,MLB,"Los Angeles, California",CA,31080,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-SANDIEGOPADRES,San Diego Padres,MLB,"San Diego, California",CA,41740,2026,S-0089,Tucker Harrell,2026-11-06
+MLB-SANFRANCISCOGIANTS,San Francisco Giants,MLB,"San Francisco, California",CA,41860,2026,S-0089,Tucker Harrell,2026-11-06
+NBA-BOSTONCELTICS,Boston Celtics,NBA,"Boston, Massachusetts",MA,14460,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-BROOKLYNNETS,Brooklyn Nets,NBA,"Brooklyn, New York",NY,35620,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-NEWYORKKNICKS,New York Knicks,NBA,"New York, New York",NY,35620,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-PHILADELPHIA76ERS,Philadelphia 76ers,NBA,"Philadelphia, Pennsylvania",PA,37980,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-CHICAGOBULLS,Chicago Bulls,NBA,"Chicago, Illinois",IL,16980,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-CLEVELANDCAVALIERS,Cleveland Cavaliers,NBA,"Cleveland, Ohio",OH,17410,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-DETROITPISTONS,Detroit Pistons,NBA,"Detroit, Michigan",MI,19820,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-INDIANAPACERS,Indiana Pacers,NBA,"Indianapolis, Indiana",IN,26900,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-MILWAUKEEBUCKS,Milwaukee Bucks,NBA,"Milwaukee, Wisconsin",WI,33340,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-ATLANTAHAWKS,Atlanta Hawks,NBA,"Atlanta, Georgia",GA,12060,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-CHARLOTTEHORNETS,Charlotte Hornets,NBA,"Charlotte, North Carolina",NC,16740,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-MIAMIHEAT,Miami Heat,NBA,"Miami, Florida",FL,33100,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-ORLANDOMAGIC,Orlando Magic,NBA,"Orlando, Florida",FL,36740,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-WASHINGTONWIZARDS,Washington Wizards,NBA,"Washington, D.C.",DC,47900,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-DENVERNUGGETS,Denver Nuggets,NBA,"Denver, Colorado",CO,19740,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-MINNESOTATIMBERWOLVES,Minnesota Timberwolves,NBA,"Minneapolis, Minnesota",MN,33460,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-OKLAHOMACITYTHUNDER,Oklahoma City Thunder,NBA,"Oklahoma City, Oklahoma",OK,36420,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-PORTLANDTRAILBLAZERS,Portland Trail Blazers,NBA,"Portland, Oregon",OR,38900,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-UTAHJAZZ,Utah Jazz,NBA,"Salt Lake City, Utah",UT,41620,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-GOLDENSTATEWARRIORS,Golden State Warriors,NBA,"San Francisco, California",CA,41860,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-LOSANGELESCLIPPERS,Los Angeles Clippers,NBA,"Inglewood, California",CA,31080,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-LOSANGELESLAKERS,Los Angeles Lakers,NBA,"Los Angeles, California",CA,31080,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-PHOENIXSUNS,Phoenix Suns,NBA,"Phoenix, Arizona",AZ,38060,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-SACRAMENTOKINGS,Sacramento Kings,NBA,"Sacramento, California",CA,40900,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-DALLASMAVERICKS,Dallas Mavericks,NBA,"Dallas, Texas",TX,19100,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-HOUSTONROCKETS,Houston Rockets,NBA,"Houston, Texas",TX,26420,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-MEMPHISGRIZZLIES,Memphis Grizzlies,NBA,"Memphis, Tennessee",TN,32820,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-NEWORLEANSPELICANS,New Orleans Pelicans,NBA,"New Orleans, Louisiana",LA,35380,2026,S-0090,Tucker Harrell,2026-11-06
+NBA-SANANTONIOSPURS,San Antonio Spurs,NBA,"San Antonio, Texas",TX,41700,2026,S-0090,Tucker Harrell,2026-11-06
+NHL-BOSTONBRUINS,Boston Bruins,NHL,"Boston, Massachusetts",MA,14460,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-BUFFALOSABRES,Buffalo Sabres,NHL,"Buffalo, New York",NY,15380,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-DETROITREDWINGS,Detroit Red Wings,NHL,"Detroit, Michigan",MI,19820,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-FLORIDAPANTHERS,Florida Panthers,NHL,"Sunrise, Florida",FL,33100,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-TAMPABAYLIGHTNING,Tampa Bay Lightning,NHL,"Tampa, Florida",FL,45300,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-CAROLINAHURRICANES,Carolina Hurricanes,NHL,"Raleigh, North Carolina",NC,39580,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-COLUMBUSBLUEJACKETS,Columbus Blue Jackets,NHL,"Columbus, Ohio",OH,18140,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-NEWJERSEYDEVILS,New Jersey Devils,NHL,"Newark, New Jersey",NJ,35620,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-NEWYORKISLANDERS,New York Islanders,NHL,"Elmont, New York",NY,35620,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-NEWYORKRANGERS,New York Rangers,NHL,"New York, New York",NY,35620,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-PHILADELPHIAFLYERS,Philadelphia Flyers,NHL,"Philadelphia, Pennsylvania",PA,37980,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-PITTSBURGHPENGUINS,Pittsburgh Penguins,NHL,"Pittsburgh, Pennsylvania",PA,38300,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-WASHINGTONCAPITALS,Washington Capitals,NHL,"Washington, D.C.",DC,47900,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-CHICAGOBLACKHAWKS,Chicago Blackhawks,NHL,"Chicago, Illinois",IL,16980,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-COLORADOAVALANCHE,Colorado Avalanche,NHL,"Denver, Colorado",CO,19740,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-DALLASSTARS,Dallas Stars,NHL,"Dallas, Texas",TX,19100,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-MINNESOTAWILD,Minnesota Wild,NHL,"Saint Paul, Minnesota",MN,33460,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-NASHVILLEPREDATORS,Nashville Predators,NHL,"Nashville, Tennessee",TN,34980,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-STLOUISBLUES,St. Louis Blues,NHL,"St. Louis, Missouri",MO,41180,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-UTAHMAMMOTH,Utah Mammoth,NHL,"Salt Lake City, Utah",UT,41620,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-ANAHEIMDUCKS,Anaheim Ducks,NHL,"Anaheim, California",CA,31080,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-LOSANGELESKINGS,Los Angeles Kings,NHL,"Los Angeles, California",CA,31080,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-SANJOSESHARKS,San Jose Sharks,NHL,"San Jose, California",CA,41940,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-SEATTLEKRAKEN,Seattle Kraken,NHL,"Seattle, Washington",WA,42660,2026,S-0091,Tucker Harrell,2026-11-06
+NHL-VEGASGOLDENKNIGHTS,Vegas Golden Knights,NHL,"Paradise, Nevada",NV,29820,2026,S-0091,Tucker Harrell,2026-11-06
+MLS-ATLANTAUNITEDFC,Atlanta United FC,MLS,"Atlanta, Georgia",GA,12060,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-CHARLOTTEFC,Charlotte FC,MLS,"Charlotte, North Carolina",NC,16740,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-CHICAGOFIREFC,Chicago Fire FC,MLS,"Chicago, Illinois",IL,16980,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-FCCINCINNATI,FC Cincinnati,MLS,"Cincinnati, Ohio",OH,17140,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-COLUMBUSCREW,Columbus Crew,MLS,"Columbus, Ohio",OH,18140,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-DCUNITED,D.C. United,MLS,"Washington, D.C.",DC,47900,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-INTERMIAMICF,Inter Miami CF,MLS,"Miami, Florida",FL,33100,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-NASHVILLESC,Nashville SC,MLS,"Nashville, Tennessee",TN,34980,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-NEWENGLANDREVOLUTION,New England Revolution,MLS,"Foxborough, Massachusetts",MA,14460,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-NEWYORKCITYFC,New York City FC,MLS,"Bronx, New York",NY,35620,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-NEWYORKREDBULLS,New York Red Bulls,MLS,"Harrison, New Jersey",NJ,35620,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-ORLANDOCITYSC,Orlando City SC,MLS,"Orlando, Florida",FL,36740,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-PHILADELPHIAUNION,Philadelphia Union,MLS,"Chester, Pennsylvania",PA,37980,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-AUSTINFC,Austin FC,MLS,"Austin, Texas",TX,12420,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-COLORADORAPIDS,Colorado Rapids,MLS,"Commerce City, Colorado",CO,19740,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-FCDALLAS,FC Dallas,MLS,"Frisco, Texas",TX,19100,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-HOUSTONDYNAMOFC,Houston Dynamo FC,MLS,"Houston, Texas",TX,26420,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-SPORTINGKANSASCITY,Sporting Kansas City,MLS,"Kansas City, Kansas",KS,28140,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-LAGALAXY,LA Galaxy,MLS,"Carson, California",CA,31080,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-LOSANGELESFC,Los Angeles FC,MLS,"Los Angeles, California",CA,31080,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-MINNESOTAUNITEDFC,Minnesota United FC,MLS,"Saint Paul, Minnesota",MN,33460,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-PORTLANDTIMBERS,Portland Timbers,MLS,"Portland, Oregon",OR,38900,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-REALSALTLAKE,Real Salt Lake,MLS,"Sandy, Utah",UT,41620,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-SANDIEGOFC,San Diego FC,MLS,"San Diego, California",CA,41740,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-SANJOSEEARTHQUAKES,San Jose Earthquakes,MLS,"San Jose, California",CA,41940,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-SEATTLESOUNDERSFC,Seattle Sounders FC,MLS,"Seattle, Washington",WA,42660,2026,S-0092,Tucker Harrell,2026-11-06
+MLS-STLOUISCITYSC,St. Louis City SC,MLS,"St. Louis, Missouri",MO,41180,2026,S-0092,Tucker Harrell,2026-11-06
+WNBA-ATLANTADREAM,Atlanta Dream,WNBA,"College Park, Georgia",GA,12060,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-CHICAGOSKY,Chicago Sky,WNBA,"Chicago, Illinois",IL,16980,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-INDIANAFEVER,Indiana Fever,WNBA,"Indianapolis, Indiana",IN,26900,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-NEWYORKLIBERTY,New York Liberty,WNBA,"Brooklyn, New York",NY,35620,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-WASHINGTONMYSTICS,Washington Mystics,WNBA,"Washington, D.C.",DC,47900,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-DALLASWINGS,Dallas Wings,WNBA,"Arlington, Texas",TX,19100,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-GOLDENSTATEVALKYRIES,Golden State Valkyries,WNBA,"San Francisco, California",CA,41860,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-HOUSTONCOMETS,Houston Comets,WNBA,"Houston, Texas",TX,26420,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-LASVEGASACES,Las Vegas Aces,WNBA,"Paradise, Nevada",NV,29820,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-LOSANGELESSPARKS,Los Angeles Sparks,WNBA,"Los Angeles, California",CA,31080,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-MINNESOTALYNX,Minnesota Lynx,WNBA,"Minneapolis, Minnesota",MN,33460,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-PHOENIXMERCURY,Phoenix Mercury,WNBA,"Phoenix, Arizona",AZ,38060,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-PORTLANDFIRE,Portland Fire,WNBA,"Portland, Oregon",OR,38900,2026,S-0093,Tucker Harrell,2026-11-06
+WNBA-SEATTLESTORM,Seattle Storm,WNBA,"Seattle, Washington",WA,42660,2026,S-0093,Tucker Harrell,2026-11-06
+NWSL-ANGELCITYFC,Angel City FC,NWSL,"Los Angeles, California",CA,31080,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-BAYFC,Bay FC,NWSL,"San Jose, California",CA,41940,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-BOSTONLEGACYFC,Boston Legacy FC,NWSL,"Foxborough, Massachusetts",MA,14460,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-CHICAGOSTARSFC,Chicago Stars FC,NWSL,"Evanston, Illinois",IL,16980,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-DENVERSUMMITFC,Denver Summit FC,NWSL,"Centennial, Colorado",CO,19740,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-GOTHAMFC,Gotham FC,NWSL,"Harrison, New Jersey",NJ,35620,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-HOUSTONDASH,Houston Dash,NWSL,"Houston, Texas",TX,26420,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-KANSASCITYCURRENT,Kansas City Current,NWSL,"Kansas City, Missouri",MO,28140,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-NORTHCAROLINACOURAGE,North Carolina Courage,NWSL,"Cary, North Carolina",NC,39580,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-ORLANDOPRIDE,Orlando Pride,NWSL,"Orlando, Florida",FL,36740,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-PORTLANDTHORNSFC,Portland Thorns FC,NWSL,"Portland, Oregon",OR,38900,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-RACINGLOUISVILLEFC,Racing Louisville FC,NWSL,"Louisville, Kentucky",KY,31140,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-SANDIEGOWAVEFC,San Diego Wave FC,NWSL,"San Diego, California",CA,41740,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-SEATTLEREIGNFC,Seattle Reign FC,NWSL,"Seattle, Washington",WA,42660,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-UTAHROYALS,Utah Royals,NWSL,"Sandy, Utah",UT,41620,2026,S-0094,Tucker Harrell,2026-11-06
+NWSL-WASHINGTONSPIRIT,Washington Spirit,NWSL,"Washington, D.C.",DC,47900,2026,S-0094,Tucker Harrell,2026-11-06

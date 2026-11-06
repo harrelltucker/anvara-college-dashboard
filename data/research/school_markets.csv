@@ -1,0 +1,114 @@
+school_id,ipeds_unitid,city,state,county_fips,cbsa_code,cbsa_name,source_id,verified_by,verified_date
+RUTGERS,186380,New Brunswick,NJ,34023,35620,"New York-Newark-Jersey City, NY-NJ",S-0087,Tucker Harrell,2026-11-06
+IOWA,153658,Iowa City,IA,19103,26980,"Iowa City, IA",S-0087,Tucker Harrell,2026-11-06
+CLEMSON,217882,Clemson,SC,45077,24860,"Greenville-Anderson-Greer, SC",S-0087,Tucker Harrell,2026-11-06
+UTAH,230764,Salt Lake City,UT,49035,41620,"Salt Lake City-Murray, UT",S-0087,Tucker Harrell,2026-11-06
+MARYLAND,163286,College Park,MD,24033,47900,"Washington-Arlington-Alexandria, DC-VA-MD-WV",S-0087,Tucker Harrell,2026-11-06
+UCLA,110662,Los Angeles,CA,6037,31080,"Los Angeles-Long Beach-Anaheim, CA",S-0087,Tucker Harrell,2026-11-06
+MINNESOTA,174066,Minneapolis,MN,27053,33460,"Minneapolis-St. Paul-Bloomington, MN-WI",S-0087,Tucker Harrell,2026-11-06
+PURDUE,243780,West Lafayette,IN,18157,29200,"Lafayette-West Lafayette, IN",S-0087,Tucker Harrell,2026-11-06
+ILLINOIS,145637,Champaign,IL,17019,16580,"Champaign-Urbana, IL",S-0087,Tucker Harrell,2026-11-06
+MICHSTATE,171100,East Lansing,MI,26065,29620,"Lansing-East Lansing, MI",S-0087,Tucker Harrell,2026-11-06
+WISCONSIN,240444,Madison,WI,55025,31540,"Madison, WI",S-0087,Tucker Harrell,2026-11-06
+ARIZONA,104179,Tucson,AZ,4019,46060,"Tucson, AZ",S-0087,Tucker Harrell,2026-11-06
+ARIZSTATE,104151,Tempe,AZ,4013,38060,"Phoenix-Mesa-Chandler, AZ",S-0087,Tucker Harrell,2026-11-06
+TEXAS,228778,Austin,TX,48453,12420,"Austin-Round Rock-San Marcos, TX",S-0087,Tucker Harrell,2026-11-06
+OHIOSTATE,204796,Columbus,OH,39049,18140,"Columbus, OH",S-0087,Tucker Harrell,2026-11-06
+ALABAMA,100751,Tuscaloosa,AL,1125,46220,"Tuscaloosa, AL",S-0087,Tucker Harrell,2026-11-06
+AUBURN,100858,Auburn,AL,1081,12220,"Auburn-Opelika, AL",S-0087,Tucker Harrell,2026-11-06
+ARKANSAS,106397,Fayetteville,AR,5143,22220,"Fayetteville-Springdale-Rogers, AR",S-0087,Tucker Harrell,2026-11-06
+CAL,110635,Berkeley,CA,6001,41860,"San Francisco-Oakland-Fremont, CA",S-0087,Tucker Harrell,2026-11-06
+COLORADO,126614,Boulder,CO,8013,14500,"Boulder, CO",S-0087,Tucker Harrell,2026-11-06
+UCF,132903,Orlando,FL,12095,36740,"Orlando-Kissimmee-Sanford, FL",S-0087,Tucker Harrell,2026-11-06
+FLORIDASTATE,134097,Tallahassee,FL,12073,45220,"Tallahassee, FL",S-0087,Tucker Harrell,2026-11-06
+FLORIDA,134130,Gainesville,FL,12001,23540,"Gainesville, FL",S-0087,Tucker Harrell,2026-11-06
+GEORGIATECH,139755,Atlanta,GA,13121,12060,"Atlanta-Sandy Springs-Roswell, GA",S-0087,Tucker Harrell,2026-11-06
+GEORGIA,139959,Athens,GA,13059,12020,"Athens-Clarke County, GA",S-0087,Tucker Harrell,2026-11-06
+INDIANA,151351,Bloomington,IN,18105,14020,"Bloomington, IN",S-0087,Tucker Harrell,2026-11-06
+IOWASTATE,153603,Ames,IA,19169,11180,"Ames, IA",S-0087,Tucker Harrell,2026-11-06
+KANSAS,155317,Lawrence,KS,20045,29940,"Lawrence, KS",S-0087,Tucker Harrell,2026-11-06
+KANSASSTATE,155399,Manhattan,KS,20161,31740,"Manhattan, KS",S-0087,Tucker Harrell,2026-11-06
+KENTUCKY,157085,Lexington,KY,21067,30460,"Lexington-Fayette, KY",S-0087,Tucker Harrell,2026-11-06
+LOUISVILLE,157289,Louisville,KY,21111,31140,"Louisville/Jefferson County, KY-IN",S-0087,Tucker Harrell,2026-11-06
+LSU,159391,Baton Rouge,LA,22033,12940,"Baton Rouge, LA",S-0087,Tucker Harrell,2026-11-06
+MICHIGAN,170976,Ann Arbor,MI,26161,11460,"Ann Arbor, MI",S-0087,Tucker Harrell,2026-11-06
+OLEMISS,176017,University,MS,28071,37060,"Oxford, MS",S-0087,Tucker Harrell,2026-11-06
+MISSSTATE,176080,Mississippi State,MS,28105,44260,"Starkville, MS",S-0087,Tucker Harrell,2026-11-06
+MISSOURI,178396,Columbia,MO,29019,17860,"Columbia, MO",S-0087,Tucker Harrell,2026-11-06
+NEBRASKA,181464,Lincoln,NE,31109,30700,"Lincoln, NE",S-0087,Tucker Harrell,2026-11-06
+UNC,199120,Chapel Hill,NC,37135,20500,"Durham-Chapel Hill, NC",S-0087,Tucker Harrell,2026-11-06
+NCSTATE,199193,Raleigh,NC,37183,39580,"Raleigh-Cary, NC",S-0087,Tucker Harrell,2026-11-06
+CINCINNATI,201885,Cincinnati,OH,39061,17140,"Cincinnati, OH-KY-IN",S-0087,Tucker Harrell,2026-11-06
+OKSTATE,207388,Stillwater,OK,40119,44660,"Stillwater, OK",S-0087,Tucker Harrell,2026-11-06
+OKLAHOMA,207500,Norman,OK,40027,36420,"Oklahoma City, OK",S-0087,Tucker Harrell,2026-11-06
+OREGON,209551,Eugene,OR,41039,21660,"Eugene-Springfield, OR",S-0087,Tucker Harrell,2026-11-06
+SOUTHCAROLINA,218663,Columbia,SC,45079,17900,"Columbia, SC",S-0087,Tucker Harrell,2026-11-06
+TENNESSEE,221759,Knoxville,TN,47093,28940,"Knoxville, TN",S-0087,Tucker Harrell,2026-11-06
+HOUSTON,225511,Houston,TX,48201,26420,"Houston-Pasadena-The Woodlands, TX",S-0087,Tucker Harrell,2026-11-06
+TEXASAM,228723,College Station,TX,48041,17780,"College Station-Bryan, TX",S-0087,Tucker Harrell,2026-11-06
+TEXASTECH,229115,Lubbock,TX,48303,31180,"Lubbock, TX",S-0087,Tucker Harrell,2026-11-06
+VIRGINIATECH,233921,Blacksburg,VA,51121,13980,"Blacksburg-Christiansburg-Radford, VA",S-0087,Tucker Harrell,2026-11-06
+VIRGINIA,234076,Charlottesville,VA,51003,16820,"Charlottesville, VA",S-0087,Tucker Harrell,2026-11-06
+WASHINGTON,236948,Seattle,WA,53033,42660,"Seattle-Tacoma-Bellevue, WA",S-0087,Tucker Harrell,2026-11-06
+WESTVIRGINIA,238032,Morgantown,WV,54061,34060,"Morgantown, WV",S-0087,Tucker Harrell,2026-11-06
+PENNSTATE,214777,University Park,PA,42027,44300,"State College, PA",S-0087,Tucker Harrell,2026-11-06
+APPSTATE,197869,Boone,NC,37189,14380,"Boone, NC",S-0087,Tucker Harrell,2026-11-06
+ARKSTATE,106458,Jonesboro,AR,5031,27860,"Jonesboro, AR",S-0087,Tucker Harrell,2026-11-06
+BALLSTATE,150136,Muncie,IN,18035,34620,"Muncie, IN",S-0087,Tucker Harrell,2026-11-06
+BOISESTATE,142115,Boise,ID,16001,14260,"Boise City, ID",S-0087,Tucker Harrell,2026-11-06
+BOWLINGGREEN,201441,Bowling Green,OH,39173,45780,"Toledo, OH",S-0087,Tucker Harrell,2026-11-06
+FRESNOSTATE,110556,Fresno,CA,6019,23420,"Fresno, CA",S-0087,Tucker Harrell,2026-11-06
+CENTRALMICH,169248,Mount Pleasant,MI,26073,34380,"Mount Pleasant, MI",S-0087,Tucker Harrell,2026-11-06
+COASTAL,218724,Conway,SC,45051,34820,"Myrtle Beach-Conway-North Myrtle Beach, SC",S-0087,Tucker Harrell,2026-11-06
+COLOSTATE,126818,Fort Collins,CO,8069,22660,"Fort Collins-Loveland, CO",S-0087,Tucker Harrell,2026-11-06
+ECU,198464,Greenville,NC,37147,24780,"Greenville, NC",S-0087,Tucker Harrell,2026-11-06
+EASTERNMICH,169798,Ypsilanti,MI,26161,11460,"Ann Arbor, MI",S-0087,Tucker Harrell,2026-11-06
+FAU,133669,Boca Raton,FL,12099,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",S-0087,Tucker Harrell,2026-11-06
+FIU,133951,Miami,FL,12086,33100,"Miami-Fort Lauderdale-West Palm Beach, FL",S-0087,Tucker Harrell,2026-11-06
+GASOUTHERN,139931,Statesboro,GA,13031,44340,"Statesboro, GA",S-0087,Tucker Harrell,2026-11-06
+GEORGIASTATE,139940,Atlanta,GA,13121,12060,"Atlanta-Sandy Springs-Roswell, GA",S-0087,Tucker Harrell,2026-11-06
+JAXSTATE,101480,Jacksonville,AL,1015,11500,"Anniston-Oxford, AL",S-0087,Tucker Harrell,2026-11-06
+JMU,232423,Harrisonburg,VA,51660,25500,"Harrisonburg, VA",S-0087,Tucker Harrell,2026-11-06
+KENTSTATE,203517,Kent,OH,39133,10420,"Akron, OH",S-0087,Tucker Harrell,2026-11-06
+LATECH,159647,Ruston,LA,22061,40820,"Ruston, LA",S-0087,Tucker Harrell,2026-11-06
+MARSHALL,237525,Huntington,WV,54011,26580,"Huntington-Ashland, WV-KY-OH",S-0087,Tucker Harrell,2026-11-06
+MIAMIOH,204024,Oxford,OH,39017,17140,"Cincinnati, OH-KY-IN",S-0087,Tucker Harrell,2026-11-06
+MTSU,220978,Murfreesboro,TN,47149,34980,"Nashville-Davidson--Murfreesboro--Franklin, TN",S-0087,Tucker Harrell,2026-11-06
+NMSTATE,188030,Las Cruces,NM,35013,29740,"Las Cruces, NM",S-0087,Tucker Harrell,2026-11-06
+NIU,147703,Dekalb,IL,17037,16980,"Chicago-Naperville-Elgin, IL-IN",S-0087,Tucker Harrell,2026-11-06
+OHIO,204857,Athens,OH,39009,11900,"Athens, OH",S-0087,Tucker Harrell,2026-11-06
+ODU,232982,Norfolk,VA,51710,47260,"Virginia Beach-Chesapeake-Norfolk, VA-NC",S-0087,Tucker Harrell,2026-11-06
+OREGONSTATE,209542,Corvallis,OR,41003,18700,"Corvallis, OR",S-0087,Tucker Harrell,2026-11-06
+SAMHOUSTON,227881,Huntsville,TX,48471,26660,"Huntsville, TX",S-0087,Tucker Harrell,2026-11-06
+SDSU,122409,San Diego,CA,6073,41740,"San Diego-Chula Vista-Carlsbad, CA",S-0087,Tucker Harrell,2026-11-06
+SJSU,122755,San Jose,CA,6085,41940,"San Jose-Sunnyvale-Santa Clara, CA",S-0087,Tucker Harrell,2026-11-06
+TEXASSTATE,228459,San Marcos,TX,48209,12420,"Austin-Round Rock-San Marcos, TX",S-0087,Tucker Harrell,2026-11-06
+TROY,102368,Troy,AL,1109,45980,"Troy, AL",S-0087,Tucker Harrell,2026-11-06
+AIRFORCE,128328,USAF Academy,CO,8041,17820,"Colorado Springs, CO",S-0087,Tucker Harrell,2026-11-06
+ARMY,197036,West Point,NY,36071,28880,"Kiryas Joel-Poughkeepsie-Newburgh, NY",S-0087,Tucker Harrell,2026-11-06
+NAVY,164155,Annapolis,MD,24003,12580,"Baltimore-Columbia-Towson, MD",S-0087,Tucker Harrell,2026-11-06
+BUFFALO,196088,Buffalo,NY,36029,15380,"Buffalo-Cheektowaga, NY",S-0087,Tucker Harrell,2026-11-06
+AKRON,200800,Akron,OH,39153,10420,"Akron, OH",S-0087,Tucker Harrell,2026-11-06
+UAB,100663,Birmingham,AL,1073,13820,"Birmingham, AL",S-0087,Tucker Harrell,2026-11-06
+UCONN,129020,Storrs,CT,9110,25540,"Hartford-West Hartford-East Hartford, CT",S-0087,Tucker Harrell,2026-11-06
+HAWAII,141574,Honolulu,HI,15003,46520,"Urban Honolulu, HI",S-0087,Tucker Harrell,2026-11-06
+LOUISIANA,160658,Lafayette,LA,22055,29180,"Lafayette, LA",S-0087,Tucker Harrell,2026-11-06
+ULM,159993,Monroe,LA,22073,33740,"Monroe, LA",S-0087,Tucker Harrell,2026-11-06
+UMASS,166629,Amherst,MA,25015,11200,"Amherst Town-Northampton, MA",S-0087,Tucker Harrell,2026-11-06
+MEMPHIS,220862,Memphis,TN,47157,32820,"Memphis, TN-MS-AR",S-0087,Tucker Harrell,2026-11-06
+UNLV,182281,Las Vegas,NV,32003,29820,"Las Vegas-Henderson-North Las Vegas, NV",S-0087,Tucker Harrell,2026-11-06
+NEVADA,182290,Reno,NV,32031,39900,"Reno, NV",S-0087,Tucker Harrell,2026-11-06
+NEWMEXICO,187985,Albuquerque,NM,35001,10740,"Albuquerque, NM",S-0087,Tucker Harrell,2026-11-06
+CHARLOTTE,199139,Charlotte,NC,37119,16740,"Charlotte-Concord-Gastonia, NC-SC",S-0087,Tucker Harrell,2026-11-06
+NORTHTEXAS,227216,Denton,TX,48121,19100,"Dallas-Fort Worth-Arlington, TX",S-0087,Tucker Harrell,2026-11-06
+SOUTHALABAMA,102094,Mobile,AL,1097,33660,"Mobile, AL",S-0087,Tucker Harrell,2026-11-06
+USF,137351,Tampa,FL,12057,45300,"Tampa-St. Petersburg-Clearwater, FL",S-0087,Tucker Harrell,2026-11-06
+SOUTHERNMISS,176372,Hattiesburg,MS,28035,25620,"Hattiesburg, MS",S-0087,Tucker Harrell,2026-11-06
+UTEP,228796,El Paso,TX,48141,21340,"El Paso, TX",S-0087,Tucker Harrell,2026-11-06
+UTSA,229027,San Antonio,TX,48029,41700,"San Antonio-New Braunfels, TX",S-0087,Tucker Harrell,2026-11-06
+TOLEDO,206084,Toledo,OH,39095,45780,"Toledo, OH",S-0087,Tucker Harrell,2026-11-06
+WYOMING,240727,Laramie,WY,56001,29660,"Laramie, WY",S-0087,Tucker Harrell,2026-11-06
+UTAHSTATE,230728,Logan,UT,49005,30860,"Logan, UT-ID",S-0087,Tucker Harrell,2026-11-06
+WASHSTATE,236939,Pullman,WA,53075,39420,"Pullman, WA",S-0087,Tucker Harrell,2026-11-06
+WKU,157951,Bowling Green,KY,21227,14540,"Bowling Green, KY",S-0087,Tucker Harrell,2026-11-06
+WESTERNMICH,172699,Kalamazoo,MI,26077,28020,"Kalamazoo-Portage, MI",S-0087,Tucker Harrell,2026-11-06
