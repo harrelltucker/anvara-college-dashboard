@@ -61,7 +61,9 @@ def test_unresearched_catalysts_are_missing_but_researched_none_is_zero(demo, we
 
 
 def test_missing_sport_in_fan_reach_lowers_confidence(demo, weights):
-    s = score_schools(demo, weights, as_of=AS_OF)
+    w = copy.deepcopy(weights)
+    w["fan_reach"] = {"football": 60, "mens_basketball": 25, "womens_basketball": 15}
+    s = score_schools(demo, w, as_of=AS_OF)
     assert s.loc["DEMO06", "fan_reach_coverage"] < 1             # no women's basketball figure
     assert s.loc["DEMO06", "confidence"] != "High"
 
@@ -101,3 +103,10 @@ def test_scores_are_ranked_within_segments(demo, weights):
     for _, g in s.groupby("segment"):
         top = g["commercial_opportunity.commercial_revenue"].dropna()
         assert top.max() == 100 and top.min() == 0              # each segment has its own 0-100 scale
+
+
+def test_unweighted_sport_is_not_required(demo, weights):
+    w = copy.deepcopy(weights)
+    w["fan_reach"] = {"football": 100, "mens_basketball": 0, "womens_basketball": 0}
+    s = score_schools(demo, w, as_of=AS_OF)
+    assert s.loc["DEMO06", "fan_reach_coverage"] >= 0.999        # missing women's basketball doesn't count

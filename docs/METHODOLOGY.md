@@ -28,8 +28,15 @@ These weights are **hypotheses, not validated predictors**. Adjust them in the s
 - **Self-sufficiency** = generated revenue ÷ total operating expenses.
 - **Own-operations revenue** = generated revenue − (media rights + NCAA and conference distributions + post-season football revenue). "Generated revenue" is the NCAA's standard term but includes conference payouts the department doesn't control (often similar for every member) and donations. Own-operations revenue isolates what the department's own operations bring in: tickets, sponsorship and licensing, fundraising, concessions, camps and similar. Donations stay in, because fundraising is the department's own work.
 - **Own-operations revenue vs. conference peers** = own-operations revenue ÷ median of the other FY2025 conference members with data. (A setting can switch this to NCAA generated revenue.) Not scored unless enough of the conference is covered (default 50%); a partial sample is never treated as the whole conference. Coverage is measured against **public** members, because private schools (e.g., Northwestern, USC, Vanderbilt, Duke, Notre Dame) don't publish NCAA financial reports. The benchmark is therefore a public-peer benchmark, and is labeled that way.
-- **Commercial revenue** = category 15 of the financial report each school files with the NCAA ("Royalties, Licensing, Advertisement and Sponsorships"), combining corporate sponsorship, advertising, licensing and related items. **It is not pure sponsorship revenue.** Its share of total revenue is displayed and compared with peers but not scored, so schools aren't rewarded just for having low reported commercial revenue.
-- **Fan reach** = 2024–25 average home attendance for football, men's basketball and women's basketball (default mix 60/25/15), each ranked across schools. Actual attendance only, never stadium capacity. Digital reach is shown when comparable figures exist but not scored.
+- **Commercial revenue** = category 15 of the financial report each school files with the NCAA ("Royalties, Licensing, Advertisement and Sponsorships"), combining corporate sponsorship, advertising, licensing and related items. **It is not pure sponsorship revenue.** Its raw size is not scored by default (it would reward the biggest programs twice, alongside fan reach).
+- **Commercial Opportunity** = untapped value 40 + fan reach 40 + regional appeal 20.
+- **Untapped value** = commercial revenue ÷ football average home attendance. Less revenue per fan ranks higher: a big audience that brings in relatively little sponsorship money suggests room to grow. **Caveat:** schools that sell sponsorships in-house (e.g., Rutgers and Arizona since 2024) may record some of that revenue outside category 15 or in a separate entity, which would make them look more untapped than they are. Reported figures are used as-is.
+- **Fan reach** = 2024–25 average home attendance, ranked across schools. Actual attendance only, never stadium capacity. **Football only by default:** basketball attendance has been researched for just 13 of 113 schools, and blending it in for those few measured them on a different basis from everyone else (it moved Maryland 9 places and Illinois 5). Basketball figures are shown on school profiles and the sports can be re-weighted in the sidebar; the intended mix once every school has data is football 60, men's basketball 25, women's basketball 15. Digital reach is shown when comparable figures exist but not scored.
+- **Regional appeal** = only game in town 35 + fan intensity 30 + sponsor pool 35. Together it is about 9% of the overall score, deliberately small because Anvara mainly works with national brands.
+  - **Market:** the school's metro area (Census). A school in a metro under 1 million people with no NFL, MLB, NBA or NHL team draws sponsors from its whole state, outside the metros that have one (Iowa: all of Iowa).
+  - **Only game in town:** the competing teams in that market, weighted by how directly they compete for the same sponsors: NFL, MLB, NBA, NHL and Power 4 programs 1.0; MLS and other FBS programs 0.5; WNBA and NWSL 0.25. Less competition ranks higher. Power 4 schools don't count Group of 5 programs as rivals (Texas State doesn't compete with Texas for sponsors); Group of 5 schools still count nearby Power 4 programs.
+  - **Fan intensity:** football attendance ÷ metro population.
+  - **Sponsor pool:** businesses with 20+ employees in sponsor-type industries (banks, insurance, hospitals, auto dealers, law firms, grocers, building contractors, utilities, beverage makers and distributors; restaurants excluded), from Census County Business Patterns 2023 (the latest release when built), divided by 1 + competing teams.
 
 Subsidies and student fees are subtracted once (in generated revenue) and never counted twice.
 
@@ -56,7 +63,7 @@ Missing data is **never scored as 0**.
 - A category is scored from the components that have data, re-weighted, if they cover at least 60% of the category's weight; otherwise it shows as incomplete.
 - The overall score needs categories covering at least 55% of total weight.
 - For catalysts, "researched, none found" is a real 0; "not yet researched" is missing.
-- **Confidence:** High = all components present (including all three sports in fan reach); Medium = all three categories, some components missing; Low = a category missing.
+- **Confidence:** High = all scored components present (a sport weighted 0 isn't required); Medium = all three categories, some components missing; Low = a category missing.
 - **Data completeness** = share of ten key research inputs present.
 
 ### Data principles
@@ -73,4 +80,5 @@ Missing data is **never scored as 0**.
 - Rank-based scores show relative position within this set of schools, not absolute attractiveness.
 - Conference benchmarks need at least 3 peers with data: the 2024–25 Pac-12 (2 members) and FBS independents have none.
 - NCAA reporting categories are self-reported and vary in practice between schools.
+- Regional appeal uses each school's metro area; a big program's statewide pull (e.g., Texas across Texas) isn't captured unless it qualifies for the statewide-market rule.
 - Weights reflect judgment and have not been validated against actual sponsorship outcomes.

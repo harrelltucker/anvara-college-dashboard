@@ -18,9 +18,11 @@ regional_appeal = 20              # "only game in town", fan intensity, local sp
 commercial_revenue = 0            # raw revenue size; off by default (it rewards the biggest programs twice)
 
 [fan_reach]
-football = 60
-mens_basketball = 25
-womens_basketball = 15
+# Football only for now: basketball attendance is researched for just 13 of 113 schools, and blending it in
+# for those few measured them differently from everyone else. Restore 60/25/15 once every school has it.
+football = 100
+mens_basketball = 0
+womens_basketball = 0
 
 [regional_appeal]
 only_game_in_town = 35            # fewer competing teams in the market
@@ -67,3 +69,6 @@ rank_within = "segment"           # "segment" (Power 4 vs. Group of 5 & other FB
 # metros that have one (Iowa: all of Iowa; Penn State: Pennsylvania outside Philadelphia and Pittsburgh)
 statewide_market_max_population = 1000000
 statewide_market_leagues = ["NFL", "MLB", "NBA", "NHL"]
+# Teams below a Power 4 school's level don't compete with it for sponsors (Texas State isn't a rival to Texas).
+# Group of 5 schools still count Power 4 programs nearby.
+power4_ignores_rivals = ["FBS_OTHER"]

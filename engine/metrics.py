@@ -86,7 +86,8 @@ def _market_metrics(m, tables, rules, competition):
     Market = the school's metro area (Census CBSA). A school in a smaller metro with no major-league team
     (rules) draws sponsors statewide instead: its state outside the metros that do host major-league teams
     (Iowa: all of Iowa; Penn State: Pennsylvania outside Philadelphia and Pittsburgh). Competing weight = sum
-    of league weights of every other team and FBS program in that market. Sponsor pool per property = sponsor-type businesses / (1 + competing weight).
+    of league weights of every other team and FBS program in that market; Power 4 schools ignore leagues below
+    their level (rules["power4_ignores_rivals"]). Sponsor pool per property = sponsor-type businesses / (1 + competing weight).
     Fan intensity = football average home attendance / metro population (always the metro: local dominance).
     """
     for col in ("market_scope", "cbsa_name"):
@@ -120,6 +121,8 @@ def _market_metrics(m, tables, rules, competition):
         same = ((teams["state"] == r["state"]) & ~teams["cbsa_code"].isin(major_metros) if statewide
                 else teams["cbsa_code"] == r["cbsa_code"])
         rivals = teams[same & (teams["team_id"] != sid)]
+        if m.loc[sid, "segment"] == "Power 4":
+            rivals = rivals[~rivals["league"].isin(rules.get("power4_ignores_rivals", []))]
         pool = pool_state.get(r["state"], np.nan) if statewide else pool_cbsa.get(r["cbsa_code"], np.nan)
         m.loc[sid, ["market_scope", "cbsa_name"]] = ["state" if statewide else "metro", r["cbsa_name"]]
         m.loc[sid, "metro_population"] = pop
@@ -146,6 +149,8 @@ def market_rivals(school_id, tables, scored, rules, competition):
     same = ((teams["state"] == me["state"]) & ~teams["cbsa_code"].isin(major_metros)
             if row["market_scope"] == "state" else teams["cbsa_code"] == me["cbsa_code"])
     out = teams[same].assign(weight=lambda t: t["league"].map(competition).fillna(0.0))
+    if row["segment"] == "Power 4":
+        out = out[~out["league"].isin(rules.get("power4_ignores_rivals", []))]
     return out[["name", "league", "city", "weight"]].sort_values(["weight", "name"], ascending=[False, True])
 
 
