@@ -10,8 +10,9 @@ from engine.data import DEMO_DIR, RESEARCH_DIR, load_tables, load_weights
 from engine.scoring import CATEGORY_LABELS, COMPONENT_LABELS, score_schools
 
 DEFAULTS = load_weights()
-# Public, shared copy (set READ_ONLY = "1" in the host's secrets): no review queue, no adding findings
-READ_ONLY = os.environ.get("READ_ONLY", "") == "1"
+# Public copy (set PUBLIC = "1" in the host's secrets): results and sources only. No research workflow
+# (review queue, adding findings, data-quality page), no demonstration data, no internal confidence labels.
+PUBLIC = os.environ.get("PUBLIC", "") == "1"
 SLIDERS = {   # weight group -> {key: label}
     "categories": CATEGORY_LABELS,
     "financial_pressure": {k: COMPONENT_LABELS[k] for k in DEFAULTS["financial_pressure"]},
@@ -67,16 +68,18 @@ def sidebar():
                                           for k, v in weights[group].items()))
         st.button("Reset to default weights", on_click=reset_weights, width="stretch")
         weights["rules"]["rank_within"] = "all" if within == "All FBS" else "segment"
-        st.markdown("### Data")
-        is_demo = st.toggle("Show demonstration data", key="demo",
-                            help="Fictional schools and numbers for exploring the dashboard. "
-                                 "Never mixed with research data.")
+        is_demo = False
+        if not PUBLIC:
+            st.markdown("### Data")
+            is_demo = st.toggle("Show demonstration data", key="demo",
+                                help="Fictional schools and numbers for exploring the dashboard. "
+                                     "Never mixed with research data.")
     return is_demo, weights
 
 
 def context():
     """Everything a page needs. Call once at the top of each page."""
-    is_demo = st.session_state.get("demo", False)
+    is_demo = st.session_state.get("demo", False) and not PUBLIC
     weights = st.session_state.get("weights", DEFAULTS)
     folder = DEMO_DIR if is_demo else RESEARCH_DIR
     tables = _load(str(folder), _folder_signature(folder))

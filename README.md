@@ -25,6 +25,16 @@ The dashboard opens in your browser. Keep the PowerShell window open while using
 If PowerShell says running scripts is disabled, run once:
 `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
 
+## Public version (what Anvara sees)
+
+Setting `PUBLIC=1` shows a simpler, read-only app: **Top opportunities**, **School profiles**, **How it works** and
+**Sources**, with top navigation and default weights. The research workflow (review queue, adding findings, data
+quality), demonstration data and confidence labels are left out. Pages live in `views/public/`.
+
+- Preview it locally: double-click `Preview Public Version.bat` (opens http://localhost:8502).
+- Host it on Streamlit Community Cloud: connect this repo, main file `app.py`, Python 3.13, and add
+  `PUBLIC = "1"` under **Secrets**.
+
 ## Check the scoring rules
 ```powershell
 python -m pytest

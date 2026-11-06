@@ -41,12 +41,32 @@ h1, h2, h3 {{letter-spacing: -0.02em;}}
 .badge.accent {{background: {ACCENT}; color: #fff; border-color: {ACCENT};}}
 .footer {{color: {MUTED}; font-size: 0.8rem; border-top: 1px solid {LINE}; margin-top: 2.5rem; padding-top: 0.8rem;}}
 [data-testid="stSidebarNav"] a span {{font-weight: 500;}}
+.section {{font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: {MUTED};
+           margin: 1.6rem 0 0.7rem;}}
+.opp {{border: 1px solid {LINE}; border-radius: 0.9rem; padding: 1.1rem 1.2rem 0.6rem; background: #fff;
+       box-shadow: 0 1px 2px rgba(20, 22, 28, 0.04);}}
+.opp-rank {{font-size: 0.8rem; font-weight: 700; color: {ACCENT};}}
+.opp-name {{font-size: 1.3rem; font-weight: 700; color: {INK}; letter-spacing: -0.02em; margin-top: 0.1rem;}}
+.opp-meta {{font-size: 0.84rem; color: {MUTED}; margin-bottom: 0.6rem;}}
+.opp-why, .why-list {{margin: 0; padding-left: 1.1rem; color: {INK}; font-size: 0.9rem; line-height: 1.45;}}
+.opp-why li, .why-list li {{margin-bottom: 0.35rem;}}
+.why-list {{font-size: 1rem;}}
+.meter {{margin-bottom: 0.85rem;}}
+.meter .top {{display: flex; justify-content: space-between; font-size: 0.92rem; font-weight: 600; color: {INK};}}
+.meter .top span:last-child {{font-variant-numeric: tabular-nums;}}
+.meter .track {{height: 8px; background: {SOFT}; border-radius: 4px; margin: 0.3rem 0 0.2rem; overflow: hidden;}}
+.meter .track > div {{height: 100%; background: {ACCENT}; border-radius: 4px;}}
+.meter .what {{font-size: 0.8rem; color: {MUTED};}}
+@media (max-width: 640px) {{.opp {{min-height: 0 !important;}}}}
+.fine {{font-size: 0.78rem; color: {MUTED}; margin-top: 0.4rem;}}
 </style>
 """
 
 
-def apply():
+def apply(public=False):
     st.html(CSS)
+    if public:      # top navigation sits over the page; leave room so the eyebrow isn't hidden
+        st.html("<style>.block-container {padding-top: 4.4rem !important;}</style>")
 
 
 def esc(text):
@@ -59,8 +79,17 @@ def hero(eyebrow, title, subtitle=""):
 
 
 def card(label, value, note=""):
-    return (f'<div class="card"><div class="label">{esc(label)}</div><div class="value">{esc(value)}</div>'
+    return (f'<div class="card"><div class="label">{esc(label)}</div>'
+            + (f'<div class="value">{esc(value)}</div>' if value != "" else "")
             + (f'<div class="note">{esc(note)}</div>' if note else "") + "</div>")
+
+
+def meter(label, value, what=""):
+    """Labeled 0-100 bar."""
+    shown, width = ("—", 0) if value != value else (f"{value:.0f}", max(min(value, 100), 0))
+    return (f'<div class="meter"><div class="top"><span>{esc(label)}</span><span>{shown}</span></div>'
+            f'<div class="track"><div style="width:{width:.0f}%"></div></div>'
+            + (f'<div class="what">{esc(what)}</div>' if what else "") + "</div>")
 
 
 def cards(items):
@@ -79,7 +108,7 @@ def badges(*items):
 
 
 def footer():
-    st.html('<div class="footer">FY2025 NCAA financial data (Knight–Newhouse College Athletics Database, credited; '
-            "schools' own reports where published) · 2024–25 attendance · research verified by a person before "
+    st.html('<div class="footer">FY2025 NCAA financial data (Knight–Newhouse College Athletics Database, used with '
+            "permission; schools' own reports where published) · 2024–25 attendance · research verified by a person before "
             "it is scored · Independent analysis prepared by Tucker Harrell. Not affiliated with any school or "
             "company named.</div>")

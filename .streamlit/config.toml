@@ -27,3 +27,6 @@ secondaryBackgroundColor = "#FFFFFF"
 
 [browser]
 gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"      # hide the Deploy button and developer menu

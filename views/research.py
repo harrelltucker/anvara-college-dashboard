@@ -11,15 +11,14 @@ from engine.schema import TABLES
 from engine.scoring import missing_inputs
 from engine.validation import ERROR, issues_frame, run_checks
 from ui import style
-from ui.state import READ_ONLY, clear_cache, context
+from ui.state import clear_cache, context
 
 ctx = context()
 scored, tables, weights = ctx["scored"], ctx["tables"], ctx["weights"]
 
 style.hero("Research & data quality", "Every number is sourced and verified",
            "Only verified, sourced records affect scores. New findings, whether from a person or an AI research "
-           "assistant, wait in a review queue until someone confirms the source."
-           + (" This shared copy is read-only." if READ_ONLY else ""))
+           "assistant, wait in a review queue until someone confirms the source.")
 
 issues = issues_frame(run_checks(tables, weights["rules"]))
 findings = load_findings()
@@ -35,8 +34,6 @@ m[4].metric("Data issues", f"{(issues['severity'] == ERROR).sum()} errors · {(i
 
 names = ["Coverage", "Review queue", "Add a finding", "Research checklist", "Issues & conflicts",
          "Sources & licensing"]
-if READ_ONLY:
-    names = [n for n in names if n not in ("Review queue", "Add a finding")]
 tabs = dict(zip(names, st.tabs(names)))
 
 with tabs["Coverage"]:

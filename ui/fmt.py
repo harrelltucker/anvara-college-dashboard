@@ -12,7 +12,7 @@ CONFERENCE_NAMES = {"B1G": "Big Ten", "SEC": "SEC", "BIG12": "Big 12", "ACC": "A
 
 
 def money(v):
-    return "—" if pd.isna(v) else f"${v / 1e6:,.1f}M"
+    return "—" if pd.isna(v) else f"{'−' if v < 0 else ''}${abs(v) / 1e6:,.1f}M"
 
 
 def pct(v, digits=0):
