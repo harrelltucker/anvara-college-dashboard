@@ -12,13 +12,32 @@ conference_relative_generated = 35
 self_sufficiency = 25
 
 [commercial_opportunity]
-commercial_revenue = 60
-fan_reach = 40
+untapped_value = 40               # sponsorship & licensing revenue per football fan; less per fan = more room
+fan_reach = 40                    # audience size: what national brands buy
+regional_appeal = 20              # "only game in town", fan intensity, local sponsor pool
+commercial_revenue = 0            # raw revenue size; off by default (it rewards the biggest programs twice)
 
 [fan_reach]
 football = 60
 mens_basketball = 25
 womens_basketball = 15
+
+[regional_appeal]
+only_game_in_town = 35            # fewer competing teams in the market
+fan_intensity = 30                # football attendance relative to metro population
+sponsor_pool = 35                 # sponsor-type businesses per competing team
+
+[competition]
+# How strongly each kind of team competes for the same sponsors, relative to an NFL team.
+NFL = 1.0
+MLB = 1.0
+NBA = 1.0
+NHL = 1.0
+FBS_POWER4 = 1.0
+MLS = 0.5
+FBS_OTHER = 0.5
+WNBA = 0.25
+NWSL = 0.25
 
 [catalysts]
 # points per distinct event, before recency/confidence/relevance adjustments; total capped at 100
@@ -44,3 +63,7 @@ min_peer_count = 3                # fewer peers with data than this => no confer
 no_benchmark_conferences = ["IND"]  # FBS independents aren't a conference
 power4_conferences = ["B1G", "SEC", "BIG12", "ACC"]
 rank_within = "segment"           # "segment" (Power 4 vs. Group of 5 & other FBS) or "all"
+# A school in a smaller metro with no team from these leagues draws sponsors from its state, outside the
+# metros that have one (Iowa: all of Iowa; Penn State: Pennsylvania outside Philadelphia and Pittsburgh)
+statewide_market_max_population = 1000000
+statewide_market_leagues = ["NFL", "MLB", "NBA", "NHL"]

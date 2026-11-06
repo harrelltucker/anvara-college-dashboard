@@ -26,8 +26,13 @@ COMPONENT_LABELS = {
     "reported_result": "Reported surplus/deficit (% of expenses)",
     "conference_relative_generated": "Own-operations revenue vs. conference public peers",
     "self_sufficiency": "Financial self-sufficiency",
-    "commercial_revenue": "Sponsorship, advertising & licensing revenue (as reported to the NCAA, category 15)",
+    "untapped_value": "Untapped value (sponsorship & licensing revenue per football fan; less = more room)",
     "fan_reach": "Fan reach (attendance)",
+    "regional_appeal": "Regional Sponsorship Appeal",
+    "commercial_revenue": "Revenue size: sponsorship, advertising & licensing (NCAA category 15)",
+    "only_game_in_town": "Only game in town (fewer competing teams)",
+    "fan_intensity": "Fan intensity (attendance vs. metro population)",
+    "sponsor_pool": "Sponsor pool per competing team",
 }
 
 
@@ -76,7 +81,7 @@ def score_schools(tables, weights, as_of=None):
     """Full scored table: metrics, component scores, category scores, overall score."""
     as_of = as_of or date.today()
     rules = weights["rules"]
-    m = school_metrics(tables, rules)
+    m = school_metrics(tables, rules, weights.get("competition"))
     u = m[m["in_universe"]].copy()
     group = u["segment"] if rules.get("rank_within", "segment") == "segment" else pd.Series("all", index=u.index)
 
@@ -90,13 +95,24 @@ def score_schools(tables, weights, as_of=None):
         "conference_relative_generated": rank("conf_relative_generated", higher_is_better=False),
         "self_sufficiency": rank("self_sufficiency", higher_is_better=False),
     }
-    # Commercial Opportunity: bigger commercial business and audience => higher score
+    # Commercial Opportunity: big audience, little revenue per fan so far, strong regional position
     reach_parts = {k: rank(k) for k in weights["fan_reach"]}
     u["fan_reach_score"], u["fan_reach_coverage"] = weighted_score(
         reach_parts, weights["fan_reach"], rules["min_component_coverage"])
+    regional = {
+        "only_game_in_town": rank("competing_weight", higher_is_better=False),
+        "fan_intensity": rank("fan_intensity"),
+        "sponsor_pool": rank("sponsor_pool_per_property"),
+    }
+    for comp, values in regional.items():
+        u[f"regional_appeal.{comp}"] = values
+    u["regional_appeal_score"], u["regional_appeal_coverage"] = weighted_score(
+        regional, weights["regional_appeal"], rules["min_component_coverage"])
     co = {
-        "commercial_revenue": rank("commercial_revenue"),
+        "untapped_value": rank("commercial_per_fan", higher_is_better=False),
         "fan_reach": u["fan_reach_score"],
+        "regional_appeal": u["regional_appeal_score"],
+        "commercial_revenue": rank("commercial_revenue"),
     }
     for name, comps in (("financial_pressure", fp), ("commercial_opportunity", co)):
         for comp, values in comps.items():
@@ -106,8 +122,15 @@ def score_schools(tables, weights, as_of=None):
     u["growth_catalysts"], u["catalyst_events"] = _catalyst_scores(u.index, tables, weights["catalysts"], as_of)
     u["growth_catalysts_coverage"] = u["growth_catalysts"].notna().astype(float)
 
-    u["overall"], u["overall_coverage"] = weighted_score(
+    u["overall_raw"], u["overall_coverage"] = weighted_score(
         {k: u[k] for k in CATEGORY_LABELS}, weights["categories"], rules["min_overall_coverage"])
+    # Displayed overall score: rescaled within the comparison group so the top school reads 100 and the
+    # lowest 0. A weighted average of ranks rarely tops ~65 (no school leads every category), which reads
+    # like a failing grade rather than "#1 in its segment".
+    lo = u["overall_raw"].groupby(group).transform("min")
+    span = u["overall_raw"].groupby(group).transform("max") - lo
+    u["overall"] = ((u["overall_raw"] - lo) / span.replace(0, np.nan) * 100).fillna(
+        u["overall_raw"].where(span == 0))
     u["confidence"] = _confidence(u)
     u["completeness"] = _completeness(u, tables)
     u["rank"] = u["overall"].rank(ascending=False, method="min")
@@ -132,7 +155,8 @@ def _catalyst_scores(school_ids, tables, settings, as_of):
 def _confidence(u):
     cats = list(CATEGORY_LABELS)
     full = ((u[[f"{c}_coverage" for c in cats]] >= 0.999).all(axis=1)
-            & (u["fan_reach_coverage"] >= 0.999))      # a missing sport inside fan reach counts too
+            & (u["fan_reach_coverage"] >= 0.999)       # a missing sport inside fan reach counts too
+            & (u["regional_appeal_coverage"] >= 0.999))
     n_cats = u[cats].notna().sum(axis=1)
     return np.select([u["overall"].isna(), full, n_cats == 3], ["Insufficient data", "High", "Medium"], "Low")
 
@@ -149,6 +173,7 @@ def _completeness(u, tables):
         "football attendance": u["football"].notna(),
         "men's basketball attendance": u["mens_basketball"].notna(),
         "women's basketball attendance": u["womens_basketball"].notna(),
+        "market data": u["competing_weight"].notna() & u["sponsor_pool"].notna() & u["metro_population"].notna(),
         "catalysts researched": u.index.isin(done("catalysts")),
         "rights holders researched": u.index.isin(done("rights")),
         "contacts researched": u.index.isin(done("contacts")),
@@ -174,6 +199,8 @@ def missing_inputs(row, tables):
                        ("womens_basketball", "women's basketball")):
         if pd.isna(row[key]):
             items.append(f"2024-25 {label} average home attendance")
+    if pd.isna(row["competing_weight"]) or pd.isna(row["sponsor_pool"]) or pd.isna(row["metro_population"]):
+        items.append("Market data (location, metro population, sponsor-type businesses, competing teams)")
     for area in ("catalysts", "rights", "contacts"):
         if s.get(area) != "complete":
             items.append(f"{area.capitalize()} research ({s.get(area, 'not_started').replace('_', ' ')})")

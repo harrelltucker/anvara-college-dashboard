@@ -13,6 +13,8 @@ Definitions (NCAA Membership Financial Reporting System categories):
                        operations (tickets, sponsorship, fundraising, etc.) bring in.
   commercial revenue = the NCAA category combining sponsorship, advertising, licensing and
                        related items. It is NOT pure sponsorship revenue.
+  commercial per fan = commercial revenue / football average home attendance (the one sport with
+                       official attendance for every school)
 """
 
 import numpy as np
@@ -31,7 +33,7 @@ def _num(series):
     return pd.to_numeric(series.replace("", np.nan), errors="coerce")
 
 
-def school_metrics(tables, rules):
+def school_metrics(tables, rules, competition=None):
     """One row per school (all schools, including benchmark-only peers)."""
     fy = str(rules["scoring_fiscal_year"])
     schools = tables["schools"].set_index("school_id")
@@ -72,7 +74,79 @@ def school_metrics(tables, rules):
     for key, metric in AUDIENCE_METRICS.items():
         rows = aud[aud["metric"] == metric].drop_duplicates("school_id", keep="last").set_index("school_id")
         m[key] = _num(rows["value"]).reindex(m.index)
+    m["commercial_per_fan"] = m["commercial_revenue"] / m["football"]
+
+    _market_metrics(m, tables, rules, competition or {})
     return m
+
+
+def _market_metrics(m, tables, rules, competition):
+    """Regional Sponsorship Appeal inputs.
+
+    Market = the school's metro area (Census CBSA). A school in a smaller metro with no major-league team
+    (rules) draws sponsors statewide instead: its state outside the metros that do host major-league teams
+    (Iowa: all of Iowa; Penn State: Pennsylvania outside Philadelphia and Pittsburgh). Competing weight = sum
+    of league weights of every other team and FBS program in that market. Sponsor pool per property = sponsor-type businesses / (1 + competing weight).
+    Fan intensity = football average home attendance / metro population (always the metro: local dominance).
+    """
+    for col in ("market_scope", "cbsa_name"):
+        m[col] = ""
+    for col in ("metro_population", "competing_weight", "sponsor_pool", "sponsor_pool_per_property",
+                "fan_intensity"):
+        m[col] = np.nan
+    loc = tables["school_markets"].drop_duplicates("school_id", keep="last").set_index("school_id")
+    loc = loc[loc.index.isin(m.index)]
+    if loc.empty:
+        return
+
+    stats = tables["market_stats"]
+    stat = lambda geo_type, metric: _num(stats[(stats["geo_type"] == geo_type) & (stats["metric"] == metric)]
+                                         .drop_duplicates("geo_id", keep="last").set_index("geo_id")["value"])
+    population, pool_cbsa, pool_state = stat("cbsa", "population"), stat("cbsa", "sponsor_businesses"), \
+        stat("state", "sponsor_businesses_outside_major_metros")
+
+    # every team that competes for sponsors: pro teams, other FBS programs, and our own schools
+    ours = pd.DataFrame({"team_id": loc.index, "state": loc["state"], "cbsa_code": loc["cbsa_code"],
+                         "league": np.where(m.loc[loc.index, "segment"] == "Power 4", "FBS_POWER4", "FBS_OTHER")})
+    teams = pd.concat([tables["market_teams"][["team_id", "state", "cbsa_code", "league"]], ours],
+                      ignore_index=True)
+    teams["weight"] = teams["league"].map(competition).fillna(0.0)
+    major_metros = set(teams.loc[teams["league"].isin(rules.get("statewide_market_leagues", [])), "cbsa_code"])
+
+    for sid, r in loc.iterrows():
+        pop = population.get(r["cbsa_code"], np.nan)
+        statewide = (pd.notna(pop) and pop < rules.get("statewide_market_max_population", 0)
+                     and r["cbsa_code"] not in major_metros)
+        same = ((teams["state"] == r["state"]) & ~teams["cbsa_code"].isin(major_metros) if statewide
+                else teams["cbsa_code"] == r["cbsa_code"])
+        rivals = teams[same & (teams["team_id"] != sid)]
+        pool = pool_state.get(r["state"], np.nan) if statewide else pool_cbsa.get(r["cbsa_code"], np.nan)
+        m.loc[sid, ["market_scope", "cbsa_name"]] = ["state" if statewide else "metro", r["cbsa_name"]]
+        m.loc[sid, "metro_population"] = pop
+        m.loc[sid, "competing_weight"] = rivals["weight"].sum()
+        m.loc[sid, "sponsor_pool"] = pool
+        m.loc[sid, "sponsor_pool_per_property"] = pool / (1 + rivals["weight"].sum())
+    m["fan_intensity"] = m["football"] / m["metro_population"]
+
+
+def market_rivals(school_id, tables, scored, rules, competition):
+    """The teams counted against one school's market, for the profile page."""
+    row = scored.loc[school_id]
+    loc = tables["school_markets"].drop_duplicates("school_id", keep="last").set_index("school_id")
+    if school_id not in loc.index or not row["market_scope"]:
+        return pd.DataFrame(columns=["name", "league", "city", "weight"])
+    pro = tables["market_teams"][["name", "league", "city", "state", "cbsa_code"]]
+    ours = pd.DataFrame({"name": scored.loc[scored.index.isin(loc.index), "full_name"],
+                         "league": np.where(scored.loc[scored.index.isin(loc.index), "segment"] == "Power 4",
+                                            "FBS_POWER4", "FBS_OTHER")})
+    ours = ours.join(loc[["city", "state", "cbsa_code"]])
+    teams = pd.concat([pro, ours.drop(index=school_id)], ignore_index=True)
+    me = loc.loc[school_id]
+    major_metros = set(pro.loc[pro["league"].isin(rules.get("statewide_market_leagues", [])), "cbsa_code"])
+    same = ((teams["state"] == me["state"]) & ~teams["cbsa_code"].isin(major_metros)
+            if row["market_scope"] == "state" else teams["cbsa_code"] == me["cbsa_code"])
+    out = teams[same].assign(weight=lambda t: t["league"].map(competition).fillna(0.0))
+    return out[["name", "league", "city", "weight"]].sort_values(["weight", "name"], ascending=[False, True])
 
 
 def _conference_benchmarks(m, conferences, fy, rules):
