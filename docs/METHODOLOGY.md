@@ -44,6 +44,8 @@ Subsidies and student fees are subtracted once (in generated revenue) and never 
 
 Each component is a **percentile rank among the schools in the same segment**, rescaled so the lowest school scores 0 and the highest 100. Ranks can't be distorted by one outlier: a single program with far higher revenue moves only one position, not the whole scale. The trade-off is that ranks hide the size of gaps, so raw values are always shown next to scores. For Financial Pressure, *weaker* finances rank higher.
 
+The **overall score** is the weighted average of those component scores, shown as is. It isn't stretched so the top school reads 100: a 100 would mean ranking first on every component, which no school does, so the leaders score in the 60s and 70s. Gaps between overall scores are real gaps.
+
 ### Growth Catalyst rubric
 
 Catalysts are rare events, so they use fixed points rather than ranks:

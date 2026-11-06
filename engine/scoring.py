@@ -124,13 +124,9 @@ def score_schools(tables, weights, as_of=None):
 
     u["overall_raw"], u["overall_coverage"] = weighted_score(
         {k: u[k] for k in CATEGORY_LABELS}, weights["categories"], rules["min_overall_coverage"])
-    # Displayed overall score: rescaled within the comparison group so the top school reads 100 and the
-    # lowest 0. A weighted average of ranks rarely tops ~65 (no school leads every category), which reads
-    # like a failing grade rather than "#1 in its segment".
-    lo = u["overall_raw"].groupby(group).transform("min")
-    span = u["overall_raw"].groupby(group).transform("max") - lo
-    u["overall"] = ((u["overall_raw"] - lo) / span.replace(0, np.nan) * 100).fillna(
-        u["overall_raw"].where(span == 0))
+    # Displayed overall score: the weighted average of component ranks, not stretched to 0-100. Stretching
+    # made the top school read 100 and roughly doubled every gap. 100 would mean leading every component.
+    u["overall"] = u["overall_raw"]
     u["confidence"] = _confidence(u)
     u["completeness"] = _completeness(u, tables)
     u["rank"] = u["overall"].rank(ascending=False, method="min")
