@@ -46,6 +46,8 @@ Each component is a **percentile rank among the schools in the same segment**, r
 
 The **overall score** is the weighted average of those component scores, shown as is. It isn't stretched so the top school reads 100: a 100 would mean ranking first on every component, which no school does, so the leaders score in the 60s and 70s. Gaps between overall scores are real gaps.
 
+Because a number out of 100 reads like a grade, the dashboard leads with **rank and tier** and shows the score as the **opportunity index**. Tiers are by rank within the segment: **Top opportunity** = top 10%, **Strong** = next 20%, **Moderate** = middle 40%, **Lower** = bottom 30%.
+
 ### Growth Catalyst rubric
 
 Catalysts are rare events, so they use fixed points rather than ranks:

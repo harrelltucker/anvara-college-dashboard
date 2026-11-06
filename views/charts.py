@@ -80,7 +80,7 @@ with right:
                           format_func=lambda m: {"commercial_share": "Sponsorship % of revenue",
                                                  "commercial_revenue": "Sponsorship revenue",
                                                  "self_sufficiency": "Self-sufficiency",
-                                                 "overall": "Opportunity score", **CATEGORY_LABELS}.get(m, m))
+                                                 "overall": "Opportunity index", **CATEGORY_LABELS}.get(m, m))
     conf = view.dropna(subset=[metric])
     conf = conf[conf["conference_id"] != ""]
     if conf.empty:

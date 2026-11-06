@@ -15,7 +15,8 @@ style.hero("Sponsorship opportunity · FY2025",
            "Where college sponsorship is most likely to grow",
            "Public FBS athletic departments ranked as sponsorship-marketplace partners: how much commercial "
            "business they have, how much pressure they're under to grow it, and what they're doing about it. "
-           "Scores are 0–100 relative to comparable schools. This ranks opportunity, not unsold inventory.")
+           "Schools are ranked against comparable schools and grouped into tiers. This ranks opportunity, "
+           "not unsold inventory.")
 
 views = {"Power 4": "Power 4", "Group of 5 & other FBS": "Group of 5 & other FBS", "All FBS": None}
 pick = st.segmented_control("Segment", list(views), default="Power 4", key="segment_view",
@@ -61,11 +62,12 @@ else:
     st.markdown("#### Top opportunities")
     for col, (sid, row) in zip(st.columns(3), ranked.head(3).iterrows()):
         conf = CONFERENCE_NAMES.get(row["conference_id"], row["conference_id"])
-        col.html(f'<div class="pick"><div class="rank">#{int(row[rank_col])} · {style.esc(conf)}'
+        of = len(ranked) if segment is None else int(row["segment_size"])
+        col.html(f'<div class="pick"><div class="rank">#{int(row[rank_col])} of {of} · {style.esc(conf)}'
                  f'{" · Featured" if row["featured"] else ""}</div>'
+                 f'<div class="tier">{style.esc(row["tier"])}</div>'
                  f'<div class="name">{style.esc(row["name"])}</div>'
-                 f'<div class="score">{row["overall"]:.0f}<span> / 100</span></div>'
-                 f'<div class="bar"><div style="width:{row["overall"]:.0f}%"></div></div>'
+                 f'<div class="index">Opportunity index {row["overall"]:.0f}</div>'
                  f'<div class="why">{style.esc(why(row))}</div></div>')
 
 st.markdown("#### All schools")
@@ -83,7 +85,8 @@ table = pd.DataFrame({
     "School": view["name"],
     "Conference": view["conference_id"].map(lambda c: CONFERENCE_NAMES.get(c, c)),
     "Featured": view["featured"].map({True: "★", False: ""}),
-    "Score": view["overall"],
+    "Tier": view["tier"],
+    "Index": view["overall"],
     "Financial Pressure": view["financial_pressure"],
     "Commercial Opportunity": view["commercial_opportunity"],
     "Growth Catalysts": view["growth_catalysts"],
@@ -108,7 +111,13 @@ event = st.dataframe(
         "#": st.column_config.NumberColumn(format="%d", width="small"),
         "School": st.column_config.TextColumn(width="medium"),
         "Featured": st.column_config.TextColumn("", width="small", help="Featured: deep-research school"),
-        "Score": SCORE_COL("Score"), "Financial Pressure": SCORE_COL("Financial Pressure"),
+        "Tier": st.column_config.TextColumn(
+            help="Rank within the segment: Top opportunity = top 10%, Strong = next 20%, "
+                 "Moderate = middle 40%, Lower = bottom 30%"),
+        "Index": st.column_config.NumberColumn(
+            "Index", format="%.0f", help="Opportunity index: weighted average of the category scores. "
+                                         "100 would mean ranking first on every measure."),
+        "Financial Pressure": SCORE_COL("Financial Pressure"),
         "Commercial Opportunity": SCORE_COL("Commercial Opportunity"),
         "Growth Catalysts": SCORE_COL("Growth Catalysts"),
         "Sponsorship rev.": st.column_config.NumberColumn(

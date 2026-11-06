@@ -65,6 +65,9 @@ min_peer_count = 3                # fewer peers with data than this => no confer
 no_benchmark_conferences = ["IND"]  # FBS independents aren't a conference
 power4_conferences = ["B1G", "SEC", "BIG12", "ACC"]
 rank_within = "segment"           # "segment" (Power 4 vs. Group of 5 & other FBS) or "all"
+# Opportunity tiers by rank within the segment: top 10% / next 20% / middle 40% / bottom 30%
+tier_cutoffs = [10, 30, 70]       # cumulative % of scored schools in the segment
+tier_labels = ["Top opportunity", "Strong", "Moderate", "Lower"]
 # A school in a smaller metro with no team from these leagues draws sponsors from its state, outside the
 # metros that have one (Iowa: all of Iowa; Penn State: Pennsylvania outside Philadelphia and Pittsburgh)
 statewide_market_max_population = 1000000

@@ -35,10 +35,10 @@ style.hero(f"{conf_name} · {row['segment']} · {row['state']}", row["name"], ro
 st.html(style.badges(*([("Featured: deep research", "accent")] if row["featured"] else ["Broad research"]),
                      f"Confidence: {row['confidence']}", f"Data completeness {row['completeness']:.0%}"))
 
-seg_size = int(scored[scored["segment"] == row["segment"]]["overall"].notna().sum())
 style.cards([
-    ("Opportunity score", score(row["overall"]),
-     f"#{int(row['segment_rank'])} of {seg_size} in {row['segment']}" if pd.notna(row["segment_rank"]) else ""),
+    ("Opportunity", row["tier"] or "—",
+     f"#{int(row['segment_rank'])} of {int(row['segment_size'])} in {row['segment']} · "
+     f"index {score(row['overall'])}" if pd.notna(row["segment_rank"]) else ""),
     *[(CATEGORY_LABELS[cat], score(row[cat]), f"{row[f'{cat}_coverage']:.0%} of inputs available")
       for cat in CATEGORY_LABELS],
 ])

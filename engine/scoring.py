@@ -131,6 +131,8 @@ def score_schools(tables, weights, as_of=None):
     u["completeness"] = _completeness(u, tables)
     u["rank"] = u["overall"].rank(ascending=False, method="min")
     u["segment_rank"] = u.groupby("segment")["overall"].rank(ascending=False, method="min")
+    u["segment_size"] = u.groupby("segment")["overall"].transform("count")
+    u["tier"] = _tier(u["segment_rank"], u["segment_size"], rules)
     return u.sort_values(["overall", "name"], ascending=[False, True], na_position="last")
 
 
@@ -146,6 +148,15 @@ def _catalyst_scores(school_ids, tables, settings, as_of):
     researched = set(status[(status["area"] == "catalysts") & (status["status"] == "complete")]["school_id"])
     scores = pd.Series({s: totals.get(s, 0.0 if s in researched else np.nan) for s in school_ids})
     return scores, pd.Series({s: int(counts.get(s, 0)) for s in school_ids})
+
+
+def _tier(rank, size, rules):
+    """Opportunity tier from rank within the segment (top 10% / next 20% / middle 40% / rest, by default)."""
+    cutoffs = rules.get("tier_cutoffs", [10, 30, 70])
+    labels = rules.get("tier_labels", ["Top opportunity", "Strong", "Moderate", "Lower"])
+    limits = [np.ceil(size * c / 100) for c in cutoffs]
+    return pd.Series(np.select([rank <= lim for lim in limits], labels[:-1], labels[-1]),
+                     index=rank.index).where(rank.notna(), "")
 
 
 def _confidence(u):

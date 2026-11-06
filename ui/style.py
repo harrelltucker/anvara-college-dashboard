@@ -30,8 +30,9 @@ h1, h2, h3 {{letter-spacing: -0.02em;}}
 .pick {{border: 1px solid {LINE}; border-radius: 0.8rem; padding: 1rem 1.1rem; background: #fff; height: 100%;}}
 .pick .rank {{font-size: 0.8rem; font-weight: 600; color: {ACCENT};}}
 .pick .name {{font-size: 1.15rem; font-weight: 650; color: {INK}; margin: 0.1rem 0 0.35rem;}}
-.pick .score {{font-size: 2rem; font-weight: 700; color: {INK}; letter-spacing: -0.03em; line-height: 1;}}
-.pick .score span {{font-size: 0.85rem; color: {MUTED}; font-weight: 500;}}
+.pick .tier {{font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+             color: {ACCENT}; margin-top: 0.35rem;}}
+.pick .index {{font-size: 0.86rem; color: {MUTED}; font-weight: 500;}}
 .pick .why {{font-size: 0.86rem; color: {MUTED}; margin-top: 0.5rem; line-height: 1.4;}}
 .bar {{height: 6px; background: {SOFT}; border-radius: 3px; margin-top: 0.6rem; overflow: hidden;}}
 .bar > div {{height: 100%; background: {ACCENT}; border-radius: 3px;}}

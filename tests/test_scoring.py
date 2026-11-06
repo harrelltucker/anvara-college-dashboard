@@ -110,3 +110,11 @@ def test_unweighted_sport_is_not_required(demo, weights):
     w["fan_reach"] = {"football": 100, "mens_basketball": 0, "womens_basketball": 0}
     s = score_schools(demo, w, as_of=AS_OF)
     assert s.loc["DEMO06", "fan_reach_coverage"] >= 0.999        # missing women's basketball doesn't count
+
+
+def test_tiers_follow_rank_within_segment(demo, weights):
+    s = score_schools(demo, weights, as_of=AS_OF).dropna(subset=["overall"])
+    order = ["Top opportunity", "Strong", "Moderate", "Lower"]
+    for _, g in s.groupby("segment"):
+        tiers = g.sort_values("segment_rank")["tier"].map(order.index)
+        assert tiers.is_monotonic_increasing and tiers.iloc[0] == 0
