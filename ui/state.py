@@ -1,6 +1,7 @@
 """Shared dashboard state: which dataset is shown, the live weights, and the scores."""
 
 import copy
+import os
 
 import pandas as pd
 import streamlit as st
@@ -9,6 +10,8 @@ from engine.data import DEMO_DIR, RESEARCH_DIR, load_tables, load_weights
 from engine.scoring import CATEGORY_LABELS, COMPONENT_LABELS, score_schools
 
 DEFAULTS = load_weights()
+# Public, shared copy (set READ_ONLY = "1" in the host's secrets): no review queue, no adding findings
+READ_ONLY = os.environ.get("READ_ONLY", "") == "1"
 SLIDERS = {   # weight group -> {key: label}
     "categories": CATEGORY_LABELS,
     "financial_pressure": {k: COMPONENT_LABELS[k] for k in DEFAULTS["financial_pressure"]},

@@ -123,8 +123,8 @@ with tabs[3]:
     else:
         st.dataframe(aud.assign(source=aud["source_id"].map(source_link))[["season", "metric", "value", "source", "notes"]],
                      hide_index=True, width="stretch")
-    st.caption(f"Fan reach score: {score(row['fan_reach_score'])} (average home attendance, ranked and weighted by "
-               "sport; football only by default until every school has basketball figures; stadium capacity "
+    st.caption(f"Fan reach score: {score(row['fan_reach_score'])} (football, men's and women's basketball average home attendance, ranked and weighted; "
+               "stadium capacity "
                "is never used as a substitute).")
 
 with tabs[4]:

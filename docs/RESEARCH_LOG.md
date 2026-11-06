@@ -13,7 +13,7 @@ Decisions, findings and open questions. Source material for the Anvara presentat
 ## Open questions
 - Is the TPG acquisition of Learfield closed? (Expected Q3 2026.)
 - Which Learfield services apply to each partner school? The partner page doesn't say.
-- ~~Would Knight–Newhouse permit portfolio use of their data?~~ Resolved: Tucker confirmed use of the Knight–Newhouse data is fine (2026-11-06). Credit stays in place.
+- ~~Would Knight–Newhouse permit portfolio use of their data?~~ Resolved: Tucker obtained Knight–Newhouse's permission to show its figures in the shared dashboard (2026-11-06). Credit stays in place; raw downloads stay out of Git and CSV exports still blank its figures.
 
 ## Knight–Newhouse (2026-10-22)
 - Terms read: free for non-commercial use with credit; copyright protected; no commercial use or redistribution without permission. Treated as non-commercial portfolio use: credited, `export_allowed = no`, raw downloads kept out of Git (`data/incoming/`). Commercial use by Anvara would need permission (contact listed in their terms).
