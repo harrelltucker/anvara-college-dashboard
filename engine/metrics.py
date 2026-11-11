@@ -83,8 +83,9 @@ def school_metrics(tables, rules, competition=None):
 def _market_metrics(m, tables, rules, competition):
     """Regional Sponsorship Appeal inputs.
 
-    Market = the school's metro area (Census CBSA). A school in a smaller metro with no major-league team
-    (rules) draws sponsors statewide instead: its state outside the metros that do host major-league teams
+    Market = the school's metro area (Census CBSA), widened to its Combined Statistical Area when it has one, so
+    Boulder competes with Denver's teams. A school in a smaller metro with no major-league team in its metro or
+    combined area (rules) draws sponsors statewide instead: its state outside the metros that do host major-league teams
     (Iowa: all of Iowa; Penn State: Pennsylvania outside Philadelphia and Pittsburgh). Competing weight = sum
     of league weights of every other team and FBS program in that market; Power 4 schools ignore leagues below
     their level (rules["power4_ignores_rivals"]). Sponsor pool per property = sponsor-type businesses / (1 + competing weight).
@@ -112,14 +113,18 @@ def _market_metrics(m, tables, rules, competition):
     teams = pd.concat([tables["market_teams"][["team_id", "state", "cbsa_code", "league"]], ours],
                       ignore_index=True)
     teams["weight"] = teams["league"].map(competition).fillna(0.0)
-    major_metros = set(teams.loc[teams["league"].isin(rules.get("statewide_market_leagues", [])), "cbsa_code"])
+    csa = _combined_areas(tables)
+    teams["csa"] = teams["cbsa_code"].map(csa)
+    major = teams["league"].isin(rules.get("statewide_market_leagues", []))
+    major_metros, major_csas = set(teams.loc[major, "cbsa_code"]), set(teams.loc[major, "csa"].dropna())
 
     for sid, r in loc.iterrows():
         pop = population.get(r["cbsa_code"], np.nan)
+        area = csa.get(r["cbsa_code"])
         statewide = (pd.notna(pop) and pop < rules.get("statewide_market_max_population", 0)
-                     and r["cbsa_code"] not in major_metros)
+                     and r["cbsa_code"] not in major_metros and area not in major_csas)
         same = ((teams["state"] == r["state"]) & ~teams["cbsa_code"].isin(major_metros) if statewide
-                else teams["cbsa_code"] == r["cbsa_code"])
+                else _same_market(teams, r["cbsa_code"], area))
         rivals = teams[same & (teams["team_id"] != sid)]
         if m.loc[sid, "segment"] == "Power 4":
             rivals = rivals[~rivals["league"].isin(rules.get("power4_ignores_rivals", []))]
@@ -144,14 +149,31 @@ def market_rivals(school_id, tables, scored, rules, competition):
                                             "FBS_POWER4", "FBS_OTHER")})
     ours = ours.join(loc[["city", "state", "cbsa_code"]])
     teams = pd.concat([pro, ours.drop(index=school_id)], ignore_index=True)
+    csa = _combined_areas(tables)
+    teams["csa"] = teams["cbsa_code"].map(csa)
     me = loc.loc[school_id]
     major_metros = set(pro.loc[pro["league"].isin(rules.get("statewide_market_leagues", [])), "cbsa_code"])
     same = ((teams["state"] == me["state"]) & ~teams["cbsa_code"].isin(major_metros)
-            if row["market_scope"] == "state" else teams["cbsa_code"] == me["cbsa_code"])
+            if row["market_scope"] == "state" else _same_market(teams, me["cbsa_code"], csa.get(me["cbsa_code"])))
     out = teams[same].assign(weight=lambda t: t["league"].map(competition).fillna(0.0))
     if row["segment"] == "Power 4":
         out = out[~out["league"].isin(rules.get("power4_ignores_rivals", []))]
     return out[["name", "league", "city", "weight"]].sort_values(["weight", "name"], ascending=[False, True])
+
+
+def _combined_areas(tables):
+    """metro (CBSA) code -> its Combined Statistical Area code, for metros that belong to one."""
+    areas = tables.get("market_areas")
+    if areas is None or areas.empty:
+        return {}
+    areas = areas[areas["csa_code"] != ""].drop_duplicates("cbsa_code", keep="last")
+    return dict(zip(areas["cbsa_code"], areas["csa_code"]))
+
+
+def _same_market(teams, cbsa_code, csa_code):
+    """Teams in the same metro, or anywhere in the same combined area."""
+    same = teams["cbsa_code"] == cbsa_code
+    return same | (teams["csa"] == csa_code) if csa_code else same
 
 
 def _conference_benchmarks(m, conferences, fy, rules):

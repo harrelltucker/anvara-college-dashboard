@@ -145,6 +145,14 @@ TABLES = {
         "refs": {"source_id": "sources"},
         "dates": ["verified_date"],
     },
+    # Census Combined Statistical Areas: metros that form one wider market (Boulder is part of greater Denver)
+    "market_areas": {
+        "key": "cbsa_code",
+        "columns": ["cbsa_code", "cbsa_title", "csa_code", "csa_title", "source_id", *VERIFIED],
+        "required": ["cbsa_code", "csa_code", "source_id", *VERIFIED],
+        "refs": {"source_id": "sources"},
+        "dates": ["verified_date"],
+    },
     "market_stats": {
         "key": None,
         "columns": ["geo_type", "geo_id", "geo_name", "year", "metric", "value", "source_id", *VERIFIED, "notes"],

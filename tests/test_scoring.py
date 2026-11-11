@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from engine.data import DEMO_DIR, load_tables, load_weights
+from engine.data import DEMO_DIR, RESEARCH_DIR, load_tables, load_weights
 from engine.scoring import catalyst_points, percentile_score, score_schools, weighted_score
 
 AS_OF = date(2026, 10, 22)
@@ -118,3 +118,15 @@ def test_tiers_follow_rank_within_segment(demo, weights):
     for _, g in s.groupby("segment"):
         tiers = g.sort_values("segment_rank")["tier"].map(order.index)
         assert tiers.is_monotonic_increasing and tiers.iloc[0] == 0
+
+
+def test_combined_area_brings_nearby_big_league_teams_into_the_market(weights):
+    """Boulder is its own Census metro but part of greater Denver: Denver's teams compete for its sponsors."""
+    tables = load_tables(RESEARCH_DIR)
+    alone = score_schools(tables, weights).loc["COLORADO"]
+    tables["market_areas"] = pd.DataFrame([
+        {"cbsa_code": c, "cbsa_title": "", "csa_code": "216", "csa_title": "Denver-Aurora-Greeley, CO",
+         "source_id": "S-TEST", "verified_by": "test", "verified_date": "2026-11-11"} for c in ("14500", "19740")])
+    joined = score_schools(tables, weights).loc["COLORADO"]
+    assert alone["market_scope"] == "state" and alone["competing_weight"] == 0
+    assert joined["market_scope"] == "metro" and joined["competing_weight"] > 0

@@ -49,3 +49,13 @@ Rating guide used for consistency: *high* = new commercial company, in-house rig
 
 ## Open question: low sponsorship lines (2026-10-22)
 Rutgers ($2.7M) and Arizona ($5.6M) report the lowest category-15 revenue of the 15, and both took multimedia rights in-house in 2024. Untested idea: in-house sales revenue may be recorded in other categories or in a separate entity. **Not assumed:** reported figures are used as-is and nothing in the dashboard suggests they're wrong (decision: Tucker, 2026-10-22). Test it with the detailed MFRS reports once public records requests return. Clemson (also in-house, $17.9M) is a counterexample.
+
+## Market fix: combined areas (2026-11-11)
+The profile said Colorado had no major pro team competing for sponsors. Boulder is its own Census metro, so Denver's
+Broncos, Nuggets, Avalanche and Rockies (25 miles away) didn't count, and Colorado got the statewide "only game in town"
+treatment. The user chose to widen each market to its Census Combined Statistical Area (July 2023 delineation,
+tools/import_combined_areas.py, 104 metros queued as findings for verification). Preview with the data applied: no change
+to the 12 top opportunities; Colorado #23 -> #32 and Georgia #19 -> #26 in Power 4; six schools move one tier (Cal, UNC
+down; Texas Tech, Mississippi State up; Ohio down, North Texas up in Group of 5). Takes effect once the findings are
+verified. Wording also fixed: statewide reasons now say "in Missouri outside Kansas City and St. Louis", not "across
+Missouri".
