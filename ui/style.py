@@ -4,12 +4,17 @@ import html
 
 import streamlit as st
 
-ACCENT = "#2346F9"
+ACCENT = "#6A4BF0"
+NAVY = "#141A3D"
+TINT = "#F4F1FF"
+# Opportunity tiers: one purple, dark (best) to light, so the order reads without a legend
+TIER_COLORS = {"Top opportunity": "#3B1FA8", "Strong": "#6A4BF0", "Moderate": "#A592F7", "Lower": "#D6CCFC"}
+TIER_NOTES = {"Top opportunity": "top 10%", "Strong": "next 20%", "Moderate": "middle 40%", "Lower": "bottom 30%"}
 INK = "#14161C"
 MUTED = "#6E6E76"
 LINE = "#E6E8EE"
 SOFT = "#F5F7FA"
-CATEGORY_COLORS = {"Financial Pressure": "#14161C", "Commercial Opportunity": "#2346F9",
+CATEGORY_COLORS = {"Financial Pressure": "#14161C", "Commercial Opportunity": "#6A4BF0",
                    "Growth Catalysts": "#0099FF"}
 CONFIDENCE_TONE = {"High": "green", "Medium": "blue", "Low": "orange", "Insufficient data": "gray"}
 
@@ -66,7 +71,7 @@ h1, h2, h3 {{letter-spacing: -0.02em;}}
 PUBLIC_CSS = f"""
 <style>
 .hero {{border-bottom: 0; padding: 1.8rem 2rem 1.6rem; margin-bottom: 1.4rem; border-radius: 1.1rem;
-        background: linear-gradient(135deg, #F3F5FF 0%, #FFFFFF 70%); border: 1px solid {LINE};}}
+        background: linear-gradient(135deg, {TINT} 0%, #FFFFFF 70%); border: 1px solid {LINE};}}
 .hero h1 {{font-size: 2.4rem;}}
 .stats {{display: flex; flex-wrap: wrap; gap: 0.6rem 2.2rem; margin-top: 1.2rem;}}
 .stats div {{font-size: 0.82rem; color: {MUTED};}}
@@ -76,11 +81,11 @@ PUBLIC_CSS = f"""
 a.opp-card {{display: flex; flex-direction: column; text-decoration: none !important; color: {INK} !important;
             border: 1px solid {LINE}; border-radius: 1rem; padding: 1.15rem 1.25rem 1rem; background: #fff;
             box-shadow: 0 1px 2px rgba(20, 22, 28, 0.04); transition: border-color .15s, box-shadow .15s, transform .15s;}}
-a.opp-card:hover {{border-color: {ACCENT}; box-shadow: 0 8px 24px rgba(35, 70, 249, 0.10); transform: translateY(-2px);}}
+a.opp-card:hover {{border-color: {ACCENT}; box-shadow: 0 8px 24px rgba(106, 75, 240, 0.12); transform: translateY(-2px);}}
 .opp-head {{display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem;}}
 .opp-num {{font-size: 2rem; font-weight: 750; color: {ACCENT}; letter-spacing: -0.04em; line-height: 1;}}
 .pill {{display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
-        padding: 0.2rem 0.55rem; border-radius: 999px; background: #EEF1FF; color: {ACCENT}; white-space: nowrap;}}
+        padding: 0.2rem 0.55rem; border-radius: 999px; background: #EFEBFF; color: {ACCENT}; white-space: nowrap;}}
 .pill.strong {{background: {SOFT}; color: {INK};}}
 .pill.quiet {{background: {SOFT}; color: {MUTED};}}
 a.opp-card .opp-name {{margin-top: 0.7rem;}}
@@ -92,7 +97,7 @@ a.opp-card .opp-meta {{margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bot
 .ticks, .timeline {{padding-inline-start: 0 !important;}}
 .ticks li, .timeline li {{margin-left: 0 !important;}}
 .opp-go {{font-size: 0.86rem; font-weight: 600; color: {ACCENT}; margin-top: 0.4rem;}}
-.callout {{border-radius: 1rem; background: #F3F5FF; padding: 1.1rem 1.3rem 0.7rem; border-left: 4px solid {ACCENT};}}
+.callout {{border-radius: 1rem; background: {TINT}; padding: 1.1rem 1.3rem 0.7rem; border-left: 4px solid {ACCENT};}}
 .callout .ticks {{font-size: 1rem;}}
 .rank-tile {{text-align: right;}}
 .rank-tile .big {{font-size: 3rem; font-weight: 750; color: {ACCENT}; letter-spacing: -0.05em; line-height: 1;}}
@@ -111,6 +116,53 @@ a.opp-card .opp-meta {{margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bot
   .hero h1 {{font-size: 1.9rem;}}
   .rank-tile {{text-align: left;}}
 }}
+/* Dashboard: navy header bar, white panels, KPI tiles, takeaways */
+[data-testid="stMain"], [data-testid="stAppViewContainer"] {{overflow-x: hidden;}}
+header[data-testid="stHeader"] {{background: {NAVY};}}
+header[data-testid="stHeader"] a, header[data-testid="stHeader"] a * {{color: #DADCF0 !important;}}
+header[data-testid="stHeader"] a[aria-current="page"], header[data-testid="stHeader"] a:hover {{background: rgba(255,255,255,0.10) !important;}}
+header[data-testid="stHeader"] a[aria-current="page"] * {{color: #fff !important;}}
+header[data-testid="stHeader"] button, header[data-testid="stHeader"] button * {{color: #fff !important;}}
+.block-container {{padding-top: 3.75rem !important;}}
+.st-key-topbar {{background: {NAVY}; width: 100vw !important; max-width: none !important; box-sizing: border-box;
+                 margin: 0 0 0.6rem calc(50% - 50vw); padding: 0.3rem calc(50vw - 50%) 1.1rem;}}
+.st-key-topbar label p {{color: #C9CCE6 !important; font-weight: 600;}}
+.st-key-topbar [data-baseweb="select"] > div {{background: #222A5A; border-color: #39417A; border-radius: 0.55rem;}}
+.st-key-topbar [data-baseweb="select"] * {{color: #fff !important;}}
+.st-key-topbar [data-baseweb="select"] svg {{fill: #fff;}}
+.brand {{display: flex; align-items: center; gap: 0.65rem; color: #fff;}}
+.brand .mark {{width: 2.1rem; height: 2.1rem; border-radius: 0.6rem; flex: none;
+               background: linear-gradient(140deg, #8C73FF, {ACCENT} 60%, #3B1FA8);}}
+.brand .for {{font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #A9ADD3;}}
+.brand .name {{font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;}}
+.bar-title {{color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;}}
+.bar-sub {{color: #B9BCDD; font-size: 0.92rem; margin-top: 0.15rem;}}
+.kpi {{border: 1px solid {LINE}; border-radius: 0.9rem; background: #fff; padding: 0.9rem 1.1rem;
+       box-shadow: 0 1px 2px rgba(20, 22, 28, 0.04);}}
+.kpi .v {{font-size: 1.9rem; font-weight: 750; letter-spacing: -0.03em; color: {INK}; line-height: 1.15;}}
+.kpi .v svg {{width: 1.3rem; height: 1.3rem; margin-right: 0.35rem; vertical-align: -0.05em;}}
+.kpi .k {{font-size: 0.95rem; color: {INK}; margin-top: 0.1rem;}}
+.kpi .n {{font-size: 0.8rem; color: {MUTED}; margin-top: 0.2rem;}}
+.panel-title {{font-size: 1.2rem; font-weight: 700; color: {INK}; letter-spacing: -0.02em;}}
+.panel-sub {{font-size: 0.85rem; color: {MUTED}; margin-top: 0.1rem;}}
+[class*="st-key-panel"] {{background: #fff; border: 1px solid {LINE} !important; border-radius: 0.9rem !important;
+                         box-shadow: 0 1px 2px rgba(20, 22, 28, 0.04);}}
+.takeaways {{border: 1px solid {LINE}; border-radius: 0.9rem; background: #fff; overflow: hidden; height: 100%;
+             box-shadow: 0 1px 2px rgba(20, 22, 28, 0.04);}}
+.takeaways .head {{background: {NAVY}; color: #fff; font-size: 1.2rem; font-weight: 700; padding: 0.85rem 1.1rem;}}
+.takeaways .item {{display: flex; gap: 0.85rem; padding: 1rem 1.1rem; border-top: 1px solid {LINE};}}
+.takeaways .item:first-of-type {{border-top: 0;}}
+.takeaways svg {{flex: none; width: 2rem; height: 2rem; color: {ACCENT};}}
+.takeaways b {{display: block; font-size: 1.02rem; color: {INK}; letter-spacing: -0.01em;}}
+.takeaways span {{font-size: 0.86rem; color: {MUTED}; line-height: 1.4;}}
+.legend {{margin: 0.2rem 0.3rem 0;}}
+.legend div {{display: flex; align-items: center; gap: 0.55rem; font-size: 0.88rem; color: {INK}; padding: 0.22rem 0;}}
+.legend i {{width: 0.95rem; height: 0.95rem; border-radius: 0.25rem; flex: none;}}
+.legend em {{font-style: normal; color: {MUTED};}}
+.legend b {{margin-left: auto; font-variant-numeric: tabular-nums;}}
+@media (max-width: 640px) {{
+  .bar-title {{font-size: 1.2rem;}}
+}}
 </style>
 """
 
@@ -120,7 +172,7 @@ TIER_PILL = {"Top opportunity": "", "Strong": "strong"}
 def apply(public=False):
     st.html(CSS)
     if public:      # top navigation sits over the page; leave room so the eyebrow isn't hidden
-        st.html("<style>.block-container {padding-top: 4.4rem !important;}</style>" + PUBLIC_CSS)
+        st.html(PUBLIC_CSS)
 
 
 def esc(text):
@@ -134,6 +186,23 @@ def hero(eyebrow, title, subtitle="", extra="", side=""):
     if side:
         head = f'<div class="hero-row">{head}{side}</div>'
     st.html(f'<div class="hero">{head}{extra}</div>')
+
+
+def topbar(subtitle, controls=0):
+    """Navy header bar: brand, dashboard title and up to `controls` columns for filters (returned)."""
+    with st.container(key="topbar"):
+        cols = st.columns([1, 2.5] + [1] * controls if controls else [1, 4.5], vertical_alignment="bottom",
+                          gap="medium")
+        cols[0].html('<div class="brand"><div class="mark"></div><div><div class="for">Prepared for</div>'
+                     '<div class="name">Anvara</div></div></div>')
+        cols[1].html(f'<div class="bar-title">College Sponsorship Opportunity Dashboard</div>'
+                     f'<div class="bar-sub">{esc(subtitle)}</div>')
+    return cols[2:]
+
+
+def kpi(value, label, note="", icon=""):
+    return (f'<div class="kpi"><div class="v">{icon}{esc(value)}</div><div class="k">{esc(label)}</div>'
+            + (f'<div class="n">{esc(note)}</div>' if note else "") + "</div>")
 
 
 def stats(items):

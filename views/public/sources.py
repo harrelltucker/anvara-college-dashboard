@@ -6,6 +6,7 @@ from ui.state import context
 ctx = context()
 src = ctx["tables"]["sources"]
 
+style.topbar("Every figure links back to a public source")
 style.hero("Sources", "Where the numbers come from",
            "Every figure links back to a public source. Primary documents are used wherever they exist.")
 

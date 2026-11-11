@@ -8,6 +8,7 @@ from ui.state import context
 ctx = context()
 weights = ctx["weights"]
 
+style.topbar("How the opportunity index is built")
 style.hero("How it works", "Three questions, one ranking",
            "Each school is compared with the others in its group (Power 4, or Group of 5 & other FBS) "
            "on three questions, weighted into one opportunity index.")

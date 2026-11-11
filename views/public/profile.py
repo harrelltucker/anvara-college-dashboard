@@ -13,7 +13,7 @@ sources = tables["sources"].set_index("source_id")
 ids = list(scored.sort_values("name").index)
 linked = st.query_params.get("school")      # set by the cards on Top opportunities
 default = linked if linked in ids else st.session_state.get("selected_school", scored.index[0])
-_, pick = st.columns([3, 1])
+(pick,) = style.topbar("School profile: why it's an opportunity, how it scores and its key numbers", controls=1)
 school_id = pick.selectbox("Switch school", ids, index=ids.index(default) if default in ids else 0,
                            format_func=lambda s: scored.loc[s, "name"])
 st.session_state["selected_school"] = school_id
