@@ -5,7 +5,7 @@ import streamlit as st
 
 from engine.scoring import score_schools
 from ui import style
-from ui.fmt import CONFERENCE_NAMES, money
+from ui.fmt import CONFERENCE_NAMES
 from ui.public import STATES
 from ui.state import DEFAULTS, context
 
@@ -20,10 +20,6 @@ CATS = {   # weight key: (slider label, what it measures)
     "growth_catalysts": ("Momentum", "Recent moves to build its commercial business, since 2024"),
 }
 TIERS = list(style.TIER_COLORS)
-ICONS = {
-    "star": '<svg viewBox="0 0 24 24" fill="#F2A900"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 '
-            '3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>',
-}
 
 # ---- header bar with filters ----------------------------------------------------------------------------------
 f_group, f_conf, f_state = style.topbar(
@@ -86,23 +82,8 @@ view = view.sort_values(["segment_rank", "name"])
 if view.empty:
     st.info("No schools match these filters.")
     st.stop()
-filtered = len(view) < len(group)
-scope = "these schools" if filtered else segment
-top = view[view["tier"] == "Top opportunity"]
-
-# ---- KPI tiles + charts ---------------------------------------------------------------------------------------
-
+# ---- charts ---------------------------------------------------------------------------------------------------
 with right:
-    style.grid([
-        style.kpi(money(view["commercial_revenue"].sum()), "Sponsorship & licensing revenue",
-                  f"Combined, {scope}, FY2025"),
-        style.kpi(f"{len(view)}", "Schools analyzed",
-                  f"of {len(group)} in {segment}" if filtered else "Public FBS athletic departments"),
-        style.kpi(f"{len(top)}", "Top opportunities", f"Top 10% of {segment}", icon=ICONS["star"]),
-        style.kpi(f"{int((view['reported_result'] < 0).sum())} of {len(view)}", "Ran an athletics deficit",
-                  "Spending above revenue, FY2025"),
-    ], min_width=190)
-
     chart, donut = st.columns([2.55, 1], gap="medium")
     with chart.container(border=True, key="panel_landscape"):
         st.html('<div class="panel-title">Opportunity landscape</div><div class="panel-sub">Commercial opportunity '
@@ -112,8 +93,10 @@ with right:
             placed, out = [], []
             for x, y in zip(d["commercial_opportunity"], d["financial_pressure"]):
                 taken = {pos for px, py, pos in placed if abs(x - px) < 24 and abs(y - py) < 10}
-                options = ["bottom center", "middle right", "middle left"] if y > 95 else                     ["top center", "bottom center", "middle right", "middle left"]
-                if taken & {"top center", "bottom center"}:    # a label above or below would stack: go sideways
+                options = (["bottom center", "middle right", "middle left"] if y > 95
+                           else ["top center", "bottom center", "middle right", "middle left"])
+                level = {pos for px, py, pos in placed if abs(x - px) < 24 and abs(y - py) < 5}
+                if level & {"top center", "bottom center"}:    # a neighbour at the same height: go sideways
                     options = ["middle right", "middle left"] + options
                 pos = next((o for o in options if o not in taken), options[0])
                 placed.append((x, y, pos))

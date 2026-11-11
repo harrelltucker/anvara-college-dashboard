@@ -137,12 +137,7 @@ header[data-testid="stHeader"] button, header[data-testid="stHeader"] button * {
 .brand .name {{font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;}}
 .bar-title {{color: #fff; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;}}
 .bar-sub {{color: #B9BCDD; font-size: 0.92rem; margin-top: 0.15rem;}}
-.kpi {{border: 1px solid {LINE}; border-radius: 0.9rem; background: #fff; padding: 0.9rem 1.1rem;
        box-shadow: 0 1px 2px rgba(20, 22, 28, 0.04);}}
-.kpi .v {{font-size: 1.9rem; font-weight: 750; letter-spacing: -0.03em; color: {INK}; line-height: 1.15;}}
-.kpi .v svg {{width: 1.3rem; height: 1.3rem; margin-right: 0.35rem; vertical-align: -0.05em;}}
-.kpi .k {{font-size: 0.95rem; color: {INK}; margin-top: 0.1rem;}}
-.kpi .n {{font-size: 0.8rem; color: {MUTED}; margin-top: 0.2rem;}}
 .panel-title {{font-size: 1.2rem; font-weight: 700; color: {INK}; letter-spacing: -0.02em;}}
 .panel-sub {{font-size: 0.85rem; color: {MUTED}; margin-top: 0.1rem;}}
 [class*="st-key-panel"] {{background: #fff; border: 1px solid {LINE} !important; border-radius: 0.9rem !important;
@@ -190,11 +185,6 @@ def topbar(subtitle, controls=0):
         cols[1].html(f'<div class="bar-title">College Sponsorship Opportunity Dashboard</div>'
                      f'<div class="bar-sub">{esc(subtitle)}</div>')
     return cols[2:]
-
-
-def kpi(value, label, note="", icon=""):
-    return (f'<div class="kpi"><div class="v">{icon}{esc(value)}</div><div class="k">{esc(label)}</div>'
-            + (f'<div class="n">{esc(note)}</div>' if note else "") + "</div>")
 
 
 def stats(items):
