@@ -30,7 +30,7 @@ st.markdown("""
 - **Tiers** are by rank within the group: *Top opportunity* = top 10%, *Strong* = next 20%, *Moderate* = middle 40%, *Lower* = bottom 30%.
 - **The index** is the weighted average of the three scores. No school leads on everything, so the top schools land in the 60s and 70s.
 - **It ranks opportunity, not unsold inventory.** A high rank means strong reasons to grow sponsorship, not that inventory is available.
-- **Data periods:** finances are FY2025 (July 2024 – June 2025) and attendance is the 2024–25 season, the latest published. Commercial moves run from March 2024 to August 2026. Population is 2025 and local business counts are 2023 (U.S. Census). Sources were checked in October–November 2026.
+- **Data periods:** finances are FY2025 (July 2024 – June 2025) and attendance is the 2024–25 season. Commercial moves run from March 2024 to August 2026. Population is 2025 and local business counts are 2023 (U.S. Census). Sources were checked in October–November 2026.
 - **"Sponsorship & licensing"** is the NCAA's reporting line for sponsorship, advertising and licensing together. Schools that sell sponsorships in-house may record some of it elsewhere.
 """)
 
