@@ -10,7 +10,7 @@ scored, tables, weights = ctx["scored"], ctx["tables"], ctx["weights"]
 events = top_events(tables, weights)
 
 ranked = scored.dropna(subset=["overall"])
-style.hero("College sponsorship · FY2025", "Where college sponsorship is most likely to grow",
+style.hero("College sponsorship · Updated November 2026", "Where college sponsorship is most likely to grow",
            "All 113 public FBS athletic departments, ranked on three questions: how much they need new revenue, "
            "how much room they have to grow sponsorship, and what they're already doing about it.",
            extra=style.stats([(f"{len(ranked)}", "schools ranked"),
