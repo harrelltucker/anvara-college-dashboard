@@ -147,14 +147,6 @@ header[data-testid="stHeader"] button, header[data-testid="stHeader"] button * {
 .panel-sub {{font-size: 0.85rem; color: {MUTED}; margin-top: 0.1rem;}}
 [class*="st-key-panel"] {{background: #fff; border: 1px solid {LINE} !important; border-radius: 0.9rem !important;
                          box-shadow: 0 1px 2px rgba(20, 22, 28, 0.04);}}
-.takeaways {{border: 1px solid {LINE}; border-radius: 0.9rem; background: #fff; overflow: hidden; height: 100%;
-             box-shadow: 0 1px 2px rgba(20, 22, 28, 0.04);}}
-.takeaways .head {{background: {NAVY}; color: #fff; font-size: 1.2rem; font-weight: 700; padding: 0.85rem 1.1rem;}}
-.takeaways .item {{display: flex; gap: 0.85rem; padding: 1rem 1.1rem; border-top: 1px solid {LINE};}}
-.takeaways .item:first-of-type {{border-top: 0;}}
-.takeaways svg {{flex: none; width: 2rem; height: 2rem; color: {ACCENT};}}
-.takeaways b {{display: block; font-size: 1.02rem; color: {INK}; letter-spacing: -0.01em;}}
-.takeaways span {{font-size: 0.86rem; color: {MUTED}; line-height: 1.4;}}
 .legend {{margin: 0.2rem 0.3rem 0;}}
 .legend div {{display: flex; align-items: center; gap: 0.55rem; font-size: 0.88rem; color: {INK}; padding: 0.22rem 0;}}
 .legend i {{width: 0.95rem; height: 0.95rem; border-radius: 0.25rem; flex: none;}}

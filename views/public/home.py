@@ -1,24 +1,26 @@
+import copy
+
 import plotly.graph_objects as go
 import streamlit as st
 
+from engine.scoring import score_schools
 from ui import style
 from ui.fmt import CONFERENCE_NAMES, money
-from ui.public import STATES, big_league_cities, reasons, top_events
-from ui.state import context
+from ui.public import STATES
+from ui.state import DEFAULTS, context
 
 ctx = context()
 scored, tables, weights = ctx["scored"], ctx["tables"], ctx["weights"]
-events, cities = top_events(tables, weights), big_league_cities(tables)
 ranked = scored.dropna(subset=["overall"])
+CATS = {   # weight key: (slider label, what it measures)
+    "financial_pressure": ("Financial pressure", "How much the department needs new revenue: deficit, subsidy, "
+                                                 "revenue vs. its conference"),
+    "commercial_opportunity": ("Commercial opportunity", "How much room there is to grow sponsorship: revenue per "
+                                                         "fan, audience size, local competition"),
+    "growth_catalysts": ("Momentum", "Recent moves to build its commercial business, since 2024"),
+}
 TIERS = list(style.TIER_COLORS)
-ICONS = {   # simple line icons, drawn in the accent color
-    "trophy": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" '
-              'stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/>'
-              '<path d="M17 6h3v2a3 3 0 0 1-3 3M7 6H4v2a3 3 0 0 0 3 3"/></svg>',
-    "trend": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" '
-             'stroke-linejoin="round"><path d="M4 20V14M9 20V10M14 20v-4M19 20V7"/><path d="M4 9l5-4 5 4 6-5"/></svg>',
-    "target": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" '
-              'r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>',
+ICONS = {
     "star": '<svg viewBox="0 0 24 24" fill="#F2A900"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 '
             '3.3 1.3-6.6L2.5 9.4l6.6-.8z"/></svg>',
 }
@@ -27,13 +29,54 @@ ICONS = {   # simple line icons, drawn in the accent color
 f_group, f_conf, f_state = style.topbar(
     "113 public FBS athletic departments, ranked within their group (Power 4, or Group of 5 & other FBS)", controls=3)
 segment = f_group.selectbox("Group", ["Power 4", "Group of 5 & other FBS"], key="segment_view")
-group = ranked[ranked["segment"] == segment]
-confs = sorted(group["conference_id"].unique(), key=lambda c: CONFERENCE_NAMES.get(c, c))
+confs_all = ranked[ranked["segment"] == segment]
+confs = sorted(confs_all["conference_id"].unique(), key=lambda c: CONFERENCE_NAMES.get(c, c))
 conf = f_conf.selectbox("Conference", ["All conferences"] + confs,
                         format_func=lambda c: CONFERENCE_NAMES.get(c, c), key=f"conf_view.{segment}")
-states = sorted(group["state"].unique(), key=lambda s: STATES.get(s, s))
+states = sorted(confs_all["state"].unique(), key=lambda s: STATES.get(s, s))
 state = f_state.selectbox("Location", ["All locations"] + states, format_func=lambda s: STATES.get(s, s),
                           key=f"state_view.{segment}")
+
+
+def open_profile(school_id):
+    st.session_state["selected_school"] = school_id
+    st.switch_page(st.session_state["pages"]["profile"])
+
+
+def reset_weights():
+    for c in CATS:
+        st.session_state[f"pw.{c}"] = DEFAULTS["categories"][c]
+
+
+# ---- the exercise: what's being ranked, and the weights (re-ranks everything below) ---------------------------
+left, right = st.columns([1, 3.1], gap="medium")
+for c in CATS:       # sliders forget their value when you leave the page; restore from the last weights used
+    st.session_state.setdefault(f"pw.{c}", weights["categories"][c])
+with left.container(border=True, key="panel_weights"):
+    st.html('<div class="panel-title">How this ranking works</div><div class="panel-sub" style="margin-top:0.4rem">'
+            "Every school gets three scores from 0 to 100, each compared only with the schools in its group. "
+            "The opportunity index blends them using these weights. Drag a slider to see how the ranking changes."
+            "</div>")
+    for c, (label, what) in CATS.items():
+        st.slider(label, 0, 100, step=5, key=f"pw.{c}", help=what)
+    picked_weights = {c: st.session_state[f"pw.{c}"] for c in CATS}
+    total = sum(picked_weights.values())
+    if total == 0:
+        st.warning("All weights are zero, so the default weights are used.")
+        picked_weights, total = dict(DEFAULTS["categories"]), sum(DEFAULTS["categories"].values())
+    st.html('<div class="fine">Index = ' + " + ".join(
+        f"{picked_weights[c] / total:.0%} {CATS[c][0].lower()}" for c in CATS) + ". Default weights are "
+        + " / ".join(str(DEFAULTS["categories"][c]) for c in CATS)
+        + ": starting assumptions, not proven predictors.</div>")
+    st.button("Reset to default weights", on_click=reset_weights, type="tertiary", icon=":material/restart_alt:")
+
+if picked_weights != weights["categories"]:
+    weights = copy.deepcopy(weights)
+    weights["categories"] = picked_weights
+    scored = score_schools(tables, weights)
+    ranked = scored.dropna(subset=["overall"])
+st.session_state["weights"] = weights       # profiles show ranks under the same weights
+group = ranked[ranked["segment"] == segment]
 view = group
 if conf != "All conferences":
     view = view[view["conference_id"] == conf]
@@ -45,32 +88,9 @@ if view.empty:
     st.stop()
 filtered = len(view) < len(group)
 scope = "these schools" if filtered else segment
-
-
-def open_profile(school_id):
-    st.session_state["selected_school"] = school_id
-    st.switch_page(st.session_state["pages"]["profile"])
-
-
-# ---- takeaways + KPI tiles + charts ---------------------------------------------------------------------------
-left, right = st.columns([1, 3.1], gap="medium")
-
-best = view.iloc[0]
 top = view[view["tier"] == "Top opportunity"]
-shown = top if len(top) else view
-rank_note = f"#{int(best['segment_rank'])} in {segment}"
-items = [
-    ("trophy", f"{best['name']} ranks {rank_note}" if not filtered else f"{best['name']} leads here ({rank_note})",
-     reasons(best, events, limit=1, cities=cities)[0]),
-    ("trend", f"{len(top)} top {'opportunity' if len(top) == 1 else 'opportunities'}",
-     f"The top 10% of {segment} by opportunity index" + (", among these filters" if filtered else "")),
-    ("target", f"{int((shown['reported_result'] < 0).sum())} of {len(shown)} "
-               f"{'top schools' if len(top) else 'schools'} ran a deficit",
-     "Athletics spending exceeded revenue in FY2025, a reason to want new sponsorship money"),
-]
-left.html('<div class="takeaways"><div class="head">Top takeaways</div>' + "".join(
-    f'<div class="item">{ICONS[icon]}<div><b>{style.esc(head)}</b><span>{style.esc(body)}</span></div></div>'
-    for icon, head, body in items) + "</div>")
+
+# ---- KPI tiles + charts ---------------------------------------------------------------------------------------
 
 with right:
     style.grid([
@@ -93,6 +113,8 @@ with right:
             for x, y in zip(d["commercial_opportunity"], d["financial_pressure"]):
                 taken = {pos for px, py, pos in placed if abs(x - px) < 24 and abs(y - py) < 10}
                 options = ["bottom center", "middle right", "middle left"] if y > 95 else                     ["top center", "bottom center", "middle right", "middle left"]
+                if taken & {"top center", "bottom center"}:    # a label above or below would stack: go sideways
+                    options = ["middle right", "middle left"] + options
                 pos = next((o for o in options if o not in taken), options[0])
                 placed.append((x, y, pos))
                 out.append(pos)
