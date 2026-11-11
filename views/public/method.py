@@ -21,7 +21,9 @@ WHAT = {
                         "naming-rights deals since 2024.",
 }
 total = sum(weights["categories"].values())
-style.cards([(f"{LABELS[c]} · {weights['categories'][c] / total:.0%}", "", WHAT[c]) for c in LABELS])
+style.grid([f'<div class="card"><div class="label">{style.esc(LABELS[c])}</div>'
+            f'<div class="weight">{weights["categories"][c] / total:.0%}</div>'
+            f'<div class="note">{style.esc(WHAT[c])}</div></div>' for c in LABELS], min_width=260)
 
 st.html('<div class="section">Reading the results</div>')
 st.markdown("""

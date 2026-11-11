@@ -9,9 +9,13 @@ ctx = context()
 scored, tables, weights = ctx["scored"], ctx["tables"], ctx["weights"]
 events = top_events(tables, weights)
 
+ranked = scored.dropna(subset=["overall"])
 style.hero("College sponsorship · FY2025", "Where college sponsorship is most likely to grow",
            "All 113 public FBS athletic departments, ranked on three questions: how much they need new revenue, "
-           "how much room they have to grow sponsorship, and what they're already doing about it.")
+           "how much room they have to grow sponsorship, and what they're already doing about it.",
+           extra=style.stats([(f"{len(ranked)}", "schools ranked"),
+                              (f"{(ranked['tier'] == 'Top opportunity').sum()}", "top opportunities"),
+                              ("3", "questions per school"), (f"{len(tables['sources'])}", "public sources")]))
 
 segment = st.segmented_control("Group", ["Power 4", "Group of 5 & other FBS"], default="Power 4",
                                key="segment_view", label_visibility="collapsed") or "Power 4"
@@ -23,24 +27,19 @@ def open_profile(school_id):
     st.switch_page(st.session_state["pages"]["profile"])
 
 
+def opp_card(sid, row):
+    conf = CONFERENCE_NAMES.get(row["conference_id"], row["conference_id"])
+    items = "".join(f"<li>{style.esc(r)}</li>" for r in reasons(row, events))
+    return (f'<a class="opp-card" href="profile?school={sid}">'
+            f'<div class="opp-head"><span class="opp-num">#{int(row["segment_rank"])}</span>{style.pill(row["tier"])}</div>'
+            f'<div class="opp-name">{style.esc(row["name"])}</div>'
+            f'<div class="opp-meta">{style.esc(conf)} · {style.esc(STATES.get(row["state"], row["state"]))}</div>'
+            f'<ul class="ticks">{items}</ul><div class="opp-go">View profile →</div></a>')
+
+
 top = view[view["tier"] == "Top opportunity"]
 st.html(f'<div class="section">Top {len(top)} opportunities in {style.esc(segment)}</div>')
-for start in range(0, len(top), 3):
-    rows = top.iloc[start:start + 3]
-    why = {sid: reasons(row, events) for sid, row in rows.iterrows()}
-    # same height across the row so the "View profile" links line up (~46 characters per line)
-    lines = max(sum(-(-len(r) // 46) for r in rs) for rs in why.values())
-    height = 6.2 + 1.35 * lines + 0.35 * max(len(rs) for rs in why.values())
-    for col, (sid, row) in zip(st.columns(3), rows.iterrows()):
-        conf = CONFERENCE_NAMES.get(row["conference_id"], row["conference_id"])
-        items = "".join(f"<li>{style.esc(r)}</li>" for r in why[sid])
-        col.html(f'<div class="opp" style="min-height:{height:.1f}rem">'
-                 f'<div class="opp-rank">#{int(row["segment_rank"])}</div>'
-                 f'<div class="opp-name">{style.esc(row["name"])}</div>'
-                 f'<div class="opp-meta">{style.esc(conf)} · {style.esc(STATES.get(row["state"], row["state"]))}</div>'
-                 f'<ul class="opp-why">{items}</ul></div>')
-        col.button("View profile", key=f"open-{sid}", on_click=open_profile, args=(sid,), type="tertiary",
-                   icon=":material/arrow_forward:")
+style.grid([opp_card(sid, row) for sid, row in top.iterrows()], min_width=340)
 
 st.html(f'<div class="section">All {len(view)} schools</div>')
 table = view.assign(

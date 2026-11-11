@@ -62,20 +62,92 @@ h1, h2, h3 {{letter-spacing: -0.02em;}}
 </style>
 """
 
+# Public copy: equal-height card grids, clickable school cards, stat strip, callouts
+PUBLIC_CSS = f"""
+<style>
+.hero {{border-bottom: 0; padding: 1.8rem 2rem 1.6rem; margin-bottom: 1.4rem; border-radius: 1.1rem;
+        background: linear-gradient(135deg, #F3F5FF 0%, #FFFFFF 70%); border: 1px solid {LINE};}}
+.hero h1 {{font-size: 2.4rem;}}
+.stats {{display: flex; flex-wrap: wrap; gap: 0.6rem 2.2rem; margin-top: 1.2rem;}}
+.stats div {{font-size: 0.82rem; color: {MUTED};}}
+.stats b {{display: block; font-size: 1.35rem; font-weight: 700; color: {INK}; letter-spacing: -0.02em;}}
+.grid {{display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(var(--min, 300px), 100%), 1fr));}}
+.grid > .card {{height: auto;}}
+a.opp-card {{display: flex; flex-direction: column; text-decoration: none !important; color: {INK} !important;
+            border: 1px solid {LINE}; border-radius: 1rem; padding: 1.15rem 1.25rem 1rem; background: #fff;
+            box-shadow: 0 1px 2px rgba(20, 22, 28, 0.04); transition: border-color .15s, box-shadow .15s, transform .15s;}}
+a.opp-card:hover {{border-color: {ACCENT}; box-shadow: 0 8px 24px rgba(35, 70, 249, 0.10); transform: translateY(-2px);}}
+.opp-head {{display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem;}}
+.opp-num {{font-size: 2rem; font-weight: 750; color: {ACCENT}; letter-spacing: -0.04em; line-height: 1;}}
+.pill {{display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+        padding: 0.2rem 0.55rem; border-radius: 999px; background: #EEF1FF; color: {ACCENT}; white-space: nowrap;}}
+.pill.strong {{background: {SOFT}; color: {INK};}}
+.pill.quiet {{background: {SOFT}; color: {MUTED};}}
+a.opp-card .opp-name {{margin-top: 0.7rem;}}
+a.opp-card .opp-meta {{margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid {LINE};}}
+.ticks {{list-style: none; margin: 0 !important; padding: 0 !important; font-size: 0.9rem; line-height: 1.45; flex: 1;}}
+.ticks li {{position: relative; padding-left: 1.2rem; margin: 0 0 0.5rem !important;}}
+.ticks li::before {{content: ""; position: absolute; left: 0.1rem; top: 0.5em; width: 0.42rem; height: 0.42rem;
+                    border-radius: 50%; background: {ACCENT};}}
+.ticks, .timeline {{padding-inline-start: 0 !important;}}
+.ticks li, .timeline li {{margin-left: 0 !important;}}
+.opp-go {{font-size: 0.86rem; font-weight: 600; color: {ACCENT}; margin-top: 0.4rem;}}
+.callout {{border-radius: 1rem; background: #F3F5FF; padding: 1.1rem 1.3rem 0.7rem; border-left: 4px solid {ACCENT};}}
+.callout .ticks {{font-size: 1rem;}}
+.rank-tile {{text-align: right;}}
+.rank-tile .big {{font-size: 3rem; font-weight: 750; color: {ACCENT}; letter-spacing: -0.05em; line-height: 1;}}
+.rank-tile .of {{font-size: 0.85rem; color: {MUTED}; margin-top: 0.3rem;}}
+.hero-row {{display: flex; justify-content: space-between; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap;}}
+.weight {{font-size: 2.2rem; font-weight: 750; color: {ACCENT}; letter-spacing: -0.04em; line-height: 1.1;
+          margin: 0.2rem 0 0.4rem;}}
+.timeline {{list-style: none; margin: 0 0 0 0.4rem !important; padding: 0 !important; border-left: 2px solid {LINE};}}
+.timeline li {{position: relative; padding: 0 0 0.9rem 1.2rem; font-size: 0.95rem; line-height: 1.45;}}
+.timeline li::before {{content: ""; position: absolute; left: -0.36rem; top: 0.4em; width: 0.6rem; height: 0.6rem;
+                       border-radius: 50%; background: #fff; border: 2px solid {ACCENT};}}
+.timeline .when {{display: block; font-size: 0.78rem; font-weight: 600; color: {MUTED}; letter-spacing: 0.03em;}}
+.timeline a {{color: {ACCENT}; text-decoration: none; font-size: 0.85rem;}}
+@media (max-width: 640px) {{
+  .hero {{padding: 1.3rem 1.1rem 1.2rem;}}
+  .hero h1 {{font-size: 1.9rem;}}
+  .rank-tile {{text-align: left;}}
+}}
+</style>
+"""
+
+TIER_PILL = {"Top opportunity": "", "Strong": "strong"}
+
 
 def apply(public=False):
     st.html(CSS)
     if public:      # top navigation sits over the page; leave room so the eyebrow isn't hidden
-        st.html("<style>.block-container {padding-top: 4.4rem !important;}</style>")
+        st.html("<style>.block-container {padding-top: 4.4rem !important;}</style>" + PUBLIC_CSS)
 
 
 def esc(text):
     return html.escape(str(text))
 
 
-def hero(eyebrow, title, subtitle=""):
-    st.html(f'<div class="hero"><div class="eyebrow">{esc(eyebrow)}</div><h1>{esc(title)}</h1>'
+def hero(eyebrow, title, subtitle="", extra="", side=""):
+    """extra: HTML under the subtitle (e.g. stats()); side: HTML shown to the right of the title."""
+    head = (f'<div><div class="eyebrow">{esc(eyebrow)}</div><h1>{esc(title)}</h1>'
             + (f'<div class="sub">{esc(subtitle)}</div>' if subtitle else "") + "</div>")
+    if side:
+        head = f'<div class="hero-row">{head}{side}</div>'
+    st.html(f'<div class="hero">{head}{extra}</div>')
+
+
+def stats(items):
+    """Strip of (value, label) figures for the hero."""
+    return '<div class="stats">' + "".join(f"<div><b>{esc(v)}</b>{esc(k)}</div>" for v, k in items) + "</div>"
+
+
+def pill(tier):
+    return f'<span class="pill {TIER_PILL.get(tier, "quiet")}">{esc(tier)}</span>'
+
+
+def grid(items, min_width=300):
+    """Equal-height, wrapping grid of HTML cards."""
+    st.html(f'<div class="grid" style="--min:{min_width}px">{"".join(items)}</div>')
 
 
 def card(label, value, note=""):
