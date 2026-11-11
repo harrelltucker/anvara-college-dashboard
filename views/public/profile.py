@@ -3,7 +3,7 @@ import streamlit as st
 
 from ui import style
 from ui.fmt import CONFERENCE_NAMES, money
-from ui.public import LABELS, MEANING, STATES, reasons, short_title, top_events
+from ui.public import LABELS, MEANING, STATES, big_league_cities, reasons, short_title, top_events
 from ui.state import context, rights_summary
 
 ctx = context()
@@ -31,7 +31,8 @@ style.hero(f"{conf} · {STATES.get(row['state'], row['state'])}", row["name"],
 left, right = st.columns([3, 2], gap="large")
 with left:
     st.html('<div class="section">Why it\'s an opportunity</div><div class="callout"><ul class="ticks">'
-            + "".join(f"<li>{style.esc(r)}</li>" for r in reasons(row, top_events(tables, weights), limit=4))
+            + "".join(f"<li>{style.esc(r)}</li>" for r in reasons(row, top_events(tables, weights), limit=4,
+                                                         cities=big_league_cities(tables)))
             + "</ul></div>")
 with right:
     st.html('<div class="section">How it scores</div>' + "".join(

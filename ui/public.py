@@ -33,12 +33,30 @@ def top_events(tables, weights):
             for r in best.itertuples() if r.event_id in events.index}
 
 
+def big_league_cities(tables, leagues=("NFL", "MLB", "NBA", "NHL")):
+    """state -> 'Kansas City and St. Louis': the cities a statewide market leaves out."""
+    teams = tables["market_teams"]
+    teams = teams[teams["league"].isin(leagues)].assign(
+        cbsa=lambda t: t["cbsa_code"].astype(str), place=lambda t: t["city"].str.split(",").str[0].str.strip())
+    stats = tables["market_stats"]
+    metro = (stats[stats["geo_type"] == "cbsa"].assign(geo_id=lambda s: s["geo_id"].astype(str))
+             .drop_duplicates("geo_id").set_index("geo_id")["geo_name"])
+    # one name per metro: its Census name ("Dallas-Fort Worth-Arlington, TX" -> Dallas), else its teams' usual city
+    # (stadiums often sit in suburbs such as Foxborough)
+    name = {c: (metro[c].split("-")[0].split(",")[0].strip() if c in metro.index else g["place"].mode().sort_values().iloc[0])
+            for c, g in teams.groupby("cbsa")}
+    teams = teams.assign(metro=teams["cbsa"].map(name))
+    join = lambda xs: xs[0] if len(xs) == 1 else ", ".join(xs[:-1]) + " and " + xs[-1]
+    return {s: join(sorted(set(g["metro"]))) for s, g in teams.groupby("state")}
+
+
 def short_title(title):
     return title.split(";")[0].split(" (")[0].strip()
 
 
-def reasons(row, events, limit=3):
-    """Strongest reasons first, each with its number. Only reasons the scores actually support."""
+def reasons(row, events, limit=3, cities=None):
+    """Strongest reasons first, each with its number. Only reasons the scores actually support.
+    cities: big_league_cities(), so a statewide market says which cities it leaves out."""
     out = []                                        # (strength, text)
     fp = row["financial_pressure"]
     if pd.notna(fp) and fp >= 67:
@@ -58,7 +76,14 @@ def reasons(row, events, limit=3):
         out.append((reach, f"One of the biggest audiences in its group ({row['football']:,.0f} per football game)"))
     alone = row.get("regional_appeal.only_game_in_town")
     if pd.notna(alone) and alone >= 80 and row.get("competing_weight", 1) == 0:
-        where = f"across {STATES.get(row['state'], row['state'])}" if row.get("market_scope") == "state" else "in its metro area"
+        state_name = STATES.get(row["state"], row["state"])
+        left_out = (cities or {}).get(row["state"])
+        if row.get("market_scope") != "state":
+            where = "in its metro area"
+        elif left_out:
+            where = f"in {state_name} outside {left_out}"
+        else:
+            where = f"anywhere in {state_name}"
         out.append((alone - 10, f"No major pro team competing for sponsors {where}"))
     gc = row["growth_catalysts"]
     if pd.notna(gc) and gc >= 40 and row.name in events:
