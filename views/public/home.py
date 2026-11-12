@@ -49,17 +49,32 @@ def reset_weights():
         st.session_state[f"pw.{c}"] = DEFAULTS["categories"][c]
 
 
+def rebalance(moved):
+    """Keep the weights at 100: the other sliders split what's left, in proportion to where they were."""
+    others = [c for c in CATS if c != moved]
+    left_over = 100 - st.session_state[f"pw.{moved}"]
+    old = {c: st.session_state[f"pw.{c}"] for c in others}
+    base = sum(old.values())
+    raw = {c: left_over * (old[c] / base if base else 1 / len(others)) for c in others}
+    new = {c: int(raw[c] // 5 * 5) for c in raw}            # round down to the slider step...
+    for c in sorted(raw, key=lambda c: raw[c] - new[c], reverse=True)[:(left_over - sum(new.values())) // 5]:
+        new[c] += 5                                          # ...then hand the leftover 5s to the closest
+    for c in others:
+        st.session_state[f"pw.{c}"] = new[c]
+
+
 # ---- the exercise: what's being ranked, and the weights (re-ranks everything below) ---------------------------
 left, right = st.columns([1, 3.1], gap="medium")
 for c in CATS:       # sliders forget their value when you leave the page; restore from the last weights used
     st.session_state.setdefault(f"pw.{c}", weights["categories"][c])
 with left.container(border=True, key="panel_weights"):
     st.html('<div class="panel-title">How this ranking works</div><div class="panel-sub" style="margin-top:0.4rem">'
-            "Every school gets three scores from 0 to 100, each compared only with the schools in its group. "
-            "The opportunity index blends them using these weights. Drag a slider to see how the ranking changes."
+            "Every school gets three scores from 0 to 100, each compared only with the schools in its group "
+            "(Power 4 vs. Group of 5). The opportunity index blends them using these weights, which always add "
+            "up to 100. Drag a slider to see how the ranking changes; the others adjust to keep the total at 100."
             "</div>")
     for c, (label, what) in CATS.items():
-        st.slider(label, 0, 100, step=5, key=f"pw.{c}", help=what)
+        st.slider(label, 0, 100, step=5, key=f"pw.{c}", help=what, on_change=rebalance, args=(c,))
     picked_weights = {c: st.session_state[f"pw.{c}"] for c in CATS}
     total = sum(picked_weights.values())
     if total == 0:
