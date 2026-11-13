@@ -36,6 +36,6 @@ st.markdown("""
 """)
 
 INTERNAL = ("review queue", "Demonstration data", "**Confidence:**", "Data completeness", "Featured schools")
-with st.expander("Full methodology"):
-    text = (ROOT / "docs" / "METHODOLOGY.md").read_text(encoding="utf-8")
-    st.markdown("\n".join(line for line in text.splitlines() if not any(k in line for k in INTERNAL)))
+st.html('<div class="section">Full methodology</div>')
+text = (ROOT / "docs" / "METHODOLOGY.md").read_text(encoding="utf-8")
+st.markdown("\n".join(line for line in text.splitlines() if not any(k in line for k in INTERNAL)))
